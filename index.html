@@ -524,6 +524,104 @@
 
     
     /* ======================================================== */
+    
+    /* UNIFIED STUDY SELECTION UI */
+    .study-selection-container {
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 8px;
+    }
+
+    .study-pool-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .study-pool-btn {
+      padding: 10px 4px;
+      border-radius: 10px;
+      border: 1.5px solid var(--border);
+      background: #ffffff;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #475569;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      transition: all 0.15s ease;
+      min-width: 0;
+      text-align: center;
+      box-sizing: border-box;
+      user-select: none;
+    }
+
+    .study-pool-btn span {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+
+    .study-pool-btn.active {
+      border-color: var(--primary);
+      background: #eff6ff;
+      color: var(--primary);
+      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.12);
+    }
+
+    .pool-tag {
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 1px 6px;
+      border-radius: 999px;
+      background: #e2e8f0;
+      color: #334155;
+    }
+
+    .study-pool-btn.active .pool-tag {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    .study-secondary-filters {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 8px;
+      margin-top: 10px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 480px) {
+      .study-secondary-filters {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .study-search-input {
+      width: 100%;
+      height: 48px;
+      padding: 10px 14px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 1.5px solid #cbd5e1;
+      box-sizing: border-box;
+      min-width: 0;
+      outline: none;
+      color: #0f172a;
+      background: white;
+    }
+
+    .study-search-input:focus {
+      border-color: var(--primary);
+    }
+
     /* UPGRADED MOBILE UI: EXAM SELECTION & TOUCH CONTROLS      */
     /* ======================================================== */
     .mobile-picker-select {
@@ -980,41 +1078,61 @@
           <div class="progress-bar" id="st-progress-bar"></div>
         </div>
 
-        <div class="inputs-grid">
-          <select id="st-category" onchange="stApplyFilters(true)">
-        <option value="ALL">Archivio Completo Deduplicato (435 domande uniche)</option>
-        <option value="RANDOM_40">Simulazione Esame Casuale (40 domande)</option>
-        <option disabled>──────── Questionari Completi ────────</option>
-        <option value="Screenshot Test">undefined (40 domande)</option>
-        <option value="Esercitazione 0">Esercitazione 0 (56 domande)</option>
-        <option value="Esercitazione 1">Esercitazione 1 (39 domande)</option>
-        <option value="Esercitazione 2">Esercitazione 2 (39 domande)</option>
-        <option value="Esercitazione 3">Esercitazione 3 (40 domande)</option>
-        <option value="Esercitazione 4">Esercitazione 4 (40 domande)</option>
-        <option value="Esercitazione 5">Esercitazione 5 (39 domande)</option>
-        <option value="Esercitazione 6">Esercitazione 6 (38 domande)</option>
-        <option value="Alto Livello 1">Alto Livello 1 (40 domande)</option>
-        <option value="Alto Livello 2">Alto Livello 2 (40 domande)</option>
-        <option value="Alto Livello 3">Alto Livello 3 (40 domande)</option>
-        <option value="Alto Livello 4">Alto Livello 4 (40 domande)</option>
-        <option value="Alto Livello 5">Alto Livello 5 (40 domande)</option>
-        <option value="Alto Livello 6">Alto Livello 6 (39 domande)</option>
-        <option value="Alto Livello 7">Alto Livello 7 (40 domande)</option>
-        <option value="Alto Livello 8">Alto Livello 8 (40 domande)</option>
-        <option value="Alto Livello 9">Alto Livello 9 (40 domande)</option>
-          </select>
+        <!-- Unified Selection Interface for Study Mode -->
+        <div class="study-selection-container">
+          <div class="study-pool-tabs">
+            <button class="study-pool-btn active" id="st-pool-all" onclick="stSelectPool('ALL')">
+              <span>🌟 Archivio Unico</span>
+              <span class="pool-tag">435</span>
+            </button>
+            <button class="study-pool-btn" id="st-pool-rand" onclick="stSelectPool('RANDOM_40')">
+              <span>🎲 40 a caso</span>
+              <span class="pool-tag">Mix</span>
+            </button>
+            <button class="study-pool-btn" id="st-pool-spec" onclick="stSelectPool('SPECIFIC')">
+              <span>📑 Questionario</span>
+              <span class="pool-tag" id="st-spec-badge">Scegli</span>
+            </button>
+          </div>
 
-          <select id="st-filter-status" onchange="stApplyFilters(true)">
-            <option value="ALL">Tutti gli stati</option>
-            <option value="UNANSWERED">Da rispondere</option>
-            <option value="CORRECT">Corrette</option>
-            <option value="WRONG">Errate</option>
-          </select>
+          <div id="st-specific-picker-box" style="display:none; margin-top:10px;">
+            <select id="st-select-specific" class="mobile-picker-select" onchange="stOnSpecificChange()">
+              <optgroup label="📑 Esercitazioni Originali (Complete)">
+                <option value="Screenshot Test" data-count="40">Screenshot Test (40 domande)</option>
+                <option value="Esercitazione 0" data-count="56">Esercitazione 0 - Slide Review (56 domande)</option>
+                <option value="Esercitazione 1" data-count="39">Esercitazione 1 (39 domande)</option>
+                <option value="Esercitazione 2" data-count="39">Esercitazione 2 (39 domande)</option>
+                <option value="Esercitazione 3" data-count="40">Esercitazione 3 (40 domande)</option>
+                <option value="Esercitazione 4" data-count="40">Esercitazione 4 (40 domande)</option>
+                <option value="Esercitazione 5" data-count="39">Esercitazione 5 (39 domande)</option>
+                <option value="Esercitazione 6" data-count="38">Esercitazione 6 (38 domande)</option>
+              </optgroup>
+              <optgroup label="🏆 Test Alto Livello (Simulazioni Ufficiali)">
+                <option value="Alto Livello 1" data-count="40">Alto Livello 1 (40 domande)</option>
+                <option value="Alto Livello 2" data-count="40">Alto Livello 2 (40 domande)</option>
+                <option value="Alto Livello 3" data-count="40">Alto Livello 3 (40 domande)</option>
+                <option value="Alto Livello 4" data-count="40">Alto Livello 4 (40 domande)</option>
+                <option value="Alto Livello 5" data-count="40">Alto Livello 5 (40 domande)</option>
+                <option value="Alto Livello 6" data-count="39">Alto Livello 6 (39 domande)</option>
+                <option value="Alto Livello 7" data-count="40">Alto Livello 7 (40 domande)</option>
+                <option value="Alto Livello 8" data-count="40">Alto Livello 8 (40 domande)</option>
+                <option value="Alto Livello 9" data-count="40">Alto Livello 9 (40 domande)</option>
+              </optgroup>
+            </select>
+          </div>
 
-          <input type="text" id="st-search" placeholder="Cerca domanda..." oninput="stApplyFilters(true)">
-        </div>
+          <!-- Secondary Filters: Status & Search -->
+          <div class="study-secondary-filters">
+            <select id="st-filter-status" class="mobile-picker-select" onchange="stApplyFilters(true)">
+              <option value="ALL">Tutti gli stati</option>
+              <option value="UNANSWERED">Da rispondere</option>
+              <option value="CORRECT">Solo Corrette</option>
+              <option value="WRONG">Solo Errate</option>
+            </select>
 
-        <div class="btn-row">
+            <input type="text" id="st-search" class="study-search-input" placeholder="🔍 Cerca domanda..." oninput="stApplyFilters(true)">
+          </div>
+        </div><div class="btn-row">
           <button class="btn-action" onclick="stShuffle()">🔀 Mischia</button>
           <button class="btn-action" onclick="stReset()">🔄 Reset risposte</button>
         </div>
@@ -8869,6 +8987,7 @@
     let stQuestions = [];
     let stCurrentIndex = 0;
     const stState = new Map(); // question -> { selected: null, checked: false }
+    let stSelectedPool = 'ALL';
 
     function getStState(q) {
       if (!stState.has(q)) {
@@ -8877,17 +8996,49 @@
       return stState.get(q);
     }
 
-    function stApplyFilters(resetIndex = false) {
-      const cat = document.getElementById('st-category').value;
-      let base = [];
+    function stSelectPool(mode) {
+      stSelectedPool = mode;
+      document.querySelectorAll('.study-pool-btn').forEach(b => b.classList.remove('active'));
+      const specBox = document.getElementById('st-specific-picker-box');
 
-      if (cat === 'ALL') {
+      if (mode === 'ALL') {
+        document.getElementById('st-pool-all').classList.add('active');
+        specBox.style.display = 'none';
+      } else if (mode === 'RANDOM_40') {
+        document.getElementById('st-pool-rand').classList.add('active');
+        specBox.style.display = 'none';
+      } else if (mode === 'SPECIFIC') {
+        document.getElementById('st-pool-spec').classList.add('active');
+        specBox.style.display = 'block';
+        stOnSpecificChange(false);
+      }
+      stApplyFilters(true);
+    }
+
+    function stOnSpecificChange(triggerFilter = true) {
+      const select = document.getElementById('st-select-specific');
+      const opt = select.options[select.selectedIndex];
+      const count = opt.getAttribute('data-count') || '40';
+      document.getElementById('st-spec-badge').textContent = count;
+      if (triggerFilter) {
+        stApplyFilters(true);
+      }
+    }
+
+    function stApplyFilters(resetIndex = false) {
+      let pool = stSelectedPool;
+      if (pool === 'SPECIFIC') {
+        pool = document.getElementById('st-select-specific').value;
+      }
+
+      let base = [];
+      if (pool === 'ALL') {
         base = [...DEDUPLICATED_DATA];
-      } else if (cat === 'RANDOM_40') {
+      } else if (pool === 'RANDOM_40') {
         const shuffled = [...DEDUPLICATED_DATA].sort(() => 0.5 - Math.random());
         base = shuffled.slice(0, 40);
       } else {
-        base = MASTER_DATA.filter(q => q.categoria === cat);
+        base = MASTER_DATA.filter(q => q.categoria === pool);
       }
 
       const status = document.getElementById('st-filter-status').value;
