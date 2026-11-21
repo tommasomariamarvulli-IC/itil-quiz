@@ -457,16 +457,19 @@
     }
 
     .mode-tab-btn {
-      padding: 6px 12px;
-      border-radius: 7px;
+      width: 40px;
+      height: 38px;
+      border-radius: 8px;
       border: none;
       background: transparent;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: #64748b;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
       transition: all 0.15s;
-      white-space: nowrap;
+      flex-shrink: 0;
+      padding: 0;
     }
 
     .mode-tab-btn.active {
@@ -476,20 +479,21 @@
     }
 
     .refresh-cache-btn {
-      padding: 6px 10px;
-      border-radius: 7px;
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
       border: 1px solid #cbd5e1;
       background: #f8fafc;
-      font-size: 0.82rem;
-      font-weight: 700;
+      font-size: 1.1rem;
       color: #334155;
       cursor: pointer;
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      gap: 5px;
+      justify-content: center;
       transition: all 0.15s ease;
-      white-space: nowrap;
-      margin-left: 2px;
+      margin-left: 4px;
+      padding: 0;
+      flex-shrink: 0;
     }
 
     .refresh-cache-btn:hover, .refresh-cache-btn:active {
@@ -1315,13 +1319,11 @@
       </div>
 
       <div class="mode-tabs">
-        <button class="mode-tab-btn active" id="tab-home-mode" onclick="setAppMode('HOME')">🏠 Home</button>
-        <button class="mode-tab-btn" id="tab-study-mode" onclick="setAppMode('STUDY')">📚 Studio</button>
-        <button class="mode-tab-btn" id="tab-exam-mode" onclick="setAppMode('EXAM')">⏱️ Esame</button>
-        <button class="mode-tab-btn" id="tab-registry-mode" onclick="setAppMode('REGISTRY')">📖 Registro</button>
-        <button class="refresh-cache-btn" onclick="forceAppRefresh(this)" title="Svuota cache e ricarica l'ultima versione">
-          <span class="refresh-icon">🔄</span>
-        </button>
+        <button class="mode-tab-btn active" id="tab-home-mode" onclick="setAppMode('HOME')" title="Home">🏠</button>
+        <button class="mode-tab-btn" id="tab-study-mode" onclick="setAppMode('STUDY')" title="Modalità Studio">📚</button>
+        <button class="mode-tab-btn" id="tab-exam-mode" onclick="setAppMode('EXAM')" title="Modalità Esame">⏱️</button>
+        <button class="mode-tab-btn" id="tab-registry-mode" onclick="setAppMode('REGISTRY')" title="Registro Domande">📖</button>
+        <button class="refresh-cache-btn" onclick="forceAppRefresh(this)" title="Svuota cache e ricarica">🔄</button>
       </div>
     </div>
   </header>
@@ -1344,28 +1346,14 @@
         </div>
       </div>
 
-      
-      <!-- Offline Download Card -->
-      <div class="offline-download-card">
-        <div class="offline-download-info">
-          <span class="offline-download-icon">💾</span>
-          <div>
-            <div class="offline-download-title">Vuoi usarlo sempre senza internet?</div>
-            <div class="offline-download-sub">Scarica il file completo sul telefono per esercitarti senza connessione e a PC spento.</div>
-          </div>
-        </div>
-        <button class="btn-offline-download" onclick="downloadOfflineApp()">
-          📥 Scarica File Offline (.html)
-        </button>
-      </div>
-
+      <!-- 3 Navigation Cards -->
       <div class="home-cards">
         <!-- Card 1: Studio & Pratica -->
         <div class="portal-card study" onclick="setAppMode('STUDY')">
           <div class="portal-card-badge">Verifica Subito</div>
           <div class="portal-card-icon">📚</div>
           <h2 class="portal-card-title">Modalità Studio & Pratica</h2>
-          <p class="portal-card-desc">Ideale per imparare e ripassare. Rispondi alle domande una alla volta con correzione immediata, filtri per esercitazione e ricerca per argomenti.</p>
+          <p class="portal-card-desc">Ideale per imparare e ripassare. Rispondi alle domande una alla volta con correzione immediata, spiegazioni e filtri per singolo questionario.</p>
           <div class="portal-card-btn">Avvia Modalità Studio →</div>
         </div>
 
@@ -1376,18 +1364,19 @@
           <h2 class="portal-card-title">Modalità Esame a Tempo</h2>
           <p class="portal-card-desc">Simula fedelmente l'esame reale: <strong>40 domande ripartite secondo il syllabus ufficiale</strong> (Concetti chiave 5 pt, Sistema 3 pt, Principi 6 pt, Catena 2 pt, Pratiche 24 pt). 1 punto per risposta esatta, 0 per errata o non data (soglia minima 26/40 - 65%).</p>
           <div class="portal-card-btn">Inizia Simulazione Esame →</div>
-        
+        </div>
+
         <!-- Card 3: Registro delle Domande -->
         <div class="portal-card registry" onclick="setAppMode('REGISTRY')">
           <div class="portal-card-badge">Solo Risposte Esatte</div>
           <div class="portal-card-icon">📖</div>
           <h2 class="portal-card-title">Registro delle Domande</h2>
-          <p class="portal-card-desc">Tutte le 481 domande con le sole risposte corrette ufficiali, raggruppate per i 5 domini syllabus (Concetti chiave, Sistema, Principi, Catena, Pratiche).</p>
+          <p class="portal-card-desc">Consulta tutte le 481 domande uniche con le <strong>sole risposte corrette ufficiali</strong>, raggruppate separatamente per i 5 domini syllabus (Concetti chiave, Sistema, Principi, Catena, Pratiche).</p>
           <div class="portal-card-btn">Sfoglia il Registro Domande →</div>
         </div>
       </div>
 
-      <!-- Offline Download Card (Placed AFTER Registro delle Domande) -->
+      <!-- Offline Download Card (Placed ONLY AFTER the 3 cards) -->
       <div class="offline-download-card">
         <div class="offline-download-info">
           <span class="offline-download-icon">💾</span>
@@ -1411,7 +1400,7 @@
           </li>
           <li>
             <span>🔄</span>
-            <span><strong>Navigazione rapida:</strong> Puoi cambiare modalità in qualsiasi momento usando i tasti in alto (<em>Home</em>, <em>Studio</em>, <em>Esame</em>).</span>
+            <span><strong>Navigazione rapida:</strong> Puoi cambiare modalità in qualsiasi momento usando le icone in alto (<em>🏠 Home</em>, <em>📚 Studio</em>, <em>⏱️ Esame</em>, <em>📖 Registro</em>).</span>
           </li>
           <li>
             <span>📲</span>
@@ -1727,13 +1716,11 @@
         </div>
 
         <div id="ex-review-list"></div>
-      </div>
-
+          </div>
     </div>
 
-  
     <!-- ========================================== -->
-    <!-- 3. REGISTRO DELLE DOMANDE (Solo Risposte)   -->
+    <!-- 3. REGISTRO DELLE DOMANDE (Sezione Separata) -->
     <!-- ========================================== -->
     <div id="view-registry" class="mode-view">
       <div class="registry-header-card">
@@ -1759,10 +1746,7 @@
 
       <div id="registry-content-list"></div>
     </div>
-
-  </div>
-
-  <script>
+  </div><script>
     const MASTER_DATA = [
   {
     "categoria": "Esercitazione 7",
