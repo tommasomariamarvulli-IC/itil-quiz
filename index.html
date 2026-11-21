@@ -193,6 +193,69 @@
       gap: 8px;
     }
 
+    
+    /* OFFLINE DOWNLOAD CARD */
+    .offline-download-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      text-align: left;
+    }
+
+    .offline-download-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1 1 260px;
+    }
+
+    .offline-download-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+
+    .offline-download-title {
+      font-weight: 800;
+      font-size: 0.98rem;
+      color: #0f172a;
+      margin-bottom: 2px;
+    }
+
+    .offline-download-sub {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .btn-offline-download {
+      padding: 10px 18px;
+      border-radius: 9px;
+      background: #0f172a;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.88rem;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      transition: all 0.15s;
+    }
+
+    .btn-offline-download:hover, .btn-offline-download:active {
+      background: #1e293b;
+      transform: scale(0.99);
+    }
+
     /* Fixed App Header */
     .app-header {
       background: #ffffff;
@@ -1022,6 +1085,21 @@
           <span class="hero-tag green">100% Offline</span>
           <span class="hero-tag amber">16 Moduli d'Esercizio</span>
         </div>
+      </div>
+
+      
+      <!-- Offline Download Card -->
+      <div class="offline-download-card">
+        <div class="offline-download-info">
+          <span class="offline-download-icon">💾</span>
+          <div>
+            <div class="offline-download-title">Vuoi usarlo sempre senza internet?</div>
+            <div class="offline-download-sub">Scarica il file completo sul telefono per esercitarti senza connessione e a PC spento.</div>
+          </div>
+        </div>
+        <button class="btn-offline-download" onclick="downloadOfflineApp()">
+          📥 Scarica File Offline (.html)
+        </button>
       </div>
 
       <div class="home-cards">
@@ -9586,6 +9664,28 @@
         }
       }
     });
+
+    
+    // Offline App Downloader
+    function downloadOfflineApp() {
+      const htmlText = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+      const blob = new Blob([htmlText], { type: 'text/html;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'ITIL4_Quiz_Offline.html';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 1500);
+    }
+
+    // Register Service Worker for PWA offline caching on HTTPS (GitHub Pages)
+    if ('serviceWorker' in navigator && (window.location.protocol === 'https:' || window.location.hostname === 'localhost')) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      });
+    }
 
     // Init App
     stApplyFilters();
