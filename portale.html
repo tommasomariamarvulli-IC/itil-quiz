@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ITIL® 4 Foundation - Portale Quiz</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --primary-light: #eff6ff;
+      --success: #16a34a;
+      --border: #e2e8f0;
+      --radius: 16px;
+      --shadow: 0 10px 15px -3px rgba(0,0,0,0.07), 0 4px 6px -4px rgba(0,0,0,0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Nav */
+    nav {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: #0f172a;
+      text-decoration: none;
+    }
+
+    .badge-count {
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: #e0e7ff;
+      color: #4338ca;
+      padding: 3px 8px;
+      border-radius: 999px;
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 6px;
+    }
+
+    .tab-btn {
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: #475569;
+      border: 1px solid transparent;
+      cursor: pointer;
+      background: transparent;
+      transition: all 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tab-btn:hover {
+      background: #f1f5f9;
+      color: var(--primary);
+    }
+
+    .tab-btn.active {
+      background: var(--primary-light);
+      color: var(--primary);
+      border-color: #bfdbfe;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 30px 16px;
+      flex: 1;
+      width: 100%;
+    }
+
+    .hero-section {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .hero-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 10px;
+      line-height: 1.25;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    /* Simulator Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 24px;
+      margin-bottom: 36px;
+    }
+
+    .sim-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      border: 1.5px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+    }
+
+    .sim-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.05);
+      border-color: var(--primary);
+    }
+
+    .card-icon-wrapper {
+      width: 54px;
+      height: 54px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.7rem;
+      margin-bottom: 18px;
+    }
+
+    .sim-card.study .card-icon-wrapper {
+      background: #eff6ff;
+      color: var(--primary);
+    }
+
+    .sim-card.exam .card-icon-wrapper {
+      background: #fef2f2;
+      color: #dc2626;
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    .sim-card.study .card-badge {
+      background: #e0f2fe;
+      color: #0369a1;
+    }
+
+    .sim-card.exam .card-badge {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .card-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #0f172a;
+    }
+
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.55;
+      margin-bottom: 20px;
+      flex: 1;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .feature-list li {
+      font-size: 0.86rem;
+      color: #334155;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+
+    .btn-card.primary {
+      background: var(--primary);
+      color: white;
+    }
+    .btn-card.primary:hover {
+      background: var(--primary-hover);
+    }
+
+    .btn-card.danger {
+      background: #dc2626;
+      color: white;
+    }
+    .btn-card.danger:hover {
+      background: #b91c1c;
+    }
+
+    /* Mobile Quick Connect Banner */
+    .mobile-banner {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .mobile-info {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .mobile-icon {
+      font-size: 2.2rem;
+    }
+
+    .mobile-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+
+    .mobile-url-box {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #2563eb;
+      background: #eff6ff;
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px dashed #bfdbfe;
+      display: inline-block;
+      user-select: all;
+    }
+
+    .btn-qr {
+      padding: 9px 16px;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s;
+    }
+
+    .btn-qr:hover {
+      background: #e2e8f0;
+    }
+
+    /* Embedded Iframe View (Full Screen) */
+    #iframe-container {
+      display: none;
+      position: fixed;
+      top: 57px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: white;
+      z-index: 40;
+    }
+
+    #app-frame {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* QR Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 26px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    .modal-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .qr-img {
+      margin: 16px auto;
+      display: block;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      padding: 8px;
+      background: white;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: white;
+    }
+
+    @media (max-width: 640px) {
+      .hero-title {
+        font-size: 1.6rem;
+      }
+      .mobile-banner {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+      }
+      .mobile-info {
+        flex-direction: column;
+      }
+    }
+  </style>
+
+  <!-- PWA & Android/iOS Home Screen Icon -->
+  <link rel="icon" type="image/png" sizes="192x192" href="data:image/png;base64,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">
+  <link rel="apple-touch-icon" sizes="192x192" href="data:image/png;base64,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">
+  <link rel="shortcut icon" href="data:image/png;base64,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">
+  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22ITIL%204%20Foundation%20Quiz%22%2C%22short_name%22%3A%22ITIL%204%20Quiz%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22orientation%22%3A%22portrait%22%2C%22background_color%22%3A%22%232563eb%22%2C%22theme_color%22%3A%22%232563eb%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAJz0lEQVR4nO3a6bYdVRXFcV7B3g%2BYBEhEXkFFUeywgUASQkIIIREjGH0RFUFFbBBUxAaxQVCxQRSxQWzoBLFBVBD1FfywHHoH3LtrVdXZp2rXnmutPc8Yv4%2B37q6q%2BT83Az3pJPBHRO6gtqE3WPWDfthkH3qjxT9THsK2V75fKJamYlg58Fd9QIi2ChEDR08luAyhf%2FQfFKI5zEfA4VMNJkPQw79KiJZkIoLeb%2F1XXyVENUD%2FGujhf0iIEKpHwPGTNdUi0OO%2FWogsWDwCNf4zrxYiSxaLQI%2F%2FGiGyqHgE3QtuP%2FMaIbKsaATp%2BD8sRB4UCYDjJ89mRZCM%2FzUfESKPJkfAACiCSQGk4%2F%2BoEHm2VgQcP0WUHUEawLVCFEFWAMn4X3utEEWyMoI0gI8JUSTZAaAPSrSUwQDSb%2F%2FrhCiiwb8CSQBnXSdEEa0MYPtZHxeiyFQA6bc%2F%2FoBES1J%2FBdIAPiFEkQ0GgD4YUS39Abzuk0LUgucCSP75Y%2BBgRDUMBPApIWqB2wD%2Bc%2FdOMg69kRkBXC%2FWoV8u5QSA38kq%2FQG8%2FnqxDv1yKSMAAztZZSCAT4t16JdLOQHgd7KKCgB9oKkBPO%2FkcwnMYwDPRrAlgBvEAx3AeQSmA8DvJEcawNk3iAcMwB4VgIGd5OgEcKN4wADs0QHgd5IjCWDH2TeKBwzAnu47QW8kVyeAz4gHOoDdBKYDwO8kR4gAnn%2FybgKLEcAbPiseMAB7VAAGdpIjRgAv201gQQL4nHigAzifwHQA%2BJ3kYADEADYDuEk8YAD26ADwO8mRBvDGm8QDHcAFBKYCMLCTHJ0APi8eMAB7dAD4neRoLoA5H%2B%2FXYwArA7hZPGAA065XNwD8TnKkAbzpZvFAB7An27yB%2Bb7eOs9pXSoAAzvJ0QngC%2BKBCmDbntmSoQS6XulzDNEB4HeSgwEYGywDgAbwRfGAAXgIAL%2BTHEEC2DtbOpQ41yt9jiExAnjzl8QDBuAgAAM7ycEAjA2WAUAD%2BLJ4oAPYN1s6lDjXK32OIToA%2FE5yhAjgBdv2zbb1E%2Bl6pc8xJEgAt4gHKoDt%2B2ZLhhLoeqXPMUQHgN9JjjSAt9wiHjAABwEY2EmOTgBfEQ90ABfOlg4lzvVKn2OIDgC%2FkxwMwNhgGQA0gFvFAwbgIQD8TnKkAZxzq3jAABwEYGAnOZIATjnnq%2BKBDmD%2FbOlQ4lyv9DmGdN8JeiO5mgtgzqf2YEucr9b9Bgnga%2BKBCmDH%2FmyzBjHx9yDPV%2Bt%2BdQD4neQIEsBF2eYNYtrvQZ6v1v3GCOCtXxcP5gRAy1ABGNhJDgZADGAzgG%2BIBwzAHh0Afic5ggRwgMCCBHCbeMAA7NEB4HeSIw3gbbeJBwzAHhWAgZ3k6ATwTfGg%2B7BfuOMAgekA8DvJESOAUw4SWJAAbhcPGIA9OgD8TnKkAbz9dvGAAdijAjCwkxydAO4QDxiAPToA%2FE5yBAng4lC69%2BfhXoME8C3xwMso2g4Av5McDMAgBoAK4B3fFg%2F0KA6FMh4A%2Fnw5Z0ZvJFeMAE49FMpoAAbOl3Nm9EYmBvAd8cDLKNoOAL%2BTHAzAIAYAC%2BBO8UCP4hJ3xkY%2BHgD%2B7Dn3g95IrjSAc%2B8UD7yMoukADOwkRyeA74oHXkbRdgD4neRgAEYGwwBMBPA98UCP4rA70wPAnz3nftAbyZUEcOp53xcPug%2F7RacddmdqAOhz594PeiO5GICRwTAAEwH8QDzQo7jUpPEhl%2F85S%2FeK3kguBsAAGMBmAHeJB15H0VYA%2BJ3kSAPYfZd44HUUTQVgYCc5OgH8UDzQozhi0viQy%2F%2BcpXtFbyQXA2AADGAzgLvFA6%2BjaCsA%2FE5yxAhg5xGY0bEaumbt54DeyLQAzv%2BReJGO4jKY8bHauWbN54DexjoYAANgAJsB%2FFi8sDIMBqDPi97GOgIFcBRifKx2rlnzGaC3MSOAe8QTC8NgAEc748fvYh1pABfcI55YGEfrAahvfwO7WEcngJ%2BIN%2BhxjI21NvT9o7cwRagA%2Fj%2BCXceqQo%2Fe0r2jt1AggHvFo60v4cW7jlWFHr2Ve0dvYKo0gD33ikfIIaBHb%2BW%2B0RuYqhPAT8UrK0NoMQD0u58jZAAbY3hnFejRW7hn9LsvGMDPxDMLY2gtAPQ7nytUAKgIakZl6Wzod10%2BgL0%2FF%2B%2F0YC53ZzwAO%2BdCv%2BsSwgUQIQKLAUQcf08Av5AoktG8%2FHJXRgMwcCb0uy0pbACeI7AWQNTxqwBO23ufRJOO510ujAeAOwv6XS4hDWDffRINekCeA%2Bj%2BbvS7XEIngF9KRN4isBCAHj%2F%2BPS6hiQC8RYAOoJXx9wRwv0Smx3TcpPEA6v5u9DtbWhrAhfdLdB4iQAWgxm%2FgfS2tE8CvpAVqVKcfN2U0gEq%2FE%2F2OamkygL4IXnL6cTPGAqjx%2B9DvBhjAr6UlelzvNmE8gGV%2FF%2Fqd1NZ0AJYjQISGfhf4APb%2FRlrUYgRq%2FAbeAwIDGIzgirA4%2FsEAfiutixyCHj7%2BeaMxgB4RI%2BD4%2B3UCeEBog4rgFVe4pcePf75WpAFc9IDQJh3Ble6o8Rt4rpZ0AnhQKNX73%2BINDHvd4W%2BMH%2F88rWEAmZaKYOlrcvjjOgE8JDSsdARL%2FHXR48c%2FN8vSAA48JDSuf7TvWdvo%2F92h0PXQz8qDTgAPC61WYrQlA%2BgfP%2F45ecAAZpgz3FIBcPjzdAJ4RGg9%2FQM%2BkaX0z6KfhUcMoIDeIZ9xIsvcn%2BH450kDOPg7oenmhDB5%2BAbu2zMGUFjfSF96xonZOP5ldAJ4VKiM%2FhDeu7b%2B4ePvL4okgJ0HHxUqZ24EfT%2BPvqdoOgE8JlTW0H%2FqXHf4G%2BPH3080aQAXPya0jNwIeodv4PxRdQL4vdByhv8avG%2F4W9%2FAuSNLAmAEdYz9r8Acfj3Pbr4TwONCyxsfP%2F58LegP4NDjQvUkwzdwnpYMBPAHobo2xo8%2FR2sYADVtIIA%2FClELngvgfx8GQK3pD%2BCSPwlRC3oDYATUgq177wngz0IUmQog%2FWcQ%2FoBES1Lj138FnhCiiHq%2F%2FVUAh58QoogGA0j%2BGXT4L0IU0eD49V8B%2FGGJShr99tcBPClEkawMQEVw6ZNCFEHW%2BHUAfxWiCLIDYAQUzVrj74%2Fgb0Lk0aTxMwCKYnIAKoIjfxciT2aNnxGQZ0XG3w1gI4KnhMiy7mZnBdAXwa4jTwmRRcXHPxzB00JkyWLjH4zgsqeFyILFxz8cwT%2BECKna%2BBkBWVN9%2FEMRbITwjBDV0Le%2FauMfC2HX0WeEaEkmhj8WwUYI%2FxSiksx86w99GAItwfzwt376DrsZw7%2BEKMfYjtAbz%2FqM3QBjoD6rNoPe9OTPqhvrDeTYv4VimbID9HaLf6Y8BGpLzT3%2BF6zrUoMGztGYAAAAAElFTkSuQmCC%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fpng%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ITIL 4 Quiz">
+  <meta name="theme-color" content="#2563eb">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <nav>
+    <a href="javascript:showHome()" class="nav-brand">
+      <span>🛡️ ITIL® 4 Hub</span>
+      <span class="badge-count">435 Uniche • 690 Totali</span>
+    </a>
+
+    <div class="nav-tabs">
+      <button class="tab-btn active" id="tab-home" onclick="showHome()">🏠 Home</button>
+      <button class="tab-btn" id="tab-study" onclick="openSimulator('index.html', 'tab-study')">📚 Studio</button>
+      <button class="tab-btn" id="tab-exam" onclick="openSimulator('simulatore_esame.html', 'tab-exam')">⏱️ Esame</button>
+    </div>
+  </nav>
+
+  <!-- Main Home Content -->
+  <div class="container" id="home-view">
+    <div class="hero-section">
+      <h1 class="hero-title">Simulatore ITIL® 4 Foundation</h1>
+      <p class="hero-subtitle">Archivio completo di 435 domande uniche (690 totali nei questionari) d'esame verificate. Scegli la modalità che preferisci per studiare su PC o direttamente dal tuo smartphone.</p>
+    </div>
+
+    <div class="cards-grid">
+      <!-- Card 1: Studio & Pratica -->
+      <a href="index.html" class="sim-card study">
+        <div class="card-badge">Verifica Istantanea</div>
+        <div class="card-icon-wrapper">📚</div>
+        <h2 class="card-title">Modalità Studio & Pratica</h2>
+        <p class="card-desc">Ideale per l'apprendimento e il ripasso attivo. Rispondi alle domande una alla volta con riscontro immediato e spiegazione della soluzione corretta.</p>
+        <ul class="feature-list">
+          <li>✔️ Correzione e feedback istantaneo ad ogni click</li>
+          <li>✔️ Filtro per singolo modulo (Esercitazioni 0-6, Alto Livello 1-9)</li>
+          <li>✔️ Ricerca testuale per parola chiave in tempo reale</li>
+          <li>✔️ Filtro domande errate per concentrare il ripasso</li>
+        </ul>
+        <div class="btn-card primary">Apri Modalità Studio →</div>
+      </a>
+
+      <!-- Card 2: Esame Ufficiale -->
+      <a href="simulatore_esame.html" class="sim-card exam">
+        <div class="card-badge">Esame a Tempo</div>
+        <div class="card-icon-wrapper">⏱️</div>
+        <h2 class="card-title">Modalità Esame Ufficiale</h2>
+        <p class="card-desc">Simula fedelmente la prova di certificazione ITIL® 4 Foundation reale: 40 domande casuali, 60 minuti di tempo e valutazione finale.</p>
+        <ul class="feature-list">
+          <li>✔️ Timer countdown di 60 minuti configurabile</li>
+          <li>✔️ Nessun suggerimento durante la prova</li>
+          <li>✔️ Funzione Segnalibro 🚩 per rivedere le domande dubbie</li>
+          <li>✔️ Calcolo esito con soglia 65% (26/40) e report analitico</li>
+        </ul>
+        <div class="btn-card danger">Avvia Simulazione Esame →</div>
+      </a>
+    </div>
+
+    
+    <!-- Mobile Offline Guide Box -->
+    <div class="mobile-banner">
+      <div class="mobile-info">
+        <div class="mobile-icon">📲</div>
+        <div>
+          <div class="mobile-title">Come usare l'App su Mobile (anche a PC spento):</div>
+          <div style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 8px;">
+            Invia il file <strong>ITIL4_Mobile_App.html</strong> sul tuo telefono (tramite WhatsApp nei "Messaggi Salvati", Telegram, Google Drive o Email).
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <a href="ITIL4_Mobile_App.html" download="ITIL4_Mobile_App.html" class="btn-card primary" style="padding: 8px 16px; font-size: 0.85rem;">
+              📥 Scarica File per Mobile (ITIL4_Mobile_App.html)
+            </a>
+            <a href="ITIL4_Mobile_App.html" class="btn-card" style="background:#f1f5f9; color:#334155; border:1px solid #cbd5e1; padding: 8px 16px; font-size: 0.85rem;">
+              ▶️ Apri Web App nel Browser
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+      <button class="btn-qr" onclick="showQrModal()">📷 Mostra QR Code</button>
+    </div>
+  </div>
+
+  <!-- Fullscreen Iframe View -->
+  <div id="iframe-container">
+    <iframe id="app-frame" src=""></iframe>
+  </div>
+
+  
+
+  <footer>
+    ITIL® 4 Foundation Simulator • Database offline completo (435 Domande)
+  </footer>
+
+  <script>
+    // Determine dynamic LAN / local URL
+    const host = window.location.host || 'localhost:8080';
+    const currentUrl = window.location.protocol + '//' + host + '/portale.html';
+    
+    document.getElementById('lan-url-display').textContent = currentUrl;
+    document.getElementById('qr-url-text').textContent = currentUrl;
+
+    // Generate local QR Code via free public SVG/PNG generator or data URI
+    const qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(currentUrl);
+    document.getElementById('qr-image').src = qrUrl;
+
+    function showHome() {
+      document.getElementById('iframe-container').style.display = 'none';
+      document.getElementById('home-view').style.display = 'block';
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-home').classList.add('active');
+    }
+
+    function openSimulator(file, tabId) {
+      document.getElementById('home-view').style.display = 'none';
+      const container = document.getElementById('iframe-container');
+      const frame = document.getElementById('app-frame');
+      container.style.display = 'block';
+      frame.src = file;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    function showQrModal() {
+      document.getElementById('qr-modal').style.display = 'flex';
+    }
+
+    function hideQrModal() {
+      document.getElementById('qr-modal').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
