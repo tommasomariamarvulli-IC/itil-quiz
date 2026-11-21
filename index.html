@@ -312,6 +312,45 @@
       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
 
+    .refresh-cache-btn {
+      padding: 6px 10px;
+      border-radius: 7px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #334155;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+      margin-left: 2px;
+    }
+
+    .refresh-cache-btn:hover, .refresh-cache-btn:active {
+      background: #e2e8f0;
+      color: var(--primary);
+      border-color: #94a3b8;
+    }
+
+    .refresh-icon.spin {
+      display: inline-block;
+      animation: rotate 0.8s linear infinite;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 480px) {
+      .refresh-lbl {
+        display: none;
+      }
+    }
+
     /* Container */
     .container {
       max-width: 900px;
@@ -1065,6 +1104,9 @@
         <button class="mode-tab-btn active" id="tab-home-mode" onclick="setAppMode('HOME')">🏠 Home</button>
         <button class="mode-tab-btn" id="tab-study-mode" onclick="setAppMode('STUDY')">📚 Studio</button>
         <button class="mode-tab-btn" id="tab-exam-mode" onclick="setAppMode('EXAM')">⏱️ Esame</button>
+        <button class="refresh-cache-btn" onclick="forceAppRefresh(this)" title="Svuota cache e ricarica l'ultima versione">
+          <span class="refresh-icon">🔄</span><span class="refresh-lbl">Aggiorna</span>
+        </button>
       </div>
     </div>
   </header>
@@ -9666,6 +9708,37 @@
     });
 
     
+    // Force App Refresh & Cache Clearing
+    async function forceAppRefresh(btn) {
+      if (btn) {
+        const icon = btn.querySelector('.refresh-icon') || btn;
+        icon.classList.add('spin');
+      }
+
+      try {
+        // 1. Delete all CacheStorage entries
+        if ('caches' in window) {
+          const keys = await caches.keys();
+          await Promise.all(keys.map(k => caches.delete(k)));
+        }
+
+        // 2. Unregister all Service Workers
+        if ('serviceWorker' in navigator) {
+          const registrations = await navigator.serviceWorker.getRegistrations();
+          for (const reg of registrations) {
+            await reg.unregister();
+          }
+        }
+      } catch (err) {
+        console.error('Cache clear error:', err);
+      }
+
+      // 3. Force hard reload with timestamp cache-buster
+      const url = new URL(window.location.href);
+      url.searchParams.set('reload', Date.now());
+      window.location.replace(url.toString());
+    }
+
     // Offline App Downloader
     function downloadOfflineApp() {
       const htmlText = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
