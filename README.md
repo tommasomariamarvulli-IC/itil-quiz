@@ -1,5 +1,7 @@
 # ITIL® 4 Foundation - Quiz Simulator Web App 🛡️
 
+🌐 **Accedi all'applicazione online:** [https://tommasomariamarvulli-IC.github.io/itil-quiz/](https://tommasomariamarvulli-IC.github.io/itil-quiz/)
+
 Applicazione web moderna, responsive e **100% offline** per la preparazione alla certificazione **ITIL® 4 Foundation**.
 
 ## 🌟 Caratteristiche Principali
@@ -10,7 +12,9 @@ Applicazione web moderna, responsive e **100% offline** per la preparazione alla
 - **Supporto Mobile & Desktop**: Interfaccia touch ottimizzata per smartphone (iOS e Android) e per PC.
 - **Installabile come App (PWA)**: Icona personalizzata ad alta risoluzione inclusa per la schermata Home del telefono.
 
-## 📱 Utilizzo su Mobile (GitHub Pages)
-1. Attiva **GitHub Pages** dalle impostazioni del repository (*Settings > Pages > Branch: main > Save*).
-2. Apri il link generato dal browser del telefono (es. `https://<username>.github.io/itil-quiz/`).
-3. Tocca **"Aggiungi a schermata Home"** o **"Installa app"** per usarla a tutto schermo offline.
+## 📱 Utilizzo su Mobile e PC (GitHub Pages)
+👉 **Link Web Ufficiale:** **[https://tommasomariamarvulli-IC.github.io/itil-quiz/](https://tommasomariamarvulli-IC.github.io/itil-quiz/)**
+
+1. Apri il link dal browser del telefono (Chrome o Safari) oppure da computer.
+2. Su smartphone, tocca i tre puntini `⋮` (Chrome) o il pulsante di condivisione `⎋` (Safari) e scegli **"Aggiungi a schermata Home"** (o *"Installa app"*).
+3. L'app funzionerà a schermo intero come una vera applicazione nativa, anche offline a computer spento!
