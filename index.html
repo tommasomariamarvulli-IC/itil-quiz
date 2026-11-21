@@ -764,6 +764,57 @@
       padding: 8px 10px;
     }
 
+    
+    /* SYLLABUS PROPORTIONS BOX */
+    .exam-proportions-box {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-top: 12px;
+      text-align: left;
+    }
+    .prop-title {
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 8px;
+    }
+    .prop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+    .prop-item {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 5px 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+    }
+    .prop-name {
+      font-weight: 600;
+      color: #334155;
+    }
+    .prop-val {
+      font-weight: 800;
+      color: var(--primary);
+      background: #eff6ff;
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+    .prop-scoring-rule {
+      font-size: 0.76rem;
+      color: #475569;
+      line-height: 1.4;
+      border-top: 1px dashed #cbd5e1;
+      padding-top: 7px;
+    }
+
     /* EXAM SETUP REDESIGN */
     .exam-hero-badge {
       display: inline-flex;
@@ -1159,7 +1210,7 @@
           <div class="portal-card-badge">Esame Ufficiale</div>
           <div class="portal-card-icon">⏱️</div>
           <h2 class="portal-card-title">Modalità Esame a Tempo</h2>
-          <p class="portal-card-desc">Simula l'esame reale: 40 domande a caso, countdown da 60 minuti, contrassegno domande dubbie e report finale con verifica del superamento (soglia 65%).</p>
+          <p class="portal-card-desc">Simula fedelmente l'esame reale: <strong>40 domande ripartite secondo il syllabus ufficiale</strong> (Concetti chiave 5 pt, Sistema 3 pt, Principi 6 pt, Catena 2 pt, Pratiche 24 pt). 1 punto per risposta esatta, 0 per errata o non data (soglia minima 26/40 - 65%).</p>
           <div class="portal-card-btn">Inizia Simulazione Esame →</div>
         </div>
       </div>
@@ -1309,7 +1360,20 @@
                 <span class="exam-opt-badge">40 Domande</span>
               </div>
               <div class="exam-opt-desc">
-                40 domande estratte a caso dall'archivio unico (senza doppioni). Soglia 65% (26/40) e correzioni alla fine.
+                40 domande estratte dall'archivio unico secondo la <strong>ripartizione ufficiale dei pesi ITIL 4</strong>:
+                <div class="exam-proportions-box">
+                  <div class="prop-title">📊 Ripartizione Punteggi (40 Punti Totali):</div>
+                  <div class="prop-grid">
+                    <div class="prop-item"><span class="prop-name">💡 Concetti chiave</span><span class="prop-val">5 pt</span></div>
+                    <div class="prop-item"><span class="prop-name">⚙️ Sistema & 4 Dim.</span><span class="prop-val">3 pt</span></div>
+                    <div class="prop-item"><span class="prop-name">🧭 Principi guida</span><span class="prop-val">6 pt</span></div>
+                    <div class="prop-item"><span class="prop-name">🔗 Catena valore SVC</span><span class="prop-val">2 pt</span></div>
+                    <div class="prop-item"><span class="prop-name">🛠️ Pratiche ITIL</span><span class="prop-val">24 pt</span></div>
+                  </div>
+                  <div class="prop-scoring-rule">
+                    ℹ️ <strong>Valutazione:</strong> 1 punto per risposta esatta, 0 punti per risposta errata o non data (nessuna penalità). Soglia di superamento: <strong>26 / 40 (65%)</strong>.
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -10411,6 +10475,92 @@
     }
   });
 
+  // Syllabus Domain Classifier for ITIL 4 Foundation
+  function classifyQuestion(q) {
+    const text = (q.domanda + ' ' + q.opzioni.join(' ') + ' ' + q.risposta_corretta).toLowerCase();
+
+    // 1. Principi guida (6 pt)
+    if (text.includes('principi') || text.includes('principio') ||
+        text.includes('concentrarsi sul valore') || text.includes('focalizzarsi sul valore') ||
+        text.includes('partire da dove ci troviamo') || text.includes('partire dallo stato attuale') ||
+        text.includes('avanzare iterativamente') || text.includes('procedere in modo iterativo') ||
+        text.includes('collaborare e promuovere') || text.includes('pensare e lavorare in modo olistico') ||
+        text.includes('mantenere semplicità') || text.includes('ottimizzare e automatizzare')) {
+      return 'principi';
+    }
+
+    // 2. Catena del valore / SVC (2 pt)
+    if (text.includes('catena del valore') || text.includes('svc') ||
+        text.includes("attività 'migliorare'") || text.includes('attività "migliorare"') ||
+        text.includes("attività 'coinvolgere'") || text.includes('attività "coinvolgere"') ||
+        text.includes("attività 'pianificare'") || text.includes('attività "pianificare"') ||
+        text.includes('progettare ed eseguire la transizione') || text.includes('ottenere/costruire') ||
+        text.includes('fornitura e supporto') || text.includes('attività della catena')) {
+      return 'catena';
+    }
+
+    // 3. Sistema & 4 Dimensioni (3 pt)
+    if (text.includes('sistema del valore') || text.includes('svs') ||
+        text.includes('quattro dimensioni') || text.includes('4 dimensioni') ||
+        text.includes('partner e fornitori') || text.includes('organizzazioni e persone') ||
+        text.includes('informazioni e tecnologia') || text.includes('flussi di valore e processi') ||
+        text.includes('flussi del valore e processi') || text.includes('governance') ||
+        text.includes('silo organizzativo')) {
+      return 'sistema';
+    }
+
+    // 4. Pratiche ITIL (24 pt)
+    if (text.includes('pratica') || text.includes('pratiche') ||
+        text.includes('service desk') || text.includes('incidente') || text.includes('incidenti') ||
+        text.includes('problema') || text.includes('problemi') || text.includes('errore noto') || text.includes('workaround') ||
+        text.includes('cambiamento') || text.includes('cambiamenti') || text.includes('autorità del cambiamento') ||
+        text.includes('autorità per il cambiamento') || text.includes('rfc') ||
+        text.includes('livelli di servizio') || text.includes('livello di servizio') || text.includes('sla') ||
+        text.includes('richieste di servizio') || text.includes('richiesta di servizio') ||
+        text.includes('miglioramento continuo') || text.includes('registro del miglioramento') || text.includes('cir') ||
+        text.includes('sicurezza delle informazioni') || text.includes('eventi') || text.includes('evento') ||
+        text.includes('rilasci') || text.includes('rilascio') || text.includes('configurazione del servizio') ||
+        text.includes('elemento della configurazione') || text.includes('asset it') || text.includes('deployment') ||
+        text.includes('swot') || text.includes('balanced scorecard')) {
+      return 'pratiche';
+    }
+
+    // 5. Concetti chiave (5 pt) - fallback / core concepts
+    return 'concetti_chiave';
+  }
+
+  // Pre-sort unique questions into syllabus pools
+  const SYLLABUS_POOLS = {
+    concetti_chiave: [],
+    sistema: [],
+    principi: [],
+    catena: [],
+    pratiche: []
+  };
+
+  DEDUPLICATED_DATA.forEach(q => {
+    const domain = classifyQuestion(q);
+    SYLLABUS_POOLS[domain].push(q);
+  });
+
+  // Generator of official 40-question exam respecting syllabus weights:
+  // Concetti chiave: 5 pt | Sistema: 3 pt | Principi: 6 pt | Catena: 2 pt | Pratiche: 24 pt (Total: 40 pt)
+  function generateOfficialExamQuestions() {
+    function pickN(arr, n) {
+      const copy = [...arr].sort(() => 0.5 - Math.random());
+      return copy.slice(0, n);
+    }
+
+    const qConcetti = pickN(SYLLABUS_POOLS.concetti_chiave, 5);
+    const qSistema = pickN(SYLLABUS_POOLS.sistema, 3);
+    const qPrincipi = pickN(SYLLABUS_POOLS.principi, 6);
+    const qCatena = pickN(SYLLABUS_POOLS.catena, 2);
+    const qPratiche = pickN(SYLLABUS_POOLS.pratiche, 24);
+
+    const exam40 = [...qConcetti, ...qSistema, ...qPrincipi, ...qCatena, ...qPratiche];
+    return exam40.sort(() => 0.5 - Math.random());
+  }
+
     // Global Mode Switcher
     function setAppMode(mode) {
       document.querySelectorAll('.mode-tab-btn').forEach(b => b.classList.remove('active'));
@@ -10483,8 +10633,7 @@
       if (pool === 'ALL') {
         base = [...DEDUPLICATED_DATA];
       } else if (pool === 'RANDOM_40') {
-        const shuffled = [...DEDUPLICATED_DATA].sort(() => 0.5 - Math.random());
-        base = shuffled.slice(0, 40);
+        base = generateOfficialExamQuestions();
       } else {
         base = MASTER_DATA.filter(q => q.categoria === pool);
       }
@@ -10732,8 +10881,7 @@
 
       let base = [];
       if (pool === 'RANDOM_40' || pool === 'EXAM_RANDOM') {
-        const shuffled = [...DEDUPLICATED_DATA].sort(() => 0.5 - Math.random());
-        base = shuffled.slice(0, 40);
+        base = generateOfficialExamQuestions();
       } else if (pool === 'ALL') {
         base = [...DEDUPLICATED_DATA];
       } else {
