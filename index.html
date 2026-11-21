@@ -256,6 +256,169 @@
       transform: scale(0.99);
     }
 
+    
+    /* REGISTRY VIEW STYLES */
+    .portal-card.registry .portal-card-icon { background: #f0fdf4; color: #15803d; }
+    .portal-card.registry .portal-card-badge { background: #dcfce7; color: #166534; }
+    .portal-card.registry .portal-card-btn { background: #15803d; }
+
+    .registry-header-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 16px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+
+    .registry-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .registry-subtitle {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin-bottom: 16px;
+      line-height: 1.45;
+    }
+
+    .registry-filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .reg-pill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #475569;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.15s;
+    }
+
+    .reg-pill.active {
+      background: #15803d;
+      color: white;
+      border-color: #15803d;
+    }
+
+    .domain-section-header {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-left: 5px solid #15803d;
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin: 22px 0 12px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .domain-title-text {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .domain-count-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: white;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+
+    .registry-item-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      margin-bottom: 12px;
+      transition: border-color 0.15s;
+    }
+
+    .registry-item-card:hover {
+      border-color: #86efac;
+    }
+
+    .reg-item-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .reg-item-num {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .reg-item-cat {
+      font-size: 0.72rem;
+      font-weight: 600;
+      background: #f1f5f9;
+      color: #475569;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .reg-item-q {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 12px;
+      line-height: 1.45;
+    }
+
+    .reg-item-ans-box {
+      background: #f0fdf4;
+      border: 1.5px solid #86efac;
+      border-radius: 8px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .reg-item-ans-icon {
+      font-size: 1.1rem;
+      color: #16a34a;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .reg-item-ans-text {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #14532d;
+      line-height: 1.45;
+    }
+
     /* Fixed App Header */
     .app-header {
       background: #ffffff;
@@ -1155,8 +1318,9 @@
         <button class="mode-tab-btn active" id="tab-home-mode" onclick="setAppMode('HOME')">🏠 Home</button>
         <button class="mode-tab-btn" id="tab-study-mode" onclick="setAppMode('STUDY')">📚 Studio</button>
         <button class="mode-tab-btn" id="tab-exam-mode" onclick="setAppMode('EXAM')">⏱️ Esame</button>
+        <button class="mode-tab-btn" id="tab-registry-mode" onclick="setAppMode('REGISTRY')">📖 Registro</button>
         <button class="refresh-cache-btn" onclick="forceAppRefresh(this)" title="Svuota cache e ricarica l'ultima versione">
-          <span class="refresh-icon">🔄</span><span class="refresh-lbl">Aggiorna</span>
+          <span class="refresh-icon">🔄</span>
         </button>
       </div>
     </div>
@@ -1212,7 +1376,29 @@
           <h2 class="portal-card-title">Modalità Esame a Tempo</h2>
           <p class="portal-card-desc">Simula fedelmente l'esame reale: <strong>40 domande ripartite secondo il syllabus ufficiale</strong> (Concetti chiave 5 pt, Sistema 3 pt, Principi 6 pt, Catena 2 pt, Pratiche 24 pt). 1 punto per risposta esatta, 0 per errata o non data (soglia minima 26/40 - 65%).</p>
           <div class="portal-card-btn">Inizia Simulazione Esame →</div>
+        
+        <!-- Card 3: Registro delle Domande -->
+        <div class="portal-card registry" onclick="setAppMode('REGISTRY')">
+          <div class="portal-card-badge">Solo Risposte Esatte</div>
+          <div class="portal-card-icon">📖</div>
+          <h2 class="portal-card-title">Registro delle Domande</h2>
+          <p class="portal-card-desc">Tutte le 481 domande con le sole risposte corrette ufficiali, raggruppate per i 5 domini syllabus (Concetti chiave, Sistema, Principi, Catena, Pratiche).</p>
+          <div class="portal-card-btn">Sfoglia il Registro Domande →</div>
         </div>
+      </div>
+
+      <!-- Offline Download Card (Placed AFTER Registro delle Domande) -->
+      <div class="offline-download-card">
+        <div class="offline-download-info">
+          <span class="offline-download-icon">💾</span>
+          <div>
+            <div class="offline-download-title">Vuoi usarlo sempre senza internet?</div>
+            <div class="offline-download-sub">Scarica il file completo sul telefono per esercitarti senza connessione e a PC spento.</div>
+          </div>
+        </div>
+        <button class="btn-offline-download" onclick="downloadOfflineApp()">
+          📥 Scarica File Offline (.html)
+        </button>
       </div>
 
       <!-- Quick Tips Card -->
@@ -1543,6 +1729,35 @@
         <div id="ex-review-list"></div>
       </div>
 
+    </div>
+
+  
+    <!-- ========================================== -->
+    <!-- 3. REGISTRO DELLE DOMANDE (Solo Risposte)   -->
+    <!-- ========================================== -->
+    <div id="view-registry" class="mode-view">
+      <div class="registry-header-card">
+        <div class="registry-title">
+          <span>📖 Registro delle Domande ITIL® 4</span>
+        </div>
+        <p class="registry-subtitle">
+          Archivio integrale con le <strong>sole risposte corrette verificate</strong>, organizzate nei 5 domini ufficiali del syllabus. Utilizzalo come compendio di ripasso rapido prima dell'esame.
+        </p>
+
+        <input type="text" id="reg-search-input" class="study-search-input" placeholder="🔍 Cerca domanda o risposta..." oninput="renderRegistry()" style="margin-bottom:12px;">
+
+        <div style="font-weight:700; font-size:0.82rem; color:#475569; margin-bottom:4px;">Filtra per Dominio:</div>
+        <div class="registry-filter-pills">
+          <button class="reg-pill active" id="reg-pill-all" onclick="setRegFilter('ALL')">Tutti i Domini (<span id="reg-count-all">481</span>)</button>
+          <button class="reg-pill" id="reg-pill-concetti" onclick="setRegFilter('concetti_chiave')">💡 Concetti chiave (<span id="reg-count-concetti">50</span>)</button>
+          <button class="reg-pill" id="reg-pill-sistema" onclick="setRegFilter('sistema')">⚙️ Sistema & 4 Dim. (<span id="reg-count-sistema">25</span>)</button>
+          <button class="reg-pill" id="reg-pill-principi" onclick="setRegFilter('principi')">🧭 Principi guida (<span id="reg-count-principi">85</span>)</button>
+          <button class="reg-pill" id="reg-pill-catena" onclick="setRegFilter('catena')">🔗 Catena del valore (<span id="reg-count-catena">32</span>)</button>
+          <button class="reg-pill" id="reg-pill-pratiche" onclick="setRegFilter('pratiche')">🛠️ Pratiche ITIL (<span id="reg-count-pratiche">289</span>)</button>
+        </div>
+      </div>
+
+      <div id="registry-content-list"></div>
     </div>
 
   </div>
@@ -10562,6 +10777,125 @@
   }
 
     // Global Mode Switcher
+    
+    // REGISTRY LOGIC
+    let activeRegFilter = 'ALL';
+
+    const DOMAIN_METADATA = {
+      concetti_chiave: {
+        title: '💡 Concetti Chiave del Service Management',
+        weight: '5 pt all\'esame',
+        desc: 'Definizioni fondamentali: valore, utilità, garanzia, output, outcome, costi, rischi, consumatore, fornitore, relazioni di servizio.'
+      },
+      sistema: {
+        title: '⚙️ Sistema del Valore (SVS) & 4 Dimensioni',
+        weight: '3 pt all\'esame',
+        desc: 'Governance, Sistema del Valore del Servizio e le 4 Dimensioni (Organizzazioni e persone, Informazioni e tecnologia, Partner e fornitori, Flussi di valore e processi).'
+      },
+      principi: {
+        title: '🧭 I 7 Principi Guida ITIL',
+        weight: '6 pt all\'esame',
+        desc: 'Concentrarsi sul valore, Partire da dove ci troviamo, Avanzare iterativamente con feedback, Collaborare e promuovere la visibilità, Pensare e lavorare in modo olistico, Semplicità, Automazione.'
+      },
+      catena: {
+        title: '🔗 Catena del Valore del Servizio (SVC)',
+        weight: '2 pt all\'esame',
+        desc: 'Le 6 attività centrali della catena del valore (Pianificare, Migliorare, Coinvolgere, Progettare e transizione, Ottenere/costruire, Fornitura e supporto).'
+      },
+      pratiche: {
+        title: '🛠️ Pratiche di Gestione ITIL',
+        weight: '24 pt all\'esame',
+        desc: 'Service Desk, Incidenti, Problemi, Cambiamenti, Livelli di servizio (SLA), Richieste di servizio, Miglioramento continuo, Eventi, Rilasci, Configurazione, Sicurezza.'
+      }
+    };
+
+    function setRegFilter(filter) {
+      activeRegFilter = filter;
+      document.querySelectorAll('.reg-pill').forEach(p => p.classList.remove('active'));
+      if (filter === 'ALL') document.getElementById('reg-pill-all').classList.add('active');
+      else if (filter === 'concetti_chiave') document.getElementById('reg-pill-concetti').classList.add('active');
+      else if (filter === 'sistema') document.getElementById('reg-pill-sistema').classList.add('active');
+      else if (filter === 'principi') document.getElementById('reg-pill-principi').classList.add('active');
+      else if (filter === 'catena') document.getElementById('reg-pill-catena').classList.add('active');
+      else if (filter === 'pratiche') document.getElementById('reg-pill-pratiche').classList.add('active');
+      renderRegistry();
+    }
+
+    function renderRegistry() {
+      const container = document.getElementById('registry-content-list');
+      if (!container) return;
+      container.innerHTML = '';
+
+      const query = (document.getElementById('reg-search-input')?.value || '').trim().toLowerCase();
+
+      // Update counters
+      if (document.getElementById('reg-count-all')) {
+        document.getElementById('reg-count-all').textContent = DEDUPLICATED_DATA.length;
+        document.getElementById('reg-count-concetti').textContent = SYLLABUS_POOLS.concetti_chiave.length;
+        document.getElementById('reg-count-sistema').textContent = SYLLABUS_POOLS.sistema.length;
+        document.getElementById('reg-count-principi').textContent = SYLLABUS_POOLS.principi.length;
+        document.getElementById('reg-count-catena').textContent = SYLLABUS_POOLS.catena.length;
+        document.getElementById('reg-count-pratiche').textContent = SYLLABUS_POOLS.pratiche.length;
+      }
+
+      const domainKeys = activeRegFilter === 'ALL' ?
+        ['concetti_chiave', 'sistema', 'principi', 'catena', 'pratiche'] : [activeRegFilter];
+
+      let totalRendered = 0;
+
+      domainKeys.forEach(domKey => {
+        const pool = SYLLABUS_POOLS[domKey] || [];
+        const filtered = pool.filter(q => {
+          if (!query) return true;
+          return (q.domanda + ' ' + q.risposta_corretta).toLowerCase().includes(query);
+        });
+
+        if (filtered.length === 0) return;
+
+        totalRendered += filtered.length;
+        const meta = DOMAIN_METADATA[domKey];
+
+        // Section header
+        const sectionHeader = document.createElement('div');
+        sectionHeader.className = 'domain-section-header';
+        sectionHeader.innerHTML = `
+          <div>
+            <div class="domain-title-text">
+              <span>${meta.title}</span>
+              <span style="font-size:0.75rem; font-weight:700; color:#15803d; background:#dcfce7; padding:2px 8px; border-radius:4px;">${meta.weight}</span>
+            </div>
+            <div style="font-size:0.8rem; color:#475569; margin-top:2px;">${meta.desc}</div>
+          </div>
+          <span class="domain-count-tag">${filtered.length} Domande</span>
+        `;
+        container.appendChild(sectionHeader);
+
+        // List cards
+        filtered.forEach((q, idx) => {
+          const card = document.createElement('div');
+          card.className = 'registry-item-card';
+          card.innerHTML = `
+            <div class="reg-item-meta">
+              <span class="reg-item-num">Q#${idx + 1}</span>
+              <span class="reg-item-cat">${q.categoria}</span>
+            </div>
+            <div class="reg-item-q">${escapeHtml(q.domanda)}</div>
+            <div class="reg-item-ans-box">
+              <span class="reg-item-ans-icon">✔️</span>
+              <div class="reg-item-ans-text">
+                <strong style="color:#166534;">Risposta esatta:</strong> ${escapeHtml(q.risposta_corretta)}
+              </div>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      });
+
+      if (totalRendered === 0) {
+        container.innerHTML = '<div style="text-align:center; padding:36px; color:var(--text-muted); background:white; border-radius:12px;">Nessuna domanda trovata nel registro con i termini cercati.</div>';
+      }
+    }
+
     function setAppMode(mode) {
       document.querySelectorAll('.mode-tab-btn').forEach(b => b.classList.remove('active'));
       document.querySelectorAll('.mode-view').forEach(v => v.classList.remove('active'));
@@ -10575,6 +10909,10 @@
       } else if (mode === 'EXAM') {
         document.getElementById('tab-exam-mode').classList.add('active');
         document.getElementById('view-exam').classList.add('active');
+      } else if (mode === 'REGISTRY') {
+        document.getElementById('tab-registry-mode').classList.add('active');
+        document.getElementById('view-registry').classList.add('active');
+        renderRegistry();
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
