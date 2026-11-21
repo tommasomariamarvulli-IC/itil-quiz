@@ -1123,9 +1123,9 @@
         <h1 class="home-hero-title">ITIL® 4 Foundation</h1>
         <p class="home-hero-sub">Simulatore d'esame completo e archivio ufficiale di tutte le domande verificate.</p>
         <div class="hero-tags">
-          <span class="hero-tag">435 Domande</span>
+          <span class="hero-tag">481 Domande</span>
           <span class="hero-tag green">100% Offline</span>
-          <span class="hero-tag amber">16 Moduli d'Esercizio</span>
+          <span class="hero-tag amber">21 Questionari</span>
         </div>
       </div>
 
@@ -1203,7 +1203,7 @@
           <div class="study-pool-tabs">
             <button class="study-pool-btn active" id="st-pool-all" onclick="stSelectPool('ALL')">
               <span>🌟 Archivio Unico</span>
-              <span class="pool-tag">435</span>
+              <span class="pool-tag">481</span>
             </button>
             <button class="study-pool-btn" id="st-pool-rand" onclick="stSelectPool('RANDOM_40')">
               <span>🎲 40 a caso</span>
@@ -1217,8 +1217,7 @@
 
           <div id="st-specific-picker-box" style="display:none; margin-top:10px;">
             <select id="st-select-specific" class="mobile-picker-select" onchange="stOnSpecificChange()">
-              <optgroup label="📑 Esercitazioni Originali (Complete)">
-                <option value="Screenshot Test" data-count="40">Screenshot Test (40 domande)</option>
+              <optgroup label="📑 Esercitazioni 0 - 11 (Complete)">
                 <option value="Esercitazione 0" data-count="56">Esercitazione 0 - Slide Review (56 domande)</option>
                 <option value="Esercitazione 1" data-count="39">Esercitazione 1 (39 domande)</option>
                 <option value="Esercitazione 2" data-count="39">Esercitazione 2 (39 domande)</option>
@@ -1226,8 +1225,13 @@
                 <option value="Esercitazione 4" data-count="40">Esercitazione 4 (40 domande)</option>
                 <option value="Esercitazione 5" data-count="39">Esercitazione 5 (39 domande)</option>
                 <option value="Esercitazione 6" data-count="38">Esercitazione 6 (38 domande)</option>
+                <option value="Esercitazione 7" data-count="22">Esercitazione 7 (22 domande)</option>
+                <option value="Esercitazione 8" data-count="18">Esercitazione 8 (18 domande)</option>
+                <option value="Esercitazione 9" data-count="40">Esercitazione 9 (40 domande)</option>
+                <option value="Esercitazione 10" data-count="40">Esercitazione 10 (40 domande)</option>
+                <option value="Esercitazione 11" data-count="40">Esercitazione 11 (40 domande)</option>
               </optgroup>
-              <optgroup label="🏆 Test Alto Livello (Simulazioni Ufficiali)">
+              <optgroup label="🏆 Test Alto Livello 1 - 9 (Ufficiali)">
                 <option value="Alto Livello 1" data-count="40">Alto Livello 1 (40 domande)</option>
                 <option value="Alto Livello 2" data-count="40">Alto Livello 2 (40 domande)</option>
                 <option value="Alto Livello 3" data-count="40">Alto Livello 3 (40 domande)</option>
@@ -1316,7 +1320,7 @@
             <div class="exam-opt-content">
               <div class="exam-opt-title">
                 <span>📚 Maratona Archivio Unico</span>
-                <span class="exam-opt-badge">435 Domande</span>
+                <span class="exam-opt-badge">481 Domande</span>
               </div>
               <div class="exam-opt-desc">
                 Affronta l'intero archivio di domande uniche senza alcuna ripetizione.
@@ -1339,27 +1343,31 @@
               <!-- Interactive Selector for Specific Questionnaire -->
               <div class="specific-quest-box" id="specific-quest-box">
                 <select id="ex-select-specific" class="mobile-picker-select" onchange="onSpecificQuestionnaireChange()" style="margin-top:6px;">
-                  <optgroup label="📑 Esercitazioni Originali">
-                    <option value="Screenshot Test" data-count="40">Screenshot Test (40 domande)</option>
-                    <option value="Esercitazione 0" data-count="56">Esercitazione 0 - Slide Review (56 domande)</option>
-                    <option value="Esercitazione 1" data-count="39">Esercitazione 1 (39 domande)</option>
-                    <option value="Esercitazione 2" data-count="39">Esercitazione 2 (39 domande)</option>
-                    <option value="Esercitazione 3" data-count="40">Esercitazione 3 (40 domande)</option>
-                    <option value="Esercitazione 4" data-count="40">Esercitazione 4 (40 domande)</option>
-                    <option value="Esercitazione 5" data-count="39">Esercitazione 5 (39 domande)</option>
-                    <option value="Esercitazione 6" data-count="38">Esercitazione 6 (38 domande)</option>
-                  </optgroup>
-                  <optgroup label="🏆 Test Alto Livello Completi">
-                    <option value="Alto Livello 1" data-count="40">Alto Livello 1 (40 domande)</option>
-                    <option value="Alto Livello 2" data-count="40">Alto Livello 2 (40 domande)</option>
-                    <option value="Alto Livello 3" data-count="40">Alto Livello 3 (40 domande)</option>
-                    <option value="Alto Livello 4" data-count="40">Alto Livello 4 (40 domande)</option>
-                    <option value="Alto Livello 5" data-count="40">Alto Livello 5 (40 domande)</option>
-                    <option value="Alto Livello 6" data-count="39">Alto Livello 6 (39 domande)</option>
-                    <option value="Alto Livello 7" data-count="40">Alto Livello 7 (40 domande)</option>
-                    <option value="Alto Livello 8" data-count="40">Alto Livello 8 (40 domande)</option>
-                    <option value="Alto Livello 9" data-count="40">Alto Livello 9 (40 domande)</option>
-                  </optgroup>
+              <optgroup label="📑 Esercitazioni 0 - 11 (Complete)">
+                <option value="Esercitazione 0" data-count="56">Esercitazione 0 - Slide Review (56 domande)</option>
+                <option value="Esercitazione 1" data-count="39">Esercitazione 1 (39 domande)</option>
+                <option value="Esercitazione 2" data-count="39">Esercitazione 2 (39 domande)</option>
+                <option value="Esercitazione 3" data-count="40">Esercitazione 3 (40 domande)</option>
+                <option value="Esercitazione 4" data-count="40">Esercitazione 4 (40 domande)</option>
+                <option value="Esercitazione 5" data-count="39">Esercitazione 5 (39 domande)</option>
+                <option value="Esercitazione 6" data-count="38">Esercitazione 6 (38 domande)</option>
+                <option value="Esercitazione 7" data-count="22">Esercitazione 7 (22 domande)</option>
+                <option value="Esercitazione 8" data-count="18">Esercitazione 8 (18 domande)</option>
+                <option value="Esercitazione 9" data-count="40">Esercitazione 9 (40 domande)</option>
+                <option value="Esercitazione 10" data-count="40">Esercitazione 10 (40 domande)</option>
+                <option value="Esercitazione 11" data-count="40">Esercitazione 11 (40 domande)</option>
+              </optgroup>
+              <optgroup label="🏆 Test Alto Livello 1 - 9 (Ufficiali)">
+                <option value="Alto Livello 1" data-count="40">Alto Livello 1 (40 domande)</option>
+                <option value="Alto Livello 2" data-count="40">Alto Livello 2 (40 domande)</option>
+                <option value="Alto Livello 3" data-count="40">Alto Livello 3 (40 domande)</option>
+                <option value="Alto Livello 4" data-count="40">Alto Livello 4 (40 domande)</option>
+                <option value="Alto Livello 5" data-count="40">Alto Livello 5 (40 domande)</option>
+                <option value="Alto Livello 6" data-count="39">Alto Livello 6 (39 domande)</option>
+                <option value="Alto Livello 7" data-count="40">Alto Livello 7 (40 domande)</option>
+                <option value="Alto Livello 8" data-count="40">Alto Livello 8 (40 domande)</option>
+                <option value="Alto Livello 9" data-count="40">Alto Livello 9 (40 domande)</option>
+              </optgroup>
                 </select>
               </div>
             </div>
@@ -1478,7 +1486,7 @@
   <script>
     const MASTER_DATA = [
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 7",
     "domanda": "Quale di questi è uno scopo della pratica per il \"service desk\"?",
     "opzioni": [
       "Ridurre la probabilità e l'impatto degli incidenti individuandone le cause attuali o potenziali.",
@@ -1489,7 +1497,7 @@
     "risposta_corretta": "Registrare sia le richieste di risoluzione di incidenti sia le richieste di servizio."
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 7",
     "domanda": "Quale delle seguenti è una \"tipica\" attività nella pratica di Gestione degli incidenti?",
     "opzioni": [
       "Autorizzare",
@@ -1500,7 +1508,7 @@
     "risposta_corretta": "Scalare (Escalation)"
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 7",
     "domanda": "Come viene definito \"qualsiasi componente che deve essere gestito per fornire un servizio IT\"?",
     "opzioni": [
       "Un asset IT",
@@ -1511,7 +1519,7 @@
     "risposta_corretta": "Un elemento della configurazione"
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 7",
     "domanda": "Quale delle seguenti è una competenza richiesta nella pratica di Gestione dei livelli di servizio?",
     "opzioni": [
       "Esperienza tecnica",
@@ -1522,7 +1530,7 @@
     "risposta_corretta": "Collegamento col business"
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 7",
     "domanda": "Quale pratica ha tra i suoi scopi il reagire a determinate condizioni che potrebbero causare potenziali errori o incidenti?",
     "opzioni": [
       "Monitoraggio e gestione degli eventi",
@@ -1533,7 +1541,7 @@
     "risposta_corretta": "Monitoraggio e gestione degli eventi"
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 7",
     "domanda": "Quale pratica influisce notevolmente sull'esperienza dell'utente e sulla percezione del fornitore del servizio?",
     "opzioni": [
       "Gestione dei livelli di servizio",
@@ -1544,7 +1552,7 @@
     "risposta_corretta": "Service desk"
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 7",
     "domanda": "Nella pratica di Gestione dei problemi, in certi casi è possibile automatizzare...",
     "opzioni": [
       "l'analisi della soluzione del problema.",
@@ -1555,7 +1563,7 @@
     "risposta_corretta": "l'applicazione di un workaround."
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 7",
     "domanda": "Qual è lo scopo della pratica 'Gestione delle Relazioni'?",
     "opzioni": [
       "Proteggere le informazioni necessarie all'organizzazione per mandare avanti il proprio business.",
@@ -1566,7 +1574,7 @@
     "risposta_corretta": "Stabilire e nutrire i legami tra l'organizzazione e le sue parti interessate a livello strategico e tattico."
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 7",
     "domanda": "Quale delle seguenti opzioni include la configurazione di componenti e attività per favorire i risultati delle parti interessate?",
     "opzioni": [
       "Gestione delle relazioni di servizio",
@@ -1577,7 +1585,7 @@
     "risposta_corretta": "Sistema del valore di servizio"
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 7",
     "domanda": "Cosa si intende per cambiamento standard?",
     "opzioni": [
       "Un cambiamento che non richiede una valutazione del rischio perchè è necessario per risolvere un incidente",
@@ -1588,7 +1596,7 @@
     "risposta_corretta": "Un cambiamento ben compreso, pienamente documentato e pre-autorizzato"
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 7",
     "domanda": "Nell'ambito della pratica di Gestione dei livelli di servizio, quale delle seguenti attività si riferisce ai livelli di servizio?",
     "opzioni": [
       "Monitoraggio passivo",
@@ -1599,7 +1607,7 @@
     "risposta_corretta": "Gestione attiva"
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 7",
     "domanda": "Qual è un modo per applicare il principio guida \"Concentrarsi sul valore\"",
     "opzioni": [
       "Fare meno, ma fare meglio",
@@ -1610,7 +1618,7 @@
     "risposta_corretta": "Conoscere in che modo i consumatori fanno uso del servizio"
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 7",
     "domanda": "Quale attività fa parte della pratica per il miglioramento continuo?",
     "opzioni": [
       "Identificare la causa degli incidenti e raccomandare i miglioramenti correlati",
@@ -1621,7 +1629,7 @@
     "risposta_corretta": "Creare business case per l'azione di miglioramento"
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 7",
     "domanda": "Quale elemento è generalmente necessario per assegnare gli incidenti complessi ai gruppi di supporto?",
     "opzioni": [
       "Una programmazione dei cambiamenti",
@@ -1632,7 +1640,7 @@
     "risposta_corretta": "La categoria dell'incidente"
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 7",
     "domanda": "Quale delle seguenti pratiche ha tipicamente un'interfaccia con la pratica di Gestione dei problemi?",
     "opzioni": [
       "Gestione dei livelli di servizio",
@@ -1643,7 +1651,7 @@
     "risposta_corretta": "Abilitazione del cambiamento"
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 7",
     "domanda": "Quale pratica include la gestione delle vulnerabilità analizzate ma non risolte?",
     "opzioni": [
       "Gestione dei livelli di servizio",
@@ -1654,7 +1662,7 @@
     "risposta_corretta": "Gestione dei problemi"
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 7",
     "domanda": "Quale pratica ha lo scopo di rendere disponibili per l'uso servizi e funzionalità nuovi o modificati?",
     "opzioni": [
       "Gestione dei rilasci",
@@ -1665,7 +1673,7 @@
     "risposta_corretta": "Gestione dei rilasci"
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 7",
     "domanda": "Cosa rientra nello scopo della pratica per la gestione dei livelli di servizio?",
     "opzioni": [
       "Assicurare che i fornitori e i loro livelli di performance siano gestiti adeguatamente",
@@ -1676,7 +1684,7 @@
     "risposta_corretta": "Stabilire dei traguardi chiari e basati sul business per i livelli di servizio"
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 7",
     "domanda": "Quale dei seguenti è un esempio appropriato del principio Avanzare iterativamente raccogliendo feedback?",
     "opzioni": [
       "Comprendere la visione d'insieme, ma fare qualcosa",
@@ -1687,7 +1695,7 @@
     "risposta_corretta": "Comprendere la visione d'insieme, ma fare qualcosa"
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 7",
     "domanda": "Quale delle seguenti affermazioni sui service desk è CORRETTA?",
     "opzioni": [
       "Il service desk deve eseguire l'escalation di tutte le criticità tecniche ai team di supporto e sviluppo.",
@@ -1698,7 +1706,7 @@
     "risposta_corretta": "Il service desk deve operare in stretta collaborazione con i team di supporto e sviluppo."
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 7",
     "domanda": "Quale delle seguenti opzioni ha la MASSIMA importanza per una gestione efficace degli incidenti?",
     "opzioni": [
       "Una serie di canali di accesso",
@@ -1709,7 +1717,7 @@
     "risposta_corretta": "Strumenti e tecniche di collaborazione"
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 7",
     "domanda": "Uno SLA (Service Level Agreement) è definito come:",
     "opzioni": [
       "un accordo documentato tra il Fornitore del servizio e il cliente, che identifica sia i componenti richiesti che i livelli di servizio attesi.",
@@ -1720,7 +1728,7 @@
     "risposta_corretta": "un accordo documentato tra il Fornitore del servizio e il cliente, che identifica sia il servizio richiesto che i livelli di servizio attesi."
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 8",
     "domanda": "A cosa corrisponde la definizione \"un cambiamento di stato che sia significativo per la gestione di un servizio IT\"?",
     "opzioni": [
       "Incidente",
@@ -1731,7 +1739,7 @@
     "risposta_corretta": "Evento"
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 8",
     "domanda": "Quale dei seguenti è un esempio appropriato del principio Partire da dove ci troviamo?",
     "opzioni": [
       "Conoscere come i Consumatori del servizio usano ogni servizio",
@@ -1742,7 +1750,7 @@
     "risposta_corretta": "Determinare se e come questi elementi possano essere replicati o estesi verso il raggiungimento dello stato desiderato."
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 8",
     "domanda": "Un fornitore del servizio descrive un pacchetto che include un computer portatile con software, licenze e assistenza. Di cosa è esempio questo pacchetto?",
     "opzioni": [
       "Valore",
@@ -1753,7 +1761,7 @@
     "risposta_corretta": "Un'offerta di servizio"
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 8",
     "domanda": "Quale di queste è un'attività della pratica per la gestione degli incidenti?",
     "opzioni": [
       "Riesaminare i servizi con i clienti",
@@ -1764,7 +1772,7 @@
     "risposta_corretta": "Fornire aggiornamenti di qualità nei tempi previsti"
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 8",
     "domanda": "Quale affermazione su errori noti e problemi è CORRETTA?",
     "opzioni": [
       "Un errore noto è la causa di uno o più¹ problemi.",
@@ -1775,7 +1783,7 @@
     "risposta_corretta": "Un errore noto è lo stato assegnato ad un problema dopo che è stato analizzato."
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 8",
     "domanda": "Quale principio guida descrive l'importanza di agire, anziché dedicare molto tempo ad analizzare le diverse opzioni?",
     "opzioni": [
       "Procedere in modo iterativo con feedback",
@@ -1786,7 +1794,7 @@
     "risposta_corretta": "Procedere in modo iterativo con feedback"
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 8",
     "domanda": "Quale delle seguenti affermazioni E' SCONSIGLIATA dal Principio guida \"Partire dallo stato attuale\"?",
     "opzioni": [
       "Identificare gli strumenti sfruttabili",
@@ -1797,7 +1805,7 @@
     "risposta_corretta": "Creare qualcosa di completamente nuovo"
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 8",
     "domanda": "Quale dei seguenti è un modello di Service Desk proposto da ITIL?",
     "opzioni": [
       "Virtuale",
@@ -1808,7 +1816,7 @@
     "risposta_corretta": "Virtuale"
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 8",
     "domanda": "Qual è lo scopo della pratica per la gestione degli incidenti?",
     "opzioni": [
       "Registrare sia le richieste di risoluzione di incidenti sia le richieste di servizio.",
@@ -1819,7 +1827,7 @@
     "risposta_corretta": "Ridurre al minimo l'impatto negativo degli incidenti ripristinando il normale funzionamento del servizio il più¹ rapidamente possibile."
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 8",
     "domanda": "Un'organizzazione si è impegnata ad avanzare iterativamente raccogliendo feedback: quale altro principio guida dovrebbe prendere in considerazione per assicurarsi che ogni iterazione di miglioramento includa tutti gli elementi necessari a portare risultati reali?",
     "opzioni": [
       "Pensare e lavorare in modo olistico",
@@ -1830,7 +1838,7 @@
     "risposta_corretta": "Pensare e lavorare in modo olistico"
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 8",
     "domanda": "Quale delle quattro dimensioni si concentra sulla gestione dei dati in conformità delle normative di settore?",
     "opzioni": [
       "Partner e fornitori",
@@ -1841,7 +1849,7 @@
     "risposta_corretta": "Informazioni e tecnologia"
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 8",
     "domanda": "In che modo un'organizzazione deve combinare i sette principi guida al momento di prendere una decisione?",
     "opzioni": [
       "Riesaminare ciascun principio guida per determinarne la pertinenza rispetto alla decisione specifica.",
@@ -1852,7 +1860,7 @@
     "risposta_corretta": "Riesaminare ciascun principio guida per determinarne la pertinenza rispetto alla decisione specifica."
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 8",
     "domanda": "Quali azioni svolge un service desk per tutte le criticità segnalate, le domande poste e le richieste presentate?",
     "opzioni": [
       "Diagnosticare, indagare, risolvere",
@@ -1863,7 +1871,7 @@
     "risposta_corretta": "Riconoscere, classificare, assegnare"
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 8",
     "domanda": "Cosa utilizzare per determinare le aspettative degli utenti in relazione ai tempi di adempimento delle richieste di servizio?",
     "opzioni": [
       "Il tempo indicato dal cliente per l'erogazione del servizio",
@@ -1874,7 +1882,7 @@
     "risposta_corretta": "Il tempo necessario per erogare realisticamente il servizio"
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 8",
     "domanda": "Qual è lo scopo dell'attività 'Migliorare' nella Catena del Valore di Servizio (SVC)?",
     "opzioni": [
       "Assicurare una comprensione condivisa della visione, stato corrente, e direzione verso il miglioramento per tutte le 4 Dimensioni e tutti i Prodotti e i Servizi attraverso l'organizzazione.",
@@ -1885,7 +1893,7 @@
     "risposta_corretta": "Assicurare il miglioramento continuo di Prodotti, Servizi, e Pratiche attraverso tutte le attività della catena del valore e le 4 Dimensioni della gestione del servizio."
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 8",
     "domanda": "Quale dei seguenti è un risultato dell'applicazione del principio guida \"Procedere in modo iterativo con feedback\"?",
     "opzioni": [
       "La capacità di scoprire i malfunzionamenti e rispondere in tempi più¹ brevi",
@@ -1896,7 +1904,7 @@
     "risposta_corretta": "La capacità di scoprire i malfunzionamenti e rispondere in tempi più¹ brevi"
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 8",
     "domanda": "Quale delle seguenti rientra nell'ambito della dimensione Organizzazioni e Persone?",
     "opzioni": [
       "Tracciati di diverse combinazioni delle attività della Catena del Valore di Servizio (SVC)",
@@ -1907,7 +1915,7 @@
     "risposta_corretta": "Abbattere i silos funzionali"
   },
   {
-    "categoria": "Screenshot Test",
+    "categoria": "Esercitazione 8",
     "domanda": "In che modo la categorizzazione degli incidenti è di aiuto nella pratica per la gestione degli incidenti?",
     "opzioni": [
       "Determina come viene percepito il fornitore del servizio.",
@@ -9057,6 +9065,1326 @@
       "un cambiamento standard."
     ],
     "risposta_corretta": "un'azione del servizio che è stata concordata."
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Cosa descrive un cambiamento di stato che ha rilevanza per la gestione di un elemento della configurazione o di un servizio IT?",
+    "opzioni": [
+      "Evento",
+      "Incidente",
+      "Cambiamento",
+      "Richiesta di servizio"
+    ],
+    "risposta_corretta": "Evento"
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Quale pratica usa le informazioni sulla configurazione per fornire un'analisi dell'impatto dei cambiamenti incidenti e problemi?",
+    "opzioni": [
+      "Gestione della configurazione del servizio",
+      "Gestione della sicurezza delle informazioni",
+      "Abilitazione del cambiamento",
+      "Gestione dei deployment"
+    ],
+    "risposta_corretta": "Gestione della configurazione del servizio"
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Quale dimensione include la considerazione delle competenze richieste a ciascun membro dell'organizzazione?",
+    "opzioni": [
+      "Informazioni e tecnologia",
+      "Partner e fornitori",
+      "Organizzazioni e persone",
+      "Flussi di valore e processi"
+    ],
+    "risposta_corretta": "Organizzazioni e persone"
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Quale pratica ha tra i suoi scopi l'identificazione di potenziali cause di incidenti?",
+    "opzioni": [
+      "Gestione dei problemi",
+      "Gestione delle richieste di servizio",
+      "Abilitazione del cambiamento",
+      "Monitoraggio e gestione degli eventi"
+    ],
+    "risposta_corretta": "Gestione dei problemi"
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Quale affermazione sulla fornitura di servizi e sul consumo di servizi è CORRETTA?",
+    "opzioni": [
+      "La fornitura di servizi include la gestione delle risorse del consumatore del servizio.",
+      "La fornitura di servizi include la fornitura di beni al consumatore del servizio.",
+      "Il consumo di servizi include la fornitura di accesso alle risorse per gli utenti.",
+      "Il consumo di servizi include l'adempimento di azioni di servizio concordate."
+    ],
+    "risposta_corretta": "La fornitura di servizi include la fornitura di beni al consumatore del servizio."
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Quale dei seguenti è un esempio appropriato del principio Pensare e lavorare in modo olistico?",
+    "opzioni": [
+      "L'ecosistema cambia continuamente, pertanto il feedback è essenziale",
+      "Riconoscere la complessità dei sistemi",
+      "Le decisioni si devono prendere solo sulla base di dati visibili",
+      "L'automazione può facilitare il modo olistico di lavorare"
+    ],
+    "risposta_corretta": "Riconoscere la complessità dei sistemi"
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Quale delle seguenti è una considerazione fondamentale del principio guida \"Collaborare e promuovere la visibilità\"?",
+    "opzioni": [
+      "Comprendere la visione d'insieme, ma fare qualcosa.",
+      "Le persone si sentono più motivate a lavorare se il proprio lavoro è nascosto ai colleghi.",
+      "La comunicazione è un processo bidirezionale.",
+      "Le eccezioni al normale flusso di lavoro devono essere gestite mediante processi di automazione."
+    ],
+    "risposta_corretta": "La comunicazione è un processo bidirezionale."
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "In che modo l'abilitazione del cambiamento influisce sull'efficacia del flusso di valore?",
+    "opzioni": [
+      "Assicurando che un'organizzazione adotti metodi di sviluppo Agile.",
+      "Assicurando che tutti i cambiamenti siano autorizzati da una specifica autorità per il cambiamento.",
+      "Assicurando che le valutazioni del rischio siano effettuate in modo rapido e coerente.",
+      "Assicurando che nessun cambiamento d'emergenza sia implementato senza essere stato pienamente testato."
+    ],
+    "risposta_corretta": "Assicurando che le valutazioni del rischio siano effettuate in modo rapido e coerente."
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "In che modo le attività della catena del valore trasformano input in output?",
+    "opzioni": [
+      "Definendo una serie di regole per la gestione delle azioni del servizio da parte del consumatore.",
+      "Utilizzando una sequenza prescritta di fasi per implementare i servizi.",
+      "Definendo le quattro dimensioni della gestione del servizio per i clienti.",
+      "Utilizzando diverse combinazioni di pratiche."
+    ],
+    "risposta_corretta": "Utilizzando diverse combinazioni di pratiche."
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Quale principio guida di ITIL raccomanda di utilizzare un insieme minimo di passaggi per raggiungere un obiettivo?",
+    "opzioni": [
+      "Mantenere semplicità e praticità",
+      "Collaborare e promuovere la visibilità",
+      "Concentrarsi sul valore",
+      "Pensare e lavorare in modo olistico"
+    ],
+    "risposta_corretta": "Mantenere semplicità e praticità"
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Quale pratica ha tra i suoi scopi la massimizzazione del numero di cambiamenti dell'IT andati a buon fine?",
+    "opzioni": [
+      "Monitoraggio e gestione degli eventi",
+      "Gestione del deployment",
+      "Abilitazione del cambiamento",
+      "Gestione dei rilasci"
+    ],
+    "risposta_corretta": "Abilitazione del cambiamento"
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Qual è un motivo per utilizzare i \"workaround\"?",
+    "opzioni": [
+      "L'analisi dettagliata del problema richiede tempo e l'impatto dell'incidente deve essere mitigato.",
+      "Il service desk ha tempo a sufficienza per indagare a fondo sul problema.",
+      "Il problema è stato risolto e la documentazione deve essere aggiornata.",
+      "Il cliente ha richiesto una soluzione permanente al problema."
+    ],
+    "risposta_corretta": "L'analisi dettagliata del problema richiede tempo e l'impatto dell'incidente deve essere mitigato."
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Cosa si intende per 'utilità' di un servizio?",
+    "opzioni": [
+      "La funzionalità offerta da un prodotto o servizio per soddisfare una specifica esigenza.",
+      "La garanzia che un prodotto o servizio soddisferà i requisiti concordati.",
+      "Una serie di risorse dell'organizzazione progettata per fornire valore a un consumatore.",
+      "Il risultato tangibile o intangibile generato dall'esecuzione di un'attività."
+    ],
+    "risposta_corretta": "La funzionalità offerta da un prodotto o servizio per soddisfare una specifica esigenza."
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Qual è il ruolo del 'Service Desk' in relazione ai canali di comunicazione?",
+    "opzioni": [
+      "Deve fornire un unico canale di accesso, preferibilmente telefonico.",
+      "Deve supportare molteplici canali di accesso per soddisfare le diverse esigenze degli utenti.",
+      "Deve eliminare tutti i canali self-service per centralizzare il contatto.",
+      "Deve consentire solo la comunicazione tramite email per tracciare ogni richiesta."
+    ],
+    "risposta_corretta": "Deve supportare molteplici canali di accesso per soddisfare le diverse esigenze degli utenti."
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Cosa definisce il termine 'Garanzia' in ITIL?",
+    "opzioni": [
+      "L'idoneità all'uso di un prodotto o servizio.",
+      "L'idoneità allo scopo di un prodotto o servizio.",
+      "I costi eliminati per il consumatore del servizio.",
+      "I benefici finanziari generati dal servizio."
+    ],
+    "risposta_corretta": "L'idoneità all'uso di un prodotto o servizio."
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Quale pratica include la gestione delle richieste di accesso ad applicazioni e informazioni?",
+    "opzioni": [
+      "Gestione della sicurezza delle informazioni",
+      "Gestione delle richieste di servizio",
+      "Gestione degli incidenti",
+      "Abilitazione del cambiamento"
+    ],
+    "risposta_corretta": "Gestione delle richieste di servizio"
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Quale attività della catena del valore assicura una comprensione condivisa della visione, dello stato attuale e della direzione di miglioramento per tutte e quattro le dimensioni?",
+    "opzioni": [
+      "Pianificare",
+      "Migliorare",
+      "Coinvolgere",
+      "Progettare ed eseguire la transizione"
+    ],
+    "risposta_corretta": "Pianificare"
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Qual è una raccomandazione della pratica di 'Miglioramento Continuo'?",
+    "opzioni": [
+      "Il miglioramento continuo deve essere responsabilità esclusiva di un team dedicato.",
+      "Tutti i membri dell'organizzazione dovrebbero essere incoraggiati a contribuire al miglioramento continuo.",
+      "Le iniziative di miglioramento continuo devono sempre comportare investimenti finanziari significativi.",
+      "Il miglioramento continuo si applica solo alle pratiche tecniche dell'IT."
+    ],
+    "risposta_corretta": "Tutti i membri dell'organizzazione dovrebbero essere incoraggiati a contribuire al miglioramento continuo."
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Che cosa è un 'Asset IT'?",
+    "opzioni": [
+      "Qualsiasi componente di valore finanziario che può contribuire alla fornitura di un prodotto o servizio IT.",
+      "Qualsiasi elemento che deve essere gestito per fornire un servizio IT.",
+      "Una vulnerabilità identificata in un sistema informativo.",
+      "Un cambiamento significativo dello stato di un servizio IT."
+    ],
+    "risposta_corretta": "Qualsiasi componente di valore finanziario che può contribuire alla fornitura di un prodotto o servizio IT."
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Quale delle seguenti opzioni rappresenta una relazione simbiotica in cui fornitore e consumatore co-creano valore?",
+    "opzioni": [
+      "Gestione delle relazioni di servizio",
+      "Consumo del servizio",
+      "Fornitura del servizio",
+      "Offerta di servizio"
+    ],
+    "risposta_corretta": "Gestione delle relazioni di servizio"
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Qual è la responsabilità dell'autorità per il cambiamento?",
+    "opzioni": [
+      "Assegnare una categoria a tutti gli incidenti segnalati.",
+      "Valutare e autorizzare i cambiamenti pianificati.",
+      "Implementare direttamente tutte le modifiche software.",
+      "Definire gli accordi sui livelli di servizio con i clienti."
+    ],
+    "risposta_corretta": "Valutare e autorizzare i cambiamenti pianificati."
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Quale principio guida raccomanda di comprendere come le persone percepiscono il valore del servizio?",
+    "opzioni": [
+      "Concentrarsi sul valore",
+      "Partire da dove ci troviamo",
+      "Collaborare e promuovere la visibilità",
+      "Mantenere semplicità e praticità"
+    ],
+    "risposta_corretta": "Concentrarsi sul valore"
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Cosa è un 'Output'?",
+    "opzioni": [
+      "Un risultato per una parte interessata abilitato da uno o più output.",
+      "Un prodotto tangibile o intangibile generato da un'attività.",
+      "La funzionalità offerta da un prodotto o servizio.",
+      "La garanzia che un servizio soddisferà determinati requisiti."
+    ],
+    "risposta_corretta": "Un prodotto tangibile o intangibile generato da un'attività."
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "In quale fase del ciclo di vita di un problema viene identificata e registrata una causa?",
+    "opzioni": [
+      "Identificazione del problema",
+      "Controllo del problema",
+      "Controllo degli errori",
+      "Chiusura del problema"
+    ],
+    "risposta_corretta": "Controllo del problema"
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Quale pratica garantisce che i servizi siano erogati secondo livelli concordati e misurabili?",
+    "opzioni": [
+      "Gestione dei livelli di servizio",
+      "Monitoraggio e gestione degli eventi",
+      "Gestione dei problemi",
+      "Service desk"
+    ],
+    "risposta_corretta": "Gestione dei livelli di servizio"
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Qual è un esempio di azione svolta dalla pratica di 'Gestione delle richieste di servizio'?",
+    "opzioni": [
+      "Risolvere un guasto improvviso su un server di posta.",
+      "Sostituire un toner per stampante richiesto da un utente.",
+      "Analizzare la causa principale di arresti anomali ricorrenti.",
+      "Autorizzare un aggiornamento del firmware di rete."
+    ],
+    "risposta_corretta": "Sostituire un toner per stampante richiesto da un utente."
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Quale delle quattro dimensioni della gestione del servizio considera l'uso di flussi di lavoro, procedure e flussi di valore?",
+    "opzioni": [
+      "Flussi di valore e processi",
+      "Organizzazioni e persone",
+      "Informazioni e tecnologia",
+      "Partner e fornitori"
+    ],
+    "risposta_corretta": "Flussi di valore e processi"
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Quale affermazione descrive meglio un 'cambiamento normale'?",
+    "opzioni": [
+      "Un cambiamento che deve seguire una procedura standardizzata senza approvazione.",
+      "Un cambiamento che deve essere valutato, autorizzato e programmato secondo un processo formale.",
+      "Un cambiamento implementato immediatamente per risolvere un incidente critico.",
+      "Un cambiamento a basso rischio pre-approvato."
+    ],
+    "risposta_corretta": "Un cambiamento che deve essere valutato, autorizzato e programmato secondo un processo formale."
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Cosa include un accordo sul livello di servizio (SLA) efficace?",
+    "opzioni": [
+      "Metriche chiare orientate al business e focalizzate sull'esperienza del cliente.",
+      "Esclusivamente metriche tecniche legate alla disponibilità dei componenti.",
+      "Terminologia legale complessa e clausole contrattuali.",
+      "Report separati per ciascun team tecnico senza visione d'insieme."
+    ],
+    "risposta_corretta": "Metriche chiare orientate al business e focalizzate sull'esperienza del cliente."
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Quale principio guida evidenzia l'importanza del feedback tempestivo in piccoli incrementi?",
+    "opzioni": [
+      "Procedere in modo iterativo con feedback",
+      "Pensare e lavorare in modo olistico",
+      "Partire da dove ci troviamo",
+      "Ottimizzare e automatizzare"
+    ],
+    "risposta_corretta": "Procedere in modo iterativo con feedback"
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Cosa si intende per 'Outcome' (risultato)?",
+    "opzioni": [
+      "Il risultato per una parte interessata, facilitato da uno o più output.",
+      "Un prodotto fisico consegnato al consumatore.",
+      "La configurazione tecnica di un server o dispositivo.",
+      "Il costo complessivo sostenuto per erogare un servizio."
+    ],
+    "risposta_corretta": "Il risultato per una parte interessata, facilitato da uno o più output."
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Quale pratica ha tra le sue responsabilità principali la registrazione e la risoluzione tempestiva di interruzioni del servizio?",
+    "opzioni": [
+      "Gestione degli incidenti",
+      "Gestione dei problemi",
+      "Gestione delle richieste di servizio",
+      "Abilitazione del cambiamento"
+    ],
+    "risposta_corretta": "Gestione degli incidenti"
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Quale attività della catena del valore converte la domanda in valore attraverso l'erogazione dei servizi?",
+    "opzioni": [
+      "Fornitura e supporto",
+      "Ottenere/costruire",
+      "Coinvolgere",
+      "Pianificare"
+    ],
+    "risposta_corretta": "Fornitura e supporto"
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Qual è il beneficio principale dell'automazione secondo il principio \"Ottimizzare e automatizzare\"?",
+    "opzioni": [
+      "Riduce l'intervento umano nelle attività ripetitive consentendo alle persone di concentrarsi su attività a maggior valore.",
+      "Elimina completamente la necessità di personale tecnico nell'organizzazione.",
+      "Permette di automatizzare qualsiasi processo senza prima ottimizzarlo.",
+      "Garantisce che tutti i cambiamenti siano implementati senza approvazione."
+    ],
+    "risposta_corretta": "Riduce l'intervento umano nelle attività ripetitive consentendo alle persone di concentrarsi su attività a maggior valore."
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Quale dimensione della gestione dei servizi copre le relazioni contrattuali con terze parti che forniscono beni e servizi?",
+    "opzioni": [
+      "Partner e fornitori",
+      "Informazioni e tecnologia",
+      "Flussi di valore e processi",
+      "Organizzazioni e persone"
+    ],
+    "risposta_corretta": "Partner e fornitori"
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Quando è opportuno aprire un 'Problema'?",
+    "opzioni": [
+      "In presenza di incidenti ricorrenti o di un incidente grave per cui non si conosce la causa fondamentale.",
+      "Ogni volta che un utente invia una richiesta standard di fornitura hardware.",
+      "Solo dopo che tutti gli incidenti sono stati chiusi definitivamente.",
+      "Esclusivamente durante le riunioni periodiche dell'autorità per il cambiamento."
+    ],
+    "risposta_corretta": "In presenza di incidenti ricorrenti o di un incidente grave per cui non si conosce la causa fondamentale."
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Quale pratica facilita la comunicazione continua con gli utenti tramite diversi canali?",
+    "opzioni": [
+      "Service desk",
+      "Gestione dei fornitori",
+      "Gestione dei deployment",
+      "Abilitazione del cambiamento"
+    ],
+    "risposta_corretta": "Service desk"
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Cosa raccomanda il principio guida \"Partire da dove ci troviamo\"?",
+    "opzioni": [
+      "Valutare ciò che è già disponibile prima di decidere cosa scartare o riutilizzare.",
+      "Ripartire sempre da zero per eliminare ogni retaggio del passato.",
+      "Evitare qualsiasi tipo di misurazione diretta dello stato attuale.",
+      "Affidarsi unicamente a report storici senza verificare la realtà dei fatti."
+    ],
+    "risposta_corretta": "Valutare ciò che è già disponibile prima di decidere cosa scartare o riutilizzare."
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Cosa garantisce la pratica di 'Gestione dei rilasci'?",
+    "opzioni": [
+      "Che funzionalità e servizi nuovi o modificati siano resi disponibili all'uso.",
+      "Che l'infrastruttura hardware sia spostata negli ambienti di collaudo.",
+      "Che tutti gli incidenti siano classificati in base alla priorità del cliente.",
+      "Che i contratti con i fornitori siano rinnovati tempestivamente."
+    ],
+    "risposta_corretta": "Che funzionalità e servizi nuovi o modificati siano resi disponibili all'uso."
+  },
+  {
+    "categoria": "Esercitazione 9",
+    "domanda": "Quale affermazione sul 'Miglioramento Continuo' è corretta?",
+    "opzioni": [
+      "Le opportunità di miglioramento continuo devono essere registrate e valutate nel registro del miglioramento continuo (CIR).",
+      "Il miglioramento continuo non deve mai interagire con la gestione dei problemi.",
+      "Il miglioramento continuo riguarda esclusivamente la riduzione dei costi operativi.",
+      "I piani di miglioramento devono essere approvati solo dai consumatori del servizio."
+    ],
+    "risposta_corretta": "Le opportunità di miglioramento continuo devono essere registrate e valutate nel registro del miglioramento continuo (CIR)."
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Quale pratica fa uso di procedure standardizzate predefinite per comunicare con chiarezza i tempi di adempimento?",
+    "opzioni": [
+      "Gestione degli incidenti",
+      "Gestione dei livelli di servizio",
+      "Gestione dei problemi",
+      "Gestione delle richieste di servizio"
+    ],
+    "risposta_corretta": "Gestione delle richieste di servizio"
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Quale delle seguenti affermazioni sui risultati è CORRETTA?",
+    "opzioni": [
+      "Aiutando i consumatori del servizio a ottenere i risultati si riducono i costi per il fornitore del servizio.",
+      "I risultati aiutano i consumatori del servizio a ottenere gli output.",
+      "I risultati sono uno o più servizi che soddisfano le esigenze di un consumatore del servizio.",
+      "I fornitori di servizi aiutano i consumatori del servizio a ottenere i risultati."
+    ],
+    "risposta_corretta": "I fornitori di servizi aiutano i consumatori del servizio a ottenere i risultati."
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Quale pratica migliora la soddisfazione di utenti e clienti riducendo l'impatto negativo delle interruzioni di servizio?",
+    "opzioni": [
+      "Gestione delle richieste di servizio",
+      "Abilitazione del cambiamento",
+      "Gestione dei livelli di servizio",
+      "Gestione degli incidenti"
+    ],
+    "risposta_corretta": "Gestione degli incidenti"
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Quale pratica utilizza tecniche come analisi SWOT, revisioni di balanced scorecard e valutazioni del livello di maturità?",
+    "opzioni": [
+      "Gestione delle richieste di servizio",
+      "Miglioramento continuo",
+      "Gestione dei problemi",
+      "Gestione degli incidenti"
+    ],
+    "risposta_corretta": "Miglioramento continuo"
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Qual è lo scopo della pratica 'Gestione dei Livelli di servizio'?",
+    "opzioni": [
+      "Stabilire e nutrire i legami tra l'organizzazione e le sue parti interessate a livello strategico e tattico.",
+      "Stabilire obiettivi chiari basati sul business per le prestazioni dei servizi, in modo che l'erogazione di un servizio possa essere adeguatamente valutata, monitorata, e gestita contro questi target.",
+      "Mettere a disposizione per l'uso servizi e funzionalità nuovi o modificati",
+      "Osservare sistematicamente i servizi e i loro componenti, registrare e riportare selezionati cambiamenti di stato identificati come 'eventi'."
+    ],
+    "risposta_corretta": "Stabilire obiettivi chiari basati sul business per le prestazioni dei servizi, in modo che l'erogazione di un servizio possa essere adeguatamente valutata, monitorata, e gestita contro questi target."
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Come viene definito un problema che è stato analizzato ma non risolto?",
+    "opzioni": [
+      "Workaround",
+      "Incidente",
+      "Errore noto",
+      "Evento"
+    ],
+    "risposta_corretta": "Errore noto"
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Qual è lo scopo della pratica 'Gestione della Sicurezza delle informazioni'?",
+    "opzioni": [
+      "Proteggere le informazioni necessarie all'organizzazione per mandare avanti il proprio business.",
+      "Osservare sistematicamente i servizi e i loro componenti, registrare e riportare selezionati cambiamenti di stato identificati come 'eventi'",
+      "Stabilire e nutrire i legami tra l'organizzazione e le sue parti interessate a livello strategico e tattico.",
+      "Pianificare e gestire il ciclo di vita completo di tutti gli asset IT."
+    ],
+    "risposta_corretta": "Proteggere le informazioni necessarie all'organizzazione per mandare avanti il proprio business."
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Quale dimensione prende in considerazione i metodi per proteggere gli asset in ambito conoscenza?",
+    "opzioni": [
+      "Partner e fornitori",
+      "Organizzazioni e persone",
+      "Informazioni e tecnologia",
+      "Flussi del valore e processi"
+    ],
+    "risposta_corretta": "Informazioni e tecnologia"
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Qual è l'esempio MIGLIORE di un cambiamento d'emergenza?",
+    "opzioni": [
+      "Un'implementazione hardware e software programmata e di vasta entità",
+      "L'implementazione di una patch di sicurezza per un'applicazione software di importanza critica",
+      "L'implementazione di un nuovo rilascio pianificato di un'applicazione software",
+      "Un aggiornamento informatico a basso rischio implementato sotto forma di richiesta di servizio"
+    ],
+    "risposta_corretta": "L'implementazione di una patch di sicurezza per un'applicazione software di importanza critica"
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Identifica la/le parola/e mancante/i nella frase seguente. Definizione di cambiamento: l'aggiunta, la modifica, o [?] di qualcosa che possa avere un impatto diretto o indiretto sui Servizi.",
+    "opzioni": [
+      "la ridistribuzione",
+      "la rimozione",
+      "la sostituzione",
+      "il ripristino"
+    ],
+    "risposta_corretta": "la rimozione"
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Quali sono le DUE competenze PIÙ importanti per il personale del service desk? 1. Conoscenza dei processi aziendali 2. Capacità di collaborazione 3. Conoscenze tecniche avanzate 4. Capacità di progettazione dei flussi di lavoro",
+    "opzioni": [
+      "1 e 4",
+      "2 e 3",
+      "1 e 2",
+      "3 e 4"
+    ],
+    "risposta_corretta": "1 e 2"
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Identifica la parola o le parole mancanti nella frase seguente. Scopo della pratica per la gestione dei problemi è ridurre la probabilità e l'impatto degli incidenti individuandone le cause attuali o potenziali e gestendo i workaround e [?].",
+    "opzioni": [
+      "Gli asset IT",
+      "Gli errori noti",
+      "Gli eventi",
+      "I cambiamenti"
+    ],
+    "risposta_corretta": "Gli errori noti"
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Quale dimensione è MAGGIORMENTE incentrata su capacità, competenze, ruoli e responsabilità ?",
+    "opzioni": [
+      "Informazioni e tecnologia",
+      "Organizzazioni e persone",
+      "Partner e fornitori",
+      "Flussi del valore e processi"
+    ],
+    "risposta_corretta": "Organizzazioni e persone"
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Identifica le parole mancanti nella frase seguente. Lo sponsor è il ruolo che autorizza il budget per il [?] del servizio",
+    "opzioni": [
+      "Il consumo",
+      "La fornitura",
+      "Il valore",
+      "La gestione"
+    ],
+    "risposta_corretta": "Il consumo"
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Qual è l'uso PRIMARIO di una programmazione dei cambiamenti?",
+    "opzioni": [
+      "Gestire i cambiamenti standard.",
+      "Supportare la \"gestione degli incidenti\" e la pianificazione dei miglioramenti.",
+      "Gestire i cambiamenti d'emergenza.",
+      "Pianificare i cambiamenti e contribuire a evitare conflitti."
+    ],
+    "risposta_corretta": "Pianificare i cambiamenti e contribuire a evitare conflitti."
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Quale principio guida di ITIL raccomanda di sfruttare servizi, processi e strumenti esistenti durante il miglioramento dei servizi?",
+    "opzioni": [
+      "Partire dallo stato attuale",
+      "Procedere in modo iterativo con feedback",
+      "Mantenere semplicità e praticità",
+      "Concentrarsi sul valore"
+    ],
+    "risposta_corretta": "Partire dallo stato attuale"
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Un utente contatta il Service desk per chiedere come creare un report. Quale pratica è PIU' PROBABILE che contribuisca alla risoluzione di questa questione?",
+    "opzioni": [
+      "Gestione dei livelli di servizio",
+      "Abilitazione del cambiamento",
+      "Gestione degli incidenti",
+      "Gestione delle richieste di servizio"
+    ],
+    "risposta_corretta": "Gestione delle richieste di servizio"
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Quale pratica rappresenta un collegamento tra il fornitore del servizio e gli utenti dei servizi?",
+    "opzioni": [
+      "Service Desk",
+      "Gestione dei livelli di servizio",
+      "Gestione dei problemi",
+      "Abilitazione del cambiamento"
+    ],
+    "risposta_corretta": "Service Desk"
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Quale tra le seguenti è una raccomandazione del principio guida \"Pensare e lavorare in modo olistico\"?",
+    "opzioni": [
+      "Utilizzare le quattro dimensioni della gestione del servizio al fine di assicurare il coordinamento di tutti gli aspetti di un'iniziativa di miglioramento.",
+      "Studiare come organizzare un'iniziativa di miglioramento in sezioni più¹ piccole e gestibili, che possano essere completate entro i tempi previsti.",
+      "Riesaminare le pratiche per la gestione dei servizi esistenti e decidere cosa mantenere e cosa scartare.",
+      "Riesaminare le pratiche per la gestione dei servizi ed eliminare ogni complessità superflua."
+    ],
+    "risposta_corretta": "Utilizzare le quattro dimensioni della gestione del servizio al fine di assicurare il coordinamento di tutti gli aspetti di un'iniziativa di miglioramento."
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Identifica la/le parola/e mancante/i nella frase seguente. Definizione di cambiamento: l'aggiunta, la modifica, o [?] di qualcosa che possa avere un impatto diretto o indiretto sui Servizi.",
+    "opzioni": [
+      "la rimozione",
+      "la sostituzione",
+      "il ripristino",
+      "la ridistribuzione"
+    ],
+    "risposta_corretta": "la rimozione"
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Qual è una raccomandazione del principio guida \"Concentrarsi sul valore\"?",
+    "opzioni": [
+      "Rendere il \"Concentrarsi sul valore\" una responsabilità della dirigenza.",
+      "Concentrarsi prima sul valore di progetti nuovi e significativi.",
+      "Concentrarsi prima sul valore per il fornitore del servizio.",
+      "Concentrarsi sul valore in ogni passo del ciclo di miglioramento."
+    ],
+    "risposta_corretta": "Concentrarsi sul valore in ogni passo del ciclo di miglioramento."
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Quale principio guida raccomanda di raccogliere dati prima di decidere cosa sia possibile riutilizzare?",
+    "opzioni": [
+      "Partire dallo stato attuale",
+      "Mantenere semplicità e praticità",
+      "Concentrarsi sul valore",
+      "Procedere in modo iterativo con feedback"
+    ],
+    "risposta_corretta": "Partire dallo stato attuale"
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Un'organizzazione si è impegnata ad avanzare iterativamente raccogliendo feedback: questo modo di lavorare in particolare è la chiave per quale altro principio guida?",
+    "opzioni": [
+      "Collaborare e promuovere la visibilità",
+      "Mantenere semplicità e praticità",
+      "Ottimizzare e automatizzare",
+      "Partire da dove ci troviamo"
+    ],
+    "risposta_corretta": "Collaborare e promuovere la visibilità"
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Qual è lo scopo della pratica 'Gestione dei Problemi'?",
+    "opzioni": [
+      "Massimizzare il numero di cambiamenti di successo nell'IT assicurandosi che i rischi siano stati appropriatamente valutati, autorizzando l'avanzamento dei cambiamenti, e gestendone la programmazione.",
+      "Catturare la domanda per la risoluzione degli Incidenti e per le Richieste di servizio. Essere anche il punto d'entrata ed il singolo punto di contatto per il Fornitore del servizio, nei confronti dei suoi utenti.",
+      "Minimizzare l'impatto negativo degli incidenti ripristinando la normale operatività di servizio nel minor tempo possibile",
+      "Ridurre il ripresentarsi e l'impatto degli incidenti identificandone la causa reale o potenziale, gestendo la relativa soluzione e gli errori noti."
+    ],
+    "risposta_corretta": "Ridurre il ripresentarsi e l'impatto degli incidenti identificandone la causa reale o potenziale, gestendo la relativa soluzione e gli errori noti."
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Quale dei seguenti è un esempio appropriato del principio Focalizzarsi sul valore?",
+    "opzioni": [
+      "La semplicità è la strada migliore per raggiungere gli obiettivi a breve termine",
+      "Riconoscere la complessità dei sistemi",
+      "Formare il personale verso una consapevolezza circa i propri clienti e la CX.",
+      "Semplificare e/o ottimizzare prima di automatizzare"
+    ],
+    "risposta_corretta": "Formare il personale verso una consapevolezza circa i propri clienti e la CX."
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Quale è la pratica PIU' PROBABILE per utilizzare l'intelligenza artificiale, la RPA (Robotic Process Automation) e i Chatbot?",
+    "opzioni": [
+      "Miglioramento Continuo",
+      "Gestione degli Incidenti",
+      "Service Desk",
+      "Gestione dei Problemi"
+    ],
+    "risposta_corretta": "Service Desk"
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Cosa può essere utilizzato nel contesto di misurazione della probabilità sia di un outcome (risultato) positivo come pure negativo?",
+    "opzioni": [
+      "Rischio",
+      "Opportunità",
+      "Miglioramento",
+      "Evento"
+    ],
+    "risposta_corretta": "Rischio"
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Quale dei seguenti è un esempio appropriato del principio Pensare e lavorare in modo olistico?",
+    "opzioni": [
+      "L'ecosistema cambia continuamente, pertanto il feedback è essenziale",
+      "Conoscere come i Consumatori del servizio usano ogni servizio",
+      "Dove possibile, ricercare andamenti nelle esigenze e interazioni fra gli elementi del sistema",
+      "Comprendere la visione d'insieme, ma fare qualcosa"
+    ],
+    "risposta_corretta": "Dove possibile, ricercare andamenti nelle esigenze e interazioni fra gli elementi del sistema"
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Quale pratica rende disponibili all'uso i servizi nuovi?",
+    "opzioni": [
+      "Gestione degli asset IT",
+      "Gestione dei rilasci",
+      "Gestione del deployment",
+      "Abilitazione del cambiamento"
+    ],
+    "risposta_corretta": "Gestione dei rilasci"
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Quale delle seguenti affermazioni sulla pratica per l'abilitazione del cambiamento è CORRETTA?",
+    "opzioni": [
+      "I cambiamenti standard devono essere programmati, valutati e autorizzati seguendo un processo standard",
+      "I cambiamenti normali sono avviati dalla creazione di una richiesta di cambiamento, che può essere manuale o automatizzata",
+      "La valutazione e l'autorizzazione dei cambiamenti normali devono essere accelerate per assicurarne una rapida implementazione",
+      "Deve essere presente un'autorità del cambiamento separata per i cambiamenti standard, di cui facciano parte responsabili senior che comprendano i rischi coinvolti"
+    ],
+    "risposta_corretta": "I cambiamenti normali sono avviati dalla creazione di una richiesta di cambiamento, che può essere manuale o automatizzata"
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Qual è la prima cosa da fare nell'applicazione del principio guida \"Concentrarsi sul valore\"?",
+    "opzioni": [
+      "Determinare il costo di fornitura del servizio.",
+      "Individuare il consumatore del servizio in ogni situazione.",
+      "Identificare tutti i fornitori e i partner coinvolti nel servizio.",
+      "Identificare i risultati al cui raggiungimento contribuisce il servizio."
+    ],
+    "risposta_corretta": "Individuare il consumatore del servizio in ogni situazione."
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Quali metriche del livello di servizio sono MIGLIORI per misurare l'esperienza dell'utente?",
+    "opzioni": [
+      "Metriche relative alla percentuale di tempo di attività di un servizio",
+      "Metriche di esercizio",
+      "Metriche legate a risultati definiti",
+      "Metriche singole basate sui sistemi"
+    ],
+    "risposta_corretta": "Metriche legate a risultati definiti"
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Perchè il personale del service desk deve rilevare le criticità ricorrenti?",
+    "opzioni": [
+      "Per coinvolgere l'autorità del cambiamento corretta.",
+      "Per eseguire l'escalation degli incidenti al team di supporto corretto.",
+      "Per contribuire a identificare i problemi.",
+      "Per assicurare una gestione efficace delle richieste di servizio."
+    ],
+    "risposta_corretta": "Per contribuire a identificare i problemi."
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "A cosa corrisponde la definizione di \"il ruolo che utilizza i servizi\"?",
+    "opzioni": [
+      "Cliente",
+      "Consumatore del servizio",
+      "Sponsor",
+      "Utente"
+    ],
+    "risposta_corretta": "Utente"
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Quale ruolo sarebbe il PIU' adatto a una persona con molte esperienze lavorative in ruoli IT e di business. Ha inoltre esperienza nella gestione delle relazioni con varie parti interessate, tra cui fornitori e responsabili aziendali.",
+    "opzioni": [
+      "Gestore dei livelli di servizio",
+      "Autorità del cambiamento",
+      "Agente del Service Desk",
+      "Analista dei problemi"
+    ],
+    "risposta_corretta": "Gestore dei livelli di servizio"
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Un'organizzazione chiede a una parte interessata di riesaminare un cambiamento pianificato. È un'applicazione di quale principio guida?",
+    "opzioni": [
+      "Mantenere semplicità e praticità",
+      "Partire dallo stato attuale",
+      "Collaborare e promuovere la visibilità",
+      "Concentrarsi sul valore"
+    ],
+    "risposta_corretta": "Collaborare e promuovere la visibilità"
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Quale dei seguenti è un esempio appropriato del principio Pensare e lavorare in modo olistico?",
+    "opzioni": [
+      "Comunicare in un modo tale per cui l'audience possa ascoltare",
+      "Fare meno cose, ma farle meglio",
+      "Riconoscere la complessità dei sistemi",
+      "Le decisioni si devono prendere solo sulla base di dati visibili"
+    ],
+    "risposta_corretta": "Riconoscere la complessità dei sistemi"
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Quale pratica suggerisce alle organizzazioni di sviluppare competenze in tecniche quali l'analisi SWOT, ossia l'analisi di punti di forza, debolezze, opportunità e minacce, e la balanced scorecard?",
+    "opzioni": [
+      "Gestione degli incidenti",
+      "Abilitazione del cambiamento",
+      "Miglioramento continuo",
+      "Gestione delle richieste di servizio"
+    ],
+    "risposta_corretta": "Miglioramento continuo"
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Cosa dovrebbe mettere in atto la pratica Gestione dei livelli di servizio, per assicurare che l'insieme corrente di servizi continui a soddisfare le esigenze dell'organizzazione e dei suoi clienti?",
+    "opzioni": [
+      "Revisioni post-implementazione.",
+      "Revisioni del servizio.",
+      "Revisioni dei problemi più¹ critici.",
+      "Revisioni delle competenze tecniche."
+    ],
+    "risposta_corretta": "Revisioni del servizio."
+  },
+  {
+    "categoria": "Esercitazione 10",
+    "domanda": "Qual è un potenziale vantaggio dell'uso di uno strumento di gestione dei servizi IT per supportare la pratica per la \"gestione degli incidenti\"?",
+    "opzioni": [
+      "Può assicurare l'identificazione della causa degli incidenti entro i tempi concordati.",
+      "Può assicurare l'allineamento dei contratti del fornitore con le esigenze del fornitore del servizio.",
+      "Può fornire la risoluzione e chiusura automatizzata di incidenti complessi.",
+      "Può abbinare automaticamente gli incidenti a problemi o errori noti."
+    ],
+    "risposta_corretta": "Può abbinare automaticamente gli incidenti a problemi o errori noti."
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Quale delle seguenti affermazioni su un flusso del valore di servizio è CORRETTA?",
+    "opzioni": [
+      "E' un'attività della catena del valore",
+      "Integra pratiche per uno scenario specifico",
+      "Utilizza input e output di carattere prescrittivo",
+      "Viene utilizzato per fornire la governance"
+    ],
+    "risposta_corretta": "Integra pratiche per uno scenario specifico"
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Quale principio guida raccomanda di organizzare il lavoro in sezioni più piccole e gestibili, che possono essere eseguite e completate entro i tempi previsti?",
+    "opzioni": [
+      "Collaborare e promuovere la visibilità",
+      "Partire dallo stato attuale",
+      "Procedere in modo iterativo con feedback",
+      "Concentrarsi sul valore"
+    ],
+    "risposta_corretta": "Procedere in modo iterativo con feedback"
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Quali dei seguenti sono tipi di cambiamenti previsti dalla pratica 'Abilitazione del cambiamento'? 1 Cambiamento standard 2 Cambiamento di sicurezza 3 Cambiamento d'emergenza 4 Cambiamento correttivo",
+    "opzioni": [
+      "1 e 3",
+      "2 e 3",
+      "3 e 4",
+      "1 e 2"
+    ],
+    "risposta_corretta": "1 e 3"
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Perché è opportuno assegnare priorità agli incidenti?",
+    "opzioni": [
+      "Per assicurare che gli incidenti con il maggiore impatto sul business siano risolti per primi.",
+      "Per facilitare l'abbinamento automatico degli incidenti a problemi o errori noti.",
+      "Per identificare il team di supporto a cui indirizzare l'escalation dell'incidente.",
+      "Per incoraggiare un alto livello di collaborazione all'interno dei singoli team e tra team diversi."
+    ],
+    "risposta_corretta": "Per assicurare che gli incidenti con il maggiore impatto sul business siano risolti per primi."
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Quale pratica ha tra i suoi scopi quello di massimizzare il successo delle attività di aggiunta, modifica o rimozione di qualsiasi elemento che potrebbe influire su un servizio?",
+    "opzioni": [
+      "Service desk",
+      "Abilitazione del cambiamento",
+      "Gestione delle richieste di servizio",
+      "Gestione degli incidenti"
+    ],
+    "risposta_corretta": "Abilitazione del cambiamento"
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Qual è uno scopo dell'attività \"Coinvolgere\" della catena del valore?",
+    "opzioni": [
+      "Assicurare il miglioramento continuo dei servizi.",
+      "Assicurare che sia compresa la visione dell'organizzazione.",
+      "Offrire trasparenza e relazioni positive.",
+      "Soddisfare le aspettative di qualità, costi e time to market."
+    ],
+    "risposta_corretta": "Offrire trasparenza e relazioni positive."
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Quale principio guida raccomanda di valutare lo stato attuale e quindi decidere cosa è possibile riutilizzare?",
+    "opzioni": [
+      "Collaborare e promuovere la visibilità",
+      "Procedere in modo iterativo con feedback",
+      "Concentrarsi sul valore",
+      "Partire dallo stato attuale"
+    ],
+    "risposta_corretta": "Partire dallo stato attuale"
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Quale affermazione sulla pratica per il service desk è CORRETTA?",
+    "opzioni": [
+      "Fornisce un collegamento con le parti interessate sia a livello strategico sia tattico.",
+      "Svolge la valutazione e l'autorizzazione dei cambiamenti.",
+      "Indaga sulle cause degli incidenti.",
+      "Richiede una comprensione concreta dei processi aziendali."
+    ],
+    "risposta_corretta": "Richiede una comprensione concreta dei processi aziendali."
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Quale pratica fornisce un singolo punto di contatto per gli utenti?",
+    "opzioni": [
+      "Service desk",
+      "Gestione delle richieste di servizio",
+      "Abilitazione del cambiamento",
+      "Gestione degli incidenti"
+    ],
+    "risposta_corretta": "Service desk"
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Un difetto in un'applicazione potrebbe provocare un'interruzione del servizio. Il personale IT sta analizzando attivamente l'applicazione per cercare di capire cosa sta succedendo. Qual è il nome esatto di questo tipo di difetto?",
+    "opzioni": [
+      "Incidente",
+      "Evento",
+      "Problema",
+      "Errore noto"
+    ],
+    "risposta_corretta": "Problema"
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Qual è l'approccio CORRETTO per l'applicazione del principio guida \"Mantenere semplicità e praticità \"?",
+    "opzioni": [
+      "Progettare controlli e metriche e aggiungerli uno alla volta fino a implementarli tutti.",
+      "Progettare prima controlli e metriche, quindi rimuovere quelli che non aggiungono valore.",
+      "Aggiungere controlli e metriche solo quando necessario.",
+      "Aggiungere solo quelle metriche e controlli richiesti per la conformità."
+    ],
+    "risposta_corretta": "Aggiungere controlli e metriche solo quando necessario."
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Quale affermazione sulle attività della catena del valore è CORRETTA?",
+    "opzioni": [
+      "Ogni pratica appartiene a un'attività della catena del valore specifica.",
+      "Una combinazione specifica di attività e pratiche della catena del valore forma una relazione di servizio.",
+      "Le attività della catena del valore del servizio formano un singolo flusso di lavoro che permette la creazione di valore.",
+      "Ogni attività della catena del valore contribuisce alla catena trasformando specifici input in output."
+    ],
+    "risposta_corretta": "Ogni attività della catena del valore contribuisce alla catena trasformando specifici input in output."
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Qual è lo scopo dell'attività 'Migliorare' nella Catena del Valore di Servizio (SVC)?",
+    "opzioni": [
+      "Assicurare una comprensione condivisa della visione, stato corrente, e direzione verso il miglioramento per tutte le 4 Dimensioni e tutti i Prodotti e i Servizi attraverso l'organizzazione.",
+      "Fornire una buona comprensione delle esigenze delle parti interessate, e trasparenza",
+      "Assicurare che Prodotti e Servizi soddisfino continuamente le aspettative delle parti interessate relativamente a qualità, costi, e tempo per la commercializzazione (time to market).",
+      "Assicurare il miglioramento continuo di Prodotti, Servizi, e Pratiche attraverso tutte le attività della catena del valore e le 4 Dimensioni della gestione del servizio."
+    ],
+    "risposta_corretta": "Assicurare il miglioramento continuo di Prodotti, Servizi, e Pratiche attraverso tutte le attività della catena del valore e le 4 Dimensioni della gestione del servizio."
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Quale dei seguenti è un esempio appropriato del principio Avanzare iterativamente raccogliendo feedback?",
+    "opzioni": [
+      "L'automazione può facilitare il modo olistico di lavorare",
+      "Riconoscere che NULLA dello stato attuale può essere riutilizzato.",
+      "Conoscere come i Consumatori del servizio usano ogni servizio",
+      "L'ecosistema cambia continuamente, pertanto il feedback è essenziale"
+    ],
+    "risposta_corretta": "L'ecosistema cambia continuamente, pertanto il feedback è essenziale"
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Quale dei seguenti è un esempio appropriato del principio Collaborare e promuovere la visibilità ?",
+    "opzioni": [
+      "L'ecosistema cambia continuamente, pertanto il feedback è essenziale",
+      "Determinare se e come questi elementi possano essere replicati o estesi verso il raggiungimento dello stato desiderato.",
+      "La semplicità è la strada migliore per raggiungere gli obiettivi a breve termine",
+      "Le decisioni si devono prendere solo sulla base di dati visibili"
+    ],
+    "risposta_corretta": "Le decisioni si devono prendere solo sulla base di dati visibili"
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Qual è un requisito chiave per il successo di un accordo sul livello di servizio?",
+    "opzioni": [
+      "Deve essere basato sul punto di vista del fornitore del servizio rispetto al servizio.",
+      "Deve essere scritto in modo semplice e facile da capire.",
+      "Deve fare riferimento a metriche di esercizio semplici.",
+      "Deve essere scritto con terminologia legale."
+    ],
+    "risposta_corretta": "Deve essere scritto in modo semplice e facile da capire."
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Quale dei seguenti è un esempio appropriato del principio Mantenere semplicità e praticità ?",
+    "opzioni": [
+      "L'ecosistema cambia continuamente, pertanto il feedback è essenziale",
+      "Le decisioni si devono prendere solo sulla base di dati visibili",
+      "Dove possibile, ricercare andamenti nelle esigenze e interazioni fra gli elementi del sistema",
+      "Ogni attività dovrebbe contribuire alla creazione di valore"
+    ],
+    "risposta_corretta": "Ogni attività dovrebbe contribuire alla creazione di valore"
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Come è necessario procedere per ogni problema?",
+    "opzioni": [
+      "Predisporre un workaround per ridurne l'impatto.",
+      "Assegnarvi una priorità in base al potenziale impatto ed alla probabilità.",
+      "Risolverlo in modo da poterlo chiudere.",
+      "Diagnosticarlo per identificare possibili soluzioni."
+    ],
+    "risposta_corretta": "Assegnarvi una priorità in base al potenziale impatto ed alla probabilità."
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Un'offerta di servizio può includere beni, accesso a risorse e azioni del servizio. Qual è un esempio di azione del servizio?",
+    "opzioni": [
+      "Una password permette a un utente di connettersi a una rete WiFi",
+      "Una licenza permette a un utente di installare un prodotto software",
+      "Un telefono cellulare permette a un utente di lavorare da remoto",
+      "Un agente del service desk fornisce supporto a un utente"
+    ],
+    "risposta_corretta": "Un agente del service desk fornisce supporto a un utente"
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Qual è lo scopo dell'attività 'Progettare ed eseguire la transizione' nella Catena del Valore di Servizio (SVC)?",
+    "opzioni": [
+      "Assicurare che i servizi siano erogati e supportati secondo le specifiche concordate e le aspettative delle parti interessate.",
+      "Assicurare che Prodotti e Servizi soddisfino continuamente le aspettative delle parti interessate relativamente a qualità, costi, e tempo per la commercializzazione (time to market).",
+      "Assicurare che i componenti del servizio siano disponibili quando e dove sono necessari, e che soddisfino le specifiche concordate.",
+      "Fornire una buona comprensione delle esigenze delle parti interessate, e trasparenza."
+    ],
+    "risposta_corretta": "Assicurare che Prodotti e Servizi soddisfino continuamente le aspettative delle parti interessate relativamente a qualità, costi, e tempo per la commercializzazione (time to market)."
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Quali due pratiche utilizzano i workaround?",
+    "opzioni": [
+      "Abilitazione del cambiamento, miglioramento continuo",
+      "Abilitazione del cambiamento, gestione dei problemi",
+      "Gestione dei problemi, gestione degli incidenti",
+      "Gestione degli incidenti, miglioramento continuo"
+    ],
+    "risposta_corretta": "Gestione dei problemi, gestione degli incidenti"
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Quale di queste è una raccomandazione della pratica per il \"service desk\"?",
+    "opzioni": [
+      "I service desk devono capire l'organizzazione in senso più¹ ampio.",
+      "I service desk devono essere team fisici in una singola sede fissa",
+      "I service desk devono essere altamente tecnici.",
+      "I service desk devono evitare di utilizzare l'automazione."
+    ],
+    "risposta_corretta": "I service desk devono capire l'organizzazione in senso più¹ ampio."
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Qual è il gruppo di parti interessate PIU' importante con cui dovrebbe collaborare il fornitore del servizio?",
+    "opzioni": [
+      "Responsabili delle relazioni",
+      "Sviluppatori",
+      "Fornitori",
+      "Clienti"
+    ],
+    "risposta_corretta": "Clienti"
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Quale di questi aspetti NON viene gestito come una richiesta di servizio?",
+    "opzioni": [
+      "La fornitura di un laptop",
+      "Un reclamo relativo a un team di supporto",
+      "La riduzione di qualità di un servizio",
+      "La sostituzione di una cartuccia di toner"
+    ],
+    "risposta_corretta": "La riduzione di qualità di un servizio"
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "La pratica Gestione degli incidenti suggerisce che gli incidenti vengano messi in priorità in modo tale che...",
+    "opzioni": [
+      "gli incidenti riferiti ad un problema aperto siano risolti prima.",
+      "gli incidenti con la complessità maggiore siano risolti prima.",
+      "gli incidenti di sicurezza siano risolti prima.",
+      "gli incidenti con l'impatto sul business più¹ alto siano risolti prima"
+    ],
+    "risposta_corretta": "gli incidenti con l'impatto sul business più¹ alto siano risolti prima"
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Quali tra i seguenti sono argomenti chiave nel principio Collaborare e promuovere visibilità? 1 Informare 2 Comprendere 3 Delegare 4 Avere fiducia",
+    "opzioni": [
+      "1, 2 e 4",
+      "Tutte le precedenti",
+      "1 e 2",
+      "1, 2 e 3"
+    ],
+    "risposta_corretta": "1, 2 e 4"
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Identifica la/le parola/e mancante/i nella frase seguente: \"la gestione del servizio è definita come un insieme di abilità [?] specializzate che consentano la creazione di valore per i clienti sotto forma di servizi.\"",
+    "opzioni": [
+      "di business",
+      "organizzative",
+      "tecniche",
+      "informatiche"
+    ],
+    "risposta_corretta": "organizzative"
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Quale tra i seguenti facilità il conseguimento dei risultati desiderati dai clienti?",
+    "opzioni": [
+      "Servizio",
+      "Asset IT",
+      "Garanzia",
+      "Organizzazione"
+    ],
+    "risposta_corretta": "Servizio"
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Quale pratica coordina la classificazione, la proprietà e la comunicazione delle richieste di servizio e degli incidenti?",
+    "opzioni": [
+      "Gestione dei problemi",
+      "Gestione dei fornitori",
+      "Service desk",
+      "Gestione delle relazioni"
+    ],
+    "risposta_corretta": "Service desk"
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Quale delle seguenti affermazioni NON PUO' riguardare un silo organizzativo?",
+    "opzioni": [
+      "Rende più¹ difficoltosa anche la comunicazione o la collaborazione necessarie trasversalmente a diversi gruppi.",
+      "È spesso incapace di prendere decisioni efficaci sui cambiamenti, a causa di una visibilità limitata e di troppe agende \"nascoste\".",
+      "La loro combinazione rappresenta i passi che un'organizzazione intraprende nella creazione del valore.",
+      "Una delle maggiori sfide di un'organizzazione quando tenta di lavorare in modo efficace ed efficiente condividendo una visione, o di diventare più¹ Agile e resiliente."
+    ],
+    "risposta_corretta": "La loro combinazione rappresenta i passi che un'organizzazione intraprende nella creazione del valore."
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Quale pratica ha la proprietà delle criticità, delle domande e delle richieste da parte degli utenti, e si occupa della loro gestione?",
+    "opzioni": [
+      "Gestione degli incidenti",
+      "Gestione dei problemi",
+      "Service desk",
+      "Abilitazione del cambiamento"
+    ],
+    "risposta_corretta": "Service desk"
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Qual è lo scopo della pratica 'Gestione delle Richieste di servizio'?",
+    "opzioni": [
+      "Stabilire e nutrire i legami tra l'organizzazione e le sue parti interessate a livello strategico e tattico.",
+      "Minimizzare l'impatto negativo degli incidenti ripristinando la normale operatività di servizio nel minor tempo possibile",
+      "Supportare la qualità concordata di un servizio gestendo tutte le richieste pre-definite e iniziate dagli utenti, in modo efficace e user-friendly.",
+      "Stabilire obiettivi chiari basati sul business per le prestazioni dei servizi, in modo che l'erogazione di un servizio possa essere adeguatamente valutata, monitorata, e gestita contro questi target."
+    ],
+    "risposta_corretta": "Supportare la qualità concordata di un servizio gestendo tutte le richieste pre-definite e iniziate dagli utenti, in modo efficace e user-friendly."
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Come deve essere progettato il flusso di lavoro per una nuova richiesta di servizio?",
+    "opzioni": [
+      "Evitare flussi di lavoro per le richieste di servizio semplici.",
+      "Sfruttare i flussi di lavoro esistenti per quanto possibile.",
+      "Utilizzare un singolo flusso di lavoro per tutti i tipi di richieste di servizio.",
+      "Utilizzare flussi di lavoro diversi per ciascun tipo di richiesta di servizio."
+    ],
+    "risposta_corretta": "Sfruttare i flussi di lavoro esistenti per quanto possibile."
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Qual è il modo con cui un'organizzazione dovrebbe adottare i metodi di miglioramento continuo?",
+    "opzioni": [
+      "Utilizzare un nuovo metodo per ogni miglioramento gestito dall'organizzazione.",
+      "Sviluppare l'abilità di utilizzare il maggior numero di metodi di miglioramento possibile.",
+      "Selezionare un singolo metodo per tutti i tipi di miglioramento gestiti dall'organizzazione.",
+      "Selezionare alcuni metodi chiave per i tipi di miglioramento gestiti dall'organizzazione."
+    ],
+    "risposta_corretta": "Selezionare alcuni metodi chiave per i tipi di miglioramento gestiti dall'organizzazione."
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Il 'consumo del servizio' è definito come attività svolte da un'organizzazione per consumare servizi: cos'altro potrebbe includere?",
+    "opzioni": [
+      "Output dai progetti",
+      "La ricezione (acquisizione) di beni",
+      "Servizi da fornitori terze parti",
+      "Benefici finanziari"
+    ],
+    "risposta_corretta": "La ricezione (acquisizione) di beni"
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Qual è l'effetto della maggiore automazione sulla pratica per il service desk?",
+    "opzioni": [
+      "Riduce le registrazioni e le risoluzioni self-service degli incidenti.",
+      "Elimina la necessità di eseguire l'escalation degli incidenti ai team di supporto.",
+      "Consente di concentrarsi sull'esperienza del cliente quando è richiesto un contatto personale.",
+      "Aumenta la capacità di concentrarsi sulle riparazioni della tecnologia piuttosto che sul supporto alle persone."
+    ],
+    "risposta_corretta": "Consente di concentrarsi sull'esperienza del cliente quando è richiesto un contatto personale."
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Qual è lo scopo della pratica 'Gestione della Configurazione del servizio'?",
+    "opzioni": [
+      "Ridurre il ripresentarsi e l'impatto degli incidenti identificandone la causa reale o potenziale, gestendo la relativa soluzione e gli errori noti.",
+      "Stabilire obiettivi chiari basati sul business per le prestazioni dei servizi, in modo che l'erogazione di un servizio possa essere adeguatamente valutata, monitorata, e gestita contro questi target.",
+      "Assicurarsi che informazioni accurate ed affidabili circa la configurazione dei servizi ed Elementi della configurazione (CIs) che li supportano, siano disponibili quando e dove necessario.",
+      "Spostare agli ambienti di esercizio hardware, software, documentazione, processi, o qualunque altro componente nuovo o modificato."
+    ],
+    "risposta_corretta": "Assicurarsi che informazioni accurate ed affidabili circa la configurazione dei servizi ed Elementi della configurazione (CIs) che li supportano, siano disponibili quando e dove necessario."
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Quale delle seguenti è parte dell'Utilità, definita come 'idoneità allo scopo'?",
+    "opzioni": [
+      "Sufficiente disponibilità",
+      "Continuità",
+      "Vincoli rimossi",
+      "Rischi ridotti"
+    ],
+    "risposta_corretta": "Vincoli rimossi"
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "Identifica la/le parola/e mancante/i nella frase seguente: il Sistema del Valore di Servizio (SVS) di ogni organizzazione ha interfacce con altre organizzazioni, formando dunque un vero e proprio [?] che può -a seconda dei casi- facilitare il valore per tali organizzazioni, per i loro clienti, e per altre parti interessate.",
+    "opzioni": [
+      "ecosistema",
+      "elemento strutturale",
+      "tracciato",
+      "modello"
+    ],
+    "risposta_corretta": "ecosistema"
+  },
+  {
+    "categoria": "Esercitazione 11",
+    "domanda": "In che modo il coinvolgimento del cliente contribuisce alla pratica per la gestione dei livelli di servizio? * Consente di acquisire informazioni su cui basare le metriche. * Assicura che l'organizzazione soddisfi i livelli di servizio definiti. * Definisce i flussi di lavoro per le richieste di servizio. * Supporta le discussioni sui progressi.",
+    "opzioni": [
+      "1 e 2",
+      "3 e 4",
+      "1 e 4",
+      "2 e 3"
+    ],
+    "risposta_corretta": "1 e 4"
   }
 ];
 
@@ -9072,7 +10400,7 @@
       .trim();
   }
 
-  // Pre-calculate unique deduplicated archive (435 questions)
+  // Pre-calculate unique deduplicated archive (481 questions)
   const _seenKeys = new Set();
   const DEDUPLICATED_DATA = [];
   MASTER_DATA.forEach(q => {
@@ -9377,7 +10705,7 @@
         ctaBtn.innerHTML = '🚀 Avvia Esame Ufficiale (40 Domande)';
       } else if (type === 'ALL') {
         document.getElementById('card-type-all').classList.add('selected');
-        ctaBtn.innerHTML = '🚀 Avvia Maratona (435 Domande Uniche)';
+        ctaBtn.innerHTML = '🚀 Avvia Maratona (481 Domande Uniche)';
       } else if (type === 'SPECIFIC') {
         document.getElementById('card-type-specific').classList.add('selected');
         onSpecificQuestionnaireChange();
