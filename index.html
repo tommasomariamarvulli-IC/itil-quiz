@@ -9411,6 +9411,27 @@
       return d.innerHTML;
     }
 
+    // Desktop Keyboard Navigation
+    window.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+
+      // In Study Mode
+      if (document.getElementById('view-study').classList.contains('active')) {
+        if (e.key === 'ArrowLeft') stNavigate(-1);
+        if (e.key === 'ArrowRight') stNavigate(1);
+        if (e.key === 'Enter') stVerifyAnswer();
+      }
+
+      // In Exam Mode
+      if (document.getElementById('view-exam').classList.contains('active')) {
+        if (document.getElementById('ex-subview-running').style.display === 'block') {
+          if (e.key === 'ArrowLeft') exNavigate(-1);
+          if (e.key === 'ArrowRight') exNavigate(1);
+          if (e.key === 'f' || e.key === 'F') exToggleFlag();
+        }
+      }
+    });
+
     // Init App
     stApplyFilters();
   </script>
