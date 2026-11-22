@@ -131,6 +131,14 @@
       border-color: var(--primary);
       box-shadow: 0 10px 15px -3px rgba(0,0,0,0.08);
     }
+    .portal-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 6px;
+      margin-bottom: 12px;
+      width: 100%;
+    }
     .portal-card-icon {
       width: 44px;
       height: 44px;
@@ -139,20 +147,21 @@
       align-items: center;
       justify-content: center;
       font-size: 1.5rem;
-      margin-bottom: 12px;
+      flex-shrink: 0;
+      margin-bottom: 0;
     }
     .portal-card.study .portal-card-icon { background: #eff6ff; color: var(--primary); }
     .portal-card.exam .portal-card-icon { background: #fef2f2; color: var(--danger); }
     .portal-card-badge {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 700;
       text-transform: uppercase;
-      padding: 3px 8px;
+      padding: 3px 7px;
       border-radius: 6px;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      margin-top: 2px;
+      flex-shrink: 0;
     }
     .portal-card.study .portal-card-badge { background: #e0f2fe; color: #0369a1; }
     .portal-card.exam .portal-card-badge { background: #fee2e2; color: #b91c1c; }
@@ -1552,12 +1561,14 @@
         </div>
       </div>
 
-      <!-- 3 Navigation Cards -->
+      <!-- 4 Navigation Cards -->
       <div class="home-cards">
         <!-- Card 1: Studio & Pratica -->
         <div class="portal-card study" onclick="setAppMode('STUDY')">
-          <div class="portal-card-badge">Verifica Subito</div>
-          <div class="portal-card-icon">📚</div>
+          <div class="portal-card-top">
+            <div class="portal-card-icon">📚</div>
+            <div class="portal-card-badge">Verifica Subito</div>
+          </div>
           <h2 class="portal-card-title">Modalità Studio & Pratica</h2>
           <p class="portal-card-desc">Ideale per imparare e ripassare. Rispondi alle domande una alla volta con correzione immediata, spiegazioni e filtri per singolo questionario.</p>
           <div class="portal-card-btn">Avvia Modalità Studio →</div>
@@ -1565,8 +1576,10 @@
 
         <!-- Card 2: Esame Ufficiale -->
         <div class="portal-card exam" onclick="setAppMode('EXAM')">
-          <div class="portal-card-badge">Esame Ufficiale</div>
-          <div class="portal-card-icon">⏱️</div>
+          <div class="portal-card-top">
+            <div class="portal-card-icon">⏱️</div>
+            <div class="portal-card-badge">Esame Ufficiale</div>
+          </div>
           <h2 class="portal-card-title">Modalità Esame a Tempo</h2>
           <p class="portal-card-desc">Simula fedelmente l'esame reale: <strong>40 domande ripartite secondo il syllabus ufficiale</strong> (Concetti chiave 5 pt, Sistema 3 pt, Principi 6 pt, Catena 2 pt, Pratiche 24 pt). 1 punto per risposta esatta, 0 per errata o non data (soglia minima 26/40 - 65%).</p>
           <div class="portal-card-btn">Inizia Simulazione Esame →</div>
@@ -1574,8 +1587,10 @@
 
         <!-- Card 3: Registro delle Domande -->
         <div class="portal-card registry" onclick="setAppMode('REGISTRY')">
-          <div class="portal-card-badge">Solo Risposte Esatte</div>
-          <div class="portal-card-icon">📖</div>
+          <div class="portal-card-top">
+            <div class="portal-card-icon">📖</div>
+            <div class="portal-card-badge">Risposte Esatte</div>
+          </div>
           <h2 class="portal-card-title">Registro delle Domande</h2>
           <p class="portal-card-desc">Consulta tutte le 523 domande uniche con le <strong>sole risposte corrette ufficiali</strong>, raggruppate separatamente per i 5 domini syllabus (Concetti chiave, Sistema, Principi, Catena, Pratiche).</p>
           <div class="portal-card-btn">Sfoglia il Registro Domande →</div>
@@ -1583,8 +1598,10 @@
 
         <!-- Card 4: Storico e Statistiche Personali -->
         <div class="portal-card history" onclick="setAppMode('HISTORY')">
-          <div class="portal-card-badge">Stats</div>
-          <div class="portal-card-icon">📊</div>
+          <div class="portal-card-top">
+            <div class="portal-card-icon">📊</div>
+            <div class="portal-card-badge">Stats</div>
+          </div>
           <h2 class="portal-card-title">Storico & Statistiche</h2>
           <p class="portal-card-desc">Consulta i punteggi dei tuoi esami passati, i grafici di padronanza per i 5 domini e avvia il ripasso mirato delle domande sbagliate (richiede almeno 4 risposte esatte per superarle).</p>
           <div class="portal-card-btn">Apri Storico e Grafici →</div>
