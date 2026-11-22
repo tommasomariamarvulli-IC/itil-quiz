@@ -5,7 +5,7 @@
 Applicazione web moderna, responsive e **100% offline** per la preparazione alla certificazione **ITIL® 4 Foundation**.
 
 ## 🌟 Caratteristiche Principali
-- **Archivio completo**: 481 domande uniche senza doppioni e 810 domande nei 21 questionari originali.
+- **Archivio completo**: 523 domande uniche senza doppioni e 970 domande nei 25 questionari originali.
 - **Due Modalità d'Uso**:
   - 📚 **Modalità Studio & Pratica**: verifica immediata domanda per domanda, spiegazioni della soluzione corretta e ricerca testuale.
   - ⏱️ **Modalità Esame Ufficiale**: 40 domande casuali, timer di 60 minuti, contrassegno domande (*Flag*), calcolo automatico dell'esito con soglia ufficiale del 65% (26/40) e report analitico di fine prova.
