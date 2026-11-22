@@ -1615,6 +1615,11 @@
           <span class="stat-pill success" id="st-correct">0 Corrette</span>
           <span class="stat-pill danger" id="st-wrong">0 Errate</span>
         </div>
+        <div style="margin-top: 10px; display: flex; justify-content: flex-end;">
+          <button class="btn-action" onclick="stSaveSessionToHistory()" id="st-btn-save-session" style="font-size: 0.78rem; font-weight: 700; color: #4338ca; background: #e0e7ff; border-color: #c7d2fe;">
+            💾 Registra Sessione Studio nello Storico
+          </button>
+        </div>
 
         <div class="progress-bar-container">
           <div class="progress-bar" id="st-progress-bar"></div>
@@ -1955,15 +1960,15 @@
         <div class="history-summary-grid">
           <div class="hist-stat-box">
             <div class="hist-stat-val" id="hist-total-tests">0</div>
-            <div class="hist-stat-lbl">Test Svolti</div>
+            <div class="hist-stat-lbl">Esami 40Q</div>
           </div>
           <div class="hist-stat-box">
             <div class="hist-stat-val" style="color:var(--success);" id="hist-passed-tests">0</div>
-            <div class="hist-stat-lbl">Superati</div>
+            <div class="hist-stat-lbl">Esami Superati</div>
           </div>
           <div class="hist-stat-box">
             <div class="hist-stat-val" style="color:var(--primary);" id="hist-avg-score">0%</div>
-            <div class="hist-stat-lbl">Media Voto</div>
+            <div class="hist-stat-lbl">Media Esami 40Q</div>
           </div>
           <div class="hist-stat-box">
             <div class="hist-stat-val" style="color:var(--warning);" id="hist-total-answered">0</div>
@@ -1995,8 +2000,15 @@
 
       <!-- Attempts History List Card -->
       <div class="history-card">
-        <h3 style="font-size:1.05rem; font-weight:800; color:#0f172a; margin-bottom:4px;">⏱️ Riepilogo Simulazioni Svolte</h3>
-        <p style="font-size:0.82rem; color:var(--text-muted);">Elenco riassuntivo degli esami e questionari completati su questo browser:</p>
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:8px;">
+          <h3 style="font-size:1.05rem; font-weight:800; color:#0f172a; margin:0;">⏱️ Cronologia Prove e Sessioni</h3>
+          <div class="registry-filter-pills" style="margin:0;">
+            <button class="reg-pill active" id="hist-pill-all" onclick="setHistFilter('ALL')">Tutte</button>
+            <button class="reg-pill" id="hist-pill-exams" onclick="setHistFilter('EXAM_40')">⏱️ Esami 40Q</button>
+            <button class="reg-pill" id="hist-pill-practice" onclick="setHistFilter('PRACTICE')">🏃 Maratona & Studio</button>
+          </div>
+        </div>
+        <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:12px;">Tutte le simulazioni, le maratone e le sessioni di studio registrate (le maratone e lo studio aggiornano le risposte date e la padronanza dei domini senza abbassare la media esami):</p>
 
         <div class="attempts-list" id="hist-attempts-container"></div>
       </div>
@@ -12867,14 +12879,63 @@
       });
     }
 
+    let activeHistFilter = 'ALL';
+
+    function setHistFilter(f) {
+      activeHistFilter = f;
+      document.querySelectorAll('.registry-filter-pills .reg-pill').forEach(p => p.classList.remove('active'));
+      if (f === 'ALL') document.getElementById('hist-pill-all')?.classList.add('active');
+      else if (f === 'EXAM_40') document.getElementById('hist-pill-exams')?.classList.add('active');
+      else if (f === 'PRACTICE') document.getElementById('hist-pill-practice')?.classList.add('active');
+      renderHistory();
+    }
+
+    function stSaveSessionToHistory() {
+      let totalAnswered = 0;
+      let totalCorrect = 0;
+
+      stQuestions.forEach(q => {
+        const s = getStState(q);
+        if (s.checked) {
+          totalAnswered++;
+          if (s.selected === q.risposta_corretta) totalCorrect++;
+        }
+      });
+
+      if (totalAnswered === 0) {
+        alert("Non hai ancora verificato nessuna risposta in questa sessione di studio.");
+        return;
+      }
+
+      const poolLabel = stSelectedPool === 'ALL' ? 'Archivio Completo' :
+                        stSelectedPool === 'RANDOM_40' ? '40 a Caso' :
+                        document.getElementById('st-select-specific')?.value || 'Questionario';
+
+      const pct = Math.round((totalCorrect / totalAnswered) * 100);
+
+      saveAttempt({
+        type: 'STUDY',
+        title: '📚 Studio: ' + poolLabel,
+        date: new Date().toLocaleDateString('it-IT') + ' ' + new Date().toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' }),
+        score: totalCorrect + ' / ' + totalAnswered + ' risposte date (' + stQuestions.length + ' tot)',
+        pct: pct,
+        passed: pct >= 65,
+        timeSpent: 'Studio Libero'
+      });
+
+      alert("Sessione di studio registrata nello storico con successo! (" + totalCorrect + "/" + totalAnswered + " esatte - " + pct + "%)");
+    }
+
     function renderHistory() {
-      const attempts = getSavedAttempts();
+      const allAttempts = getSavedAttempts();
       const stats = getQuestionStats();
 
-      // Update Summary metrics
-      const totalTests = attempts.length;
-      const passedTests = attempts.filter(a => a.pct >= 65).length;
-      const avgScore = totalTests > 0 ? Math.round(attempts.reduce((acc, a) => acc + a.pct, 0) / totalTests) : 0;
+      // Only official 40Q exams affect the official exam metrics!
+      // Marathon and Study sessions do NOT drag down the official exam pass rate!
+      const officialExams = allAttempts.filter(a => a.type === 'EXAM_40' || (!a.type && a.title.includes('40Q')));
+      const totalTests = officialExams.length;
+      const passedTests = officialExams.filter(a => a.pct >= 65).length;
+      const avgScore = totalTests > 0 ? Math.round(officialExams.reduce((acc, a) => acc + a.pct, 0) / totalTests) : 0;
       
       let totalAnswered = 0;
       Object.values(stats).forEach(s => { totalAnswered += (s.correct + s.wrong); });
@@ -12903,7 +12964,19 @@
         return;
       }
 
-      attempts.forEach((att) => {
+      const filteredAttempts = allAttempts.filter(att => {
+        if (activeHistFilter === 'ALL') return true;
+        if (activeHistFilter === 'EXAM_40') return att.type === 'EXAM_40' || (!att.type && att.title.includes('40Q'));
+        if (activeHistFilter === 'PRACTICE') return att.type !== 'EXAM_40' && !(att.title && att.title.includes('40Q'));
+        return true;
+      });
+
+      if (filteredAttempts.length === 0) {
+        container.innerHTML = '<div style="text-align:center; padding:20px; color:var(--text-muted); font-size:0.88rem;">Nessuna prova trovata per questa categoria di filtro.</div>';
+        return;
+      }
+
+      filteredAttempts.forEach((att) => {
         const isPassed = att.pct >= 65;
         const item = document.createElement('div');
         item.className = 'attempt-card ' + (isPassed ? 'passed' : 'failed');
