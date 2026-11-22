@@ -419,6 +419,192 @@
       line-height: 1.45;
     }
 
+    
+    /* STORICO & DOMAIN MASTERY STYLES */
+    .portal-card.history .portal-card-icon { background: #f5f3ff; color: #7c3aed; }
+    .portal-card.history .portal-card-badge { background: #ede9fe; color: #6d28d9; }
+    .portal-card.history .portal-card-btn { background: #7c3aed; }
+
+    .history-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 16px;
+      box-shadow: var(--shadow);
+      margin-bottom: 16px;
+      text-align: left;
+    }
+    .history-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+      margin: 16px 0;
+    }
+    .hist-stat-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 10px;
+      text-align: center;
+    }
+    .hist-stat-val {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+    .hist-stat-lbl {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* DOMAIN MASTERY BARS */
+    .domain-mastery-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .domain-mastery-item {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+    .dm-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #1e293b;
+    }
+    .dm-bar-bg {
+      width: 100%;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 4px;
+    }
+    .dm-bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #2563eb, #16a34a);
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+    .dm-sub {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .hist-action-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+    .btn-hist-tool {
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #334155;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s;
+    }
+    .btn-hist-tool:hover {
+      background: #e2e8f0;
+      color: var(--primary);
+    }
+
+    .attempts-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .attempt-card {
+      background: white;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      border-left: 5px solid #cbd5e1;
+    }
+    .attempt-card.passed { border-left-color: var(--success); }
+    .attempt-card.failed { border-left-color: var(--danger); }
+
+    .attempt-title {
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 2px;
+    }
+    .attempt-date {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+    .attempt-score-badge {
+      font-size: 0.85rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: #f1f5f9;
+      color: #334155;
+    }
+    .attempt-score-badge.passed { background: #dcfce7; color: #15803d; }
+    .attempt-score-badge.failed { background: #fee2e2; color: #b91c1c; }
+
+    .error-drill-card {
+      background: #fffbeb;
+      border: 1.5px solid #fde68a;
+      border-radius: var(--radius);
+      padding: 18px 16px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      text-align: left;
+    }
+    .btn-error-drill {
+      padding: 10px 18px;
+      border-radius: 8px;
+      background: #d97706;
+      color: white;
+      font-weight: 800;
+      font-size: 0.88rem;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 6px rgba(217, 119, 6, 0.3);
+      transition: background 0.15s;
+    }
+    .btn-error-drill:hover { background: #b45309; }
+
     /* Fixed App Header */
     .app-header {
       background: #ffffff;
@@ -1323,6 +1509,7 @@
         <button class="mode-tab-btn" id="tab-study-mode" onclick="setAppMode('STUDY')" title="Modalità Studio">📚</button>
         <button class="mode-tab-btn" id="tab-exam-mode" onclick="setAppMode('EXAM')" title="Modalità Esame">⏱️</button>
         <button class="mode-tab-btn" id="tab-registry-mode" onclick="setAppMode('REGISTRY')" title="Registro Domande">📖</button>
+        <button class="mode-tab-btn" id="tab-history-mode" onclick="setAppMode('HISTORY')" title="Storico e Statistiche">📊</button>
         <button class="refresh-cache-btn" onclick="forceAppRefresh(this)" title="Svuota cache e ricarica">🔄</button>
       </div>
     </div>
@@ -1373,6 +1560,15 @@
           <h2 class="portal-card-title">Registro delle Domande</h2>
           <p class="portal-card-desc">Consulta tutte le 523 domande uniche con le <strong>sole risposte corrette ufficiali</strong>, raggruppate separatamente per i 5 domini syllabus (Concetti chiave, Sistema, Principi, Catena, Pratiche).</p>
           <div class="portal-card-btn">Sfoglia il Registro Domande →</div>
+        </div>
+
+        <!-- Card 4: Storico e Statistiche Personali -->
+        <div class="portal-card history" onclick="setAppMode('HISTORY')">
+          <div class="portal-card-badge">100% Locale</div>
+          <div class="portal-card-icon">📊</div>
+          <h2 class="portal-card-title">Storico & Statistiche</h2>
+          <p class="portal-card-desc">Consulta i punteggi dei tuoi esami passati, i grafici di padronanza per i 5 domini e avvia il ripasso mirato delle domande sbagliate (richiede almeno 4 risposte esatte per superarle).</p>
+          <div class="portal-card-btn">Apri Storico e Grafici →</div>
         </div>
       </div>
 
@@ -1725,6 +1921,86 @@
 
         <div id="ex-review-list"></div>
           </div>
+    </div>
+
+    
+    <!-- ========================================== -->
+    <!-- 4. STORICO & STATISTICHE (Locale)          -->
+    <!-- ========================================== -->
+    <div id="view-history" class="mode-view">
+
+      <!-- Error Drill Card (Ripasso Errori - Regola delle 4 risposte esatte) -->
+      <div class="error-drill-card" id="hist-error-drill-box">
+        <div>
+          <div style="font-weight:800; font-size:1.05rem; color:#92400e; display:flex; align-items:center; gap:6px;">
+            <span>🎯 Ripasso Errori Frequenti</span>
+            <span id="hist-errors-badge" style="font-size:0.75rem; background:#fef3c7; border:1px solid #f59e0b; padding:2px 8px; border-radius:999px;">0 Domande</span>
+          </div>
+          <div style="font-size:0.84rem; color:#b45309; margin-top:3px;">
+            Esercitati sulle domande che hai sbagliato. Una domanda viene considerata superata solo dopo aver risposto correttamente <strong>almeno 4 volte</strong>.
+          </div>
+        </div>
+        <button class="btn-error-drill" onclick="startErrorDrill()">
+          🚀 Avvia Ripasso Errori
+        </button>
+      </div>
+
+      <!-- History Summary Metrics -->
+      <div class="history-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+          <h2 style="font-size:1.2rem; font-weight:800; color:#0f172a;">📊 I Tuoi Progressi su Questo Dispositivo</h2>
+          <span style="font-size:0.75rem; font-weight:700; color:#15803d; background:#dcfce7; padding:3px 8px; border-radius:999px;">100% Locale • Zero Server</span>
+        </div>
+
+        <div class="history-summary-grid">
+          <div class="hist-stat-box">
+            <div class="hist-stat-val" id="hist-total-tests">0</div>
+            <div class="hist-stat-lbl">Test Svolti</div>
+          </div>
+          <div class="hist-stat-box">
+            <div class="hist-stat-val" style="color:var(--success);" id="hist-passed-tests">0</div>
+            <div class="hist-stat-lbl">Superati</div>
+          </div>
+          <div class="hist-stat-box">
+            <div class="hist-stat-val" style="color:var(--primary);" id="hist-avg-score">0%</div>
+            <div class="hist-stat-lbl">Media Voto</div>
+          </div>
+          <div class="hist-stat-box">
+            <div class="hist-stat-val" style="color:var(--warning);" id="hist-total-answered">0</div>
+            <div class="hist-stat-lbl">Risposte Date</div>
+          </div>
+        </div>
+
+        <!-- Management Tools -->
+        <div class="hist-action-bar">
+          <button class="btn-hist-tool" onclick="exportHistoryData()">📤 Esporta Dati (.json)</button>
+          <label class="btn-hist-tool" style="cursor:pointer; margin:0;">
+            📥 Importa Dati
+            <input type="file" id="hist-import-file" accept=".json" onchange="importHistoryData(event)" style="display:none;">
+          </label>
+          <button class="btn-hist-tool" style="color:var(--danger);" onclick="clearAllHistory()">🗑️ Azzera Storico</button>
+        </div>
+      </div>
+
+      <!-- Domain Mastery Graphs Card -->
+      <div class="history-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; margin-bottom:4px;">
+          <h3 style="font-size:1.05rem; font-weight:800; color:#0f172a;">📈 Grafici di Padronanza per Dominio</h3>
+          <span style="font-size:0.75rem; color:var(--text-muted); font-weight:600;">Syllabus Ufficiale ITIL® 4</span>
+        </div>
+        <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:12px;">Percentuale di domande padroneggiate per ciascuna area d'esame:</p>
+
+        <div class="domain-mastery-list" id="domain-mastery-container"></div>
+      </div>
+
+      <!-- Attempts History List Card -->
+      <div class="history-card">
+        <h3 style="font-size:1.05rem; font-weight:800; color:#0f172a; margin-bottom:4px;">⏱️ Riepilogo Simulazioni Svolte</h3>
+        <p style="font-size:0.82rem; color:var(--text-muted);">Elenco riassuntivo degli esami e questionari completati su questo browser:</p>
+
+        <div class="attempts-list" id="hist-attempts-container"></div>
+      </div>
+
     </div>
 
     <!-- ========================================== -->
@@ -12530,6 +12806,234 @@
 
     // Global Mode Switcher
     
+    
+    /* ======================================================== */
+    /* LOCAL HISTORY, ERROR DRILL (4 ESATTE) & DOMAIN MASTERY   */
+    /* ======================================================== */
+    const STORAGE_KEY_ATTEMPTS = 'itil4_quiz_attempts_v1';
+    const STORAGE_KEY_QUESTION_STATS = 'itil4_question_stats_v1';
+
+    function getSavedAttempts() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY_ATTEMPTS)) || [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveAttempt(attempt) {
+      try {
+        const attempts = getSavedAttempts();
+        attempts.unshift(attempt); // latest first
+        localStorage.setItem(STORAGE_KEY_ATTEMPTS, JSON.stringify(attempts.slice(0, 60))); // store up to 60 attempts
+      } catch (e) {}
+    }
+
+    function getQuestionStats() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY_QUESTION_STATS)) || {};
+      } catch (e) {
+        return {};
+      }
+    }
+
+    function recordQuestionResult(qKey, isCorrect) {
+      try {
+        const stats = getQuestionStats();
+        if (!stats[qKey]) {
+          stats[qKey] = { correct: 0, wrong: 0, streak: 0, lastSeen: Date.now() };
+        }
+        if (isCorrect) {
+          stats[qKey].correct++;
+          stats[qKey].streak = (stats[qKey].streak || 0) + 1;
+        } else {
+          stats[qKey].wrong++;
+          stats[qKey].streak = 0; // reset streak if wrong
+        }
+        stats[qKey].lastSeen = Date.now();
+        localStorage.setItem(STORAGE_KEY_QUESTION_STATS, JSON.stringify(stats));
+      } catch (e) {}
+    }
+
+    // A question stays in the Error Drill list until answered correctly AT LEAST 4 TIMES!
+    function getWrongQuestionsList() {
+      const stats = getQuestionStats();
+      return DEDUPLICATED_DATA.filter(q => {
+        const k = _normQ(q.domanda) + ' ||| ' + _normQ(q.risposta_corretta);
+        const s = stats[k];
+        if (!s) return false;
+        // User committed at least 1 error AND hasn't mastered it with at least 4 correct answers yet
+        return s.wrong > 0 && s.correct < 4;
+      });
+    }
+
+    function renderHistory() {
+      const attempts = getSavedAttempts();
+      const stats = getQuestionStats();
+
+      // Update Summary metrics
+      const totalTests = attempts.length;
+      const passedTests = attempts.filter(a => a.pct >= 65).length;
+      const avgScore = totalTests > 0 ? Math.round(attempts.reduce((acc, a) => acc + a.pct, 0) / totalTests) : 0;
+      
+      let totalAnswered = 0;
+      Object.values(stats).forEach(s => { totalAnswered += (s.correct + s.wrong); });
+
+      document.getElementById('hist-total-tests').textContent = totalTests;
+      document.getElementById('hist-passed-tests').textContent = passedTests;
+      document.getElementById('hist-avg-score').textContent = avgScore + '%';
+      document.getElementById('hist-total-answered').textContent = totalAnswered;
+
+      // Error Drill Box
+      const wrongList = getWrongQuestionsList();
+      const drillBox = document.getElementById('hist-error-drill-box');
+      const drillBadge = document.getElementById('hist-errors-badge');
+      drillBadge.textContent = wrongList.length + ' Domande';
+      drillBox.style.display = wrongList.length > 0 ? 'flex' : 'none';
+
+      // Render Domain Mastery Bars
+      renderDomainMasteryBars(stats);
+
+      // Render Attempts Summary List
+      const container = document.getElementById('hist-attempts-container');
+      container.innerHTML = '';
+
+      if (attempts.length === 0) {
+        container.innerHTML = '<div style="text-align:center; padding:20px; color:var(--text-muted); font-size:0.88rem;">Nessuna simulazione ancora registrata su questo browser. Svolgi una prova in Modalità Esame per iniziare a salvare i tuoi risultati!</div>';
+        return;
+      }
+
+      attempts.forEach((att) => {
+        const isPassed = att.pct >= 65;
+        const item = document.createElement('div');
+        item.className = 'attempt-card ' + (isPassed ? 'passed' : 'failed');
+        item.innerHTML = `
+          <div>
+            <div class="attempt-title">${escapeHtml(att.title)}</div>
+            <div class="attempt-date">${att.date} • Tempo: ${att.timeSpent || 'N/D'}</div>
+          </div>
+          <div>
+            <span class="attempt-score-badge ${isPassed ? 'passed' : 'failed'}">
+              ${att.score} (${att.pct}%)
+            </span>
+          </div>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    function renderDomainMasteryBars(stats) {
+      const container = document.getElementById('domain-mastery-container');
+      if (!container) return;
+      container.innerHTML = '';
+
+      const domainList = [
+        { key: 'concetti_chiave', name: '💡 Concetti Chiave del Service Management', weight: '5 pt' },
+        { key: 'sistema', name: '⚙️ Sistema del Valore (SVS) & 4 Dimensioni', weight: '3 pt' },
+        { key: 'principi', name: '🧭 I 7 Principi Guida ITIL', weight: '6 pt' },
+        { key: 'catena', name: '🔗 Catena del Valore del Servizio (SVC)', weight: '2 pt' },
+        { key: 'pratiche', name: '🛠️ Pratiche di Gestione ITIL', weight: '24 pt' }
+      ];
+
+      domainList.forEach(d => {
+        const pool = SYLLABUS_POOLS[d.key] || [];
+        const totalInDomain = pool.length;
+
+        // A question is mastered if user answered it correctly >= 1 time and correct >= wrong
+        let masteredCount = 0;
+        let answeredInDomain = 0;
+
+        pool.forEach(q => {
+          const k = _normQ(q.domanda) + ' ||| ' + _normQ(q.risposta_corretta);
+          const s = stats[k];
+          if (s && (s.correct > 0 || s.wrong > 0)) {
+            answeredInDomain++;
+            if (s.correct >= 1 && s.correct >= s.wrong) {
+              masteredCount++;
+            }
+          }
+        });
+
+        const pct = totalInDomain > 0 ? Math.round((masteredCount / totalInDomain) * 100) : 0;
+
+        const item = document.createElement('div');
+        item.className = 'domain-mastery-item';
+        item.innerHTML = `
+          <div class="dm-header">
+            <span>${d.name}</span>
+            <span style="color:var(--primary); font-weight:800;">${pct}%</span>
+          </div>
+          <div class="dm-bar-bg">
+            <div class="dm-bar-fill" style="width: ${pct}%;"></div>
+          </div>
+          <div class="dm-sub">
+            <span>${masteredCount} su ${totalInDomain} padroneggiate (${answeredInDomain} provate)</span>
+            <span>Peso esame: ${d.weight}</span>
+          </div>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    function startErrorDrill() {
+      const wrongList = getWrongQuestionsList();
+      if (wrongList.length === 0) {
+        alert("Complimenti! Non hai domande con errori da superare (tutte hanno almeno 4 risposte esatte o non sono mai state sbagliate).");
+        return;
+      }
+      stQuestions = [...wrongList].sort(() => 0.5 - Math.random());
+      stCurrentIndex = 0;
+      setAppMode('STUDY');
+      document.getElementById('st-pool-all').classList.remove('active');
+      document.getElementById('st-pool-rand').classList.remove('active');
+      document.getElementById('st-pool-spec').classList.remove('active');
+      stInitGrid();
+      stRenderQuestion();
+      alert("Avviata sessione 'Ripasso Errori' con " + wrongList.length + " domande! Rispondi correttamente almeno 4 volte per completarle.");
+    }
+
+    function exportHistoryData() {
+      const data = {
+        exportedAt: new Date().toISOString(),
+        attempts: getSavedAttempts(),
+        questionStats: getQuestionStats()
+      };
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'ITIL4_Quiz_Storico.json';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+
+    function importHistoryData(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const data = JSON.parse(e.target.result);
+          if (data.attempts) localStorage.setItem(STORAGE_KEY_ATTEMPTS, JSON.stringify(data.attempts));
+          if (data.questionStats) localStorage.setItem(STORAGE_KEY_QUESTION_STATS, JSON.stringify(data.questionStats));
+          alert("Dati dello storico importati con successo!");
+          renderHistory();
+        } catch (err) {
+          alert("File JSON non valido o danneggiato.");
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function clearAllHistory() {
+      if (!confirm("Sei sicuro di voler azzerare tutti i progressi e le statistiche salvate su questo dispositivo?")) return;
+      localStorage.removeItem(STORAGE_KEY_ATTEMPTS);
+      localStorage.removeItem(STORAGE_KEY_QUESTION_STATS);
+      renderHistory();
+    }
+
     // REGISTRY LOGIC
     let activeRegFilter = 'ALL';
 
@@ -12665,6 +13169,10 @@
         document.getElementById('tab-registry-mode').classList.add('active');
         document.getElementById('view-registry').classList.add('active');
         renderRegistry();
+      } else if (mode === 'HISTORY') {
+        document.getElementById('tab-history-mode').classList.add('active');
+        document.getElementById('view-history').classList.add('active');
+        renderHistory();
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -12862,6 +13370,8 @@
 
       s.checked = true;
       const isCorrect = s.selected === q.risposta_corretta;
+      const k = _normQ(q.domanda) + ' ||| ' + _normQ(q.risposta_corretta);
+      recordQuestionResult(k, isCorrect);
 
       const btn = document.getElementById('st-grid-btn-' + stCurrentIndex);
       if (btn) {
