@@ -141,33 +141,88 @@
     }
     body.dark-theme .study-search-input,
     body.dark-theme .mobile-picker-select {
-      background: #0b0f19;
-      color: #f8fafc;
-      border-color: #334155;
+      background: #0b0f19 !important;
+      color: #ffffff !important;
+      border-color: #3b82f6 !important;
     }
     body.dark-theme .option-item {
-      background: #0f172a;
-      border-color: #1e293b;
-      color: #cbd5e1;
+      background: #141f36 !important;
+      border: 1.5px solid #2d3f63 !important;
+      color: #ffffff !important;
+    }
+    body.dark-theme .option-text {
+      color: #ffffff !important;
+      font-size: 0.95rem;
+      font-weight: 500;
+      line-height: 1.45;
     }
     body.dark-theme .option-item:hover {
-      background: #172554;
-      border-color: #2563eb;
+      background: #1e2d4d !important;
+      border-color: #3b82f6 !important;
     }
     body.dark-theme .option-item.selected {
-      background: #1e3a8a;
-      border-color: #3b82f6;
-      color: #eff6ff;
+      background: #1e3a8a !important;
+      border-color: #60a5fa !important;
+    }
+    body.dark-theme .option-item.selected .option-text {
+      color: #ffffff !important;
+      font-weight: 700;
     }
     body.dark-theme .option-item.correct {
-      background: #052e16 !important;
-      border-color: #16a34a !important;
-      color: #86efac !important;
+      background: #064e3b !important;
+      border-color: #22c55e !important;
+    }
+    body.dark-theme .option-item.correct .option-text {
+      color: #f0fdf4 !important;
+      font-weight: 700;
     }
     body.dark-theme .option-item.wrong {
-      background: #450a0a !important;
-      border-color: #dc2626 !important;
-      color: #fca5a5 !important;
+      background: #7f1d1d !important;
+      border-color: #ef4444 !important;
+    }
+    body.dark-theme .option-item.wrong .option-text {
+      color: #fef2f2 !important;
+      font-weight: 700;
+    }
+    body.dark-theme .q-text {
+      color: #ffffff !important;
+      font-weight: 700;
+    }
+    body.dark-theme .q-num {
+      color: #93c5fd !important;
+      font-weight: 800;
+    }
+    body.dark-theme .q-badge {
+      background: #1e293b;
+      color: #cbd5e1;
+      border: 1px solid #334155;
+    }
+    body.dark-theme #ex-btn-flag {
+      color: #cbd5e1 !important;
+    }
+    body.dark-theme .review-item .q-text {
+      color: #ffffff !important;
+    }
+    body.dark-theme .review-item .option-item {
+      background: #0f172a !important;
+      border-color: #25334e !important;
+    }
+    body.dark-theme .review-item .option-item .option-text {
+      color: #f1f5f9 !important;
+    }
+    body.dark-theme .review-item .option-item.correct {
+      background: #064e3b !important;
+      border-color: #22c55e !important;
+    }
+    body.dark-theme .review-item .option-item.correct .option-text {
+      color: #f0fdf4 !important;
+    }
+    body.dark-theme .review-item .option-item.wrong {
+      background: #7f1d1d !important;
+      border-color: #ef4444 !important;
+    }
+    body.dark-theme .review-item .option-item.wrong .option-text {
+      color: #fef2f2 !important;
     }
     body.dark-theme .btn-secondary,
     body.dark-theme .btn-action,
@@ -253,10 +308,13 @@
     body.dark-theme .tag.exact { background: #052e16; color: #86efac; }
     body.dark-theme .btn-del-session { background: #450a0a; color: #fca5a5; border-color: #7f1d1d; }
     body.dark-theme .feedback-box { background: #1e293b; color: #f8fafc; border-color: #334155; }
-    body.dark-theme .feedback-box.correct { background: #052e16; color: #86efac; border-color: #16a34a; }
-    body.dark-theme .feedback-box.wrong { background: #450a0a; color: #fca5a5; border-color: #dc2626; }
+    body.dark-theme .feedback-box.correct { background: #052e16 !important; color: #f0fdf4 !important; border-left: 5px solid #22c55e !important; }
+    body.dark-theme .feedback-box.correct strong { color: #86efac !important; }
+    body.dark-theme .feedback-box.wrong { background: #450a0a !important; color: #fef2f2 !important; border-left: 5px solid #ef4444 !important; }
+    body.dark-theme .feedback-box.wrong strong { color: #fca5a5 !important; }
     body.dark-theme [style*="color:#0f172a"], body.dark-theme [style*="color: #0f172a"] { color: #f8fafc !important; }
     body.dark-theme [style*="color:#1e293b"], body.dark-theme [style*="color: #1e293b"] { color: #f8fafc !important; }
+    body.dark-theme [style*="color:#334155"], body.dark-theme [style*="color: #334155"] { color: #cbd5e1 !important; }
     body.dark-theme [style*="background:white"], body.dark-theme [style*="background: white"],
     body.dark-theme [style*="background:#ffffff"], body.dark-theme [style*="background: #ffffff"] {
       background: var(--card-bg) !important;
@@ -1231,7 +1289,7 @@
     .q-text {
       font-size: 1.05rem;
       font-weight: 600;
-      color: #0f172a;
+      color: var(--text);
       line-height: 1.45;
       margin-bottom: 18px;
       white-space: pre-line;
@@ -1251,7 +1309,8 @@
       border: 1.5px solid var(--border);
       border-radius: 9px;
       cursor: pointer;
-      background: white;
+      background: var(--card-bg);
+      color: var(--text);
       transition: all 0.15s;
     }
 
@@ -1281,7 +1340,7 @@
 
     .option-text {
       font-size: 0.94rem;
-      color: #1e293b;
+      color: var(--text);
       flex: 1;
     }
 
@@ -1798,17 +1857,19 @@
     }
 
     .stat-box {
-      background: #f8fafc;
+      background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 10px;
+      color: var(--text);
     }
 
-    .stat-val { font-size: 1.35rem; font-weight: 800; }
+    .stat-val { font-size: 1.35rem; font-weight: 800; color: var(--text); }
     .stat-lbl { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
 
     .review-item {
-      background: white;
+      background: var(--card-bg);
+      color: var(--text);
       border-radius: var(--radius);
       padding: 18px 14px;
       box-shadow: var(--shadow);
@@ -13936,7 +13997,7 @@
             <div class="reg-item-ans-box">
               <span class="reg-item-ans-icon">✔️</span>
               <div class="reg-item-ans-text">
-                <strong style="color:#166534;">Risposta esatta:</strong> ${escapeHtml(q.risposta_corretta)}
+                <strong style="color:var(--success);">Risposta esatta:</strong> ${escapeHtml(q.risposta_corretta)}
               </div>
             </div>
           `;
@@ -13945,7 +14006,7 @@
       });
 
       if (totalRendered === 0) {
-        container.innerHTML = '<div style="text-align:center; padding:36px; color:var(--text-muted); background:white; border-radius:12px;">Nessuna domanda trovata nel registro con i termini cercati.</div>';
+        container.innerHTML = '<div style="text-align:center; padding:36px; color:var(--text-muted); background:var(--card-bg); border-radius:12px;">Nessuna domanda trovata nel registro con i termini cercati.</div>';
       }
     }
 
