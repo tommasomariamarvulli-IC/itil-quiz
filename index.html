@@ -2079,16 +2079,9 @@
         <div class="bottom-actions">
           <div style="display:flex; gap:6px;">
             <button class="btn btn-secondary" id="st-btn-prev" onclick="stNavigate(-1)">←</button>
-            <button class="btn btn-secondary" id="st-btn-next" onclick="stNavigate(1)">→</button>
+            <button class="btn btn-secondary" id="st-btn-next" onclick="stNavigate(1)">Successiva →</button>
           </div>
-          <div style="display:flex; gap:6px; align-items:center;">
-            <label style="display:flex; align-items:center; gap:4px; font-size:0.75rem; font-weight:700; color:#1e40af; cursor:pointer; background:#eff6ff; padding:5px 8px; border-radius:6px; border:1px solid #bfdbfe;" title="Verifica subito e passa avanti automaticamente">
-              <input type="checkbox" id="st-check-quick-verify-bottom" onchange="toggleQuickVerify(this.checked)" style="accent-color: var(--primary); cursor: pointer;">
-              <span>⚡ Rapida</span>
-            </label>
-            <button class="btn btn-outline" style="border-color:#3b82f6; color:#1d4ed8; font-weight:700; font-size:0.82rem;" onclick="stSaveSessionToHistory()" title="Registra la sessione corrente nello storico">💾 Salva Studio</button>
-            <button class="btn btn-primary" id="st-btn-verify" onclick="stVerifyAnswer()">Verifica</button>
-          </div>
+          <button class="btn btn-primary" id="st-btn-verify" onclick="stVerifyAnswer()">Verifica</button>
         </div>
       </div>
     </div>
@@ -13996,9 +13989,7 @@
       stQuickVerify = !!val;
       try { localStorage.setItem('itil4_study_quick_verify', stQuickVerify ? 'true' : 'false'); } catch (e) {}
       const c1 = document.getElementById('st-check-quick-verify');
-      const c2 = document.getElementById('st-check-quick-verify-bottom');
       if (c1) c1.checked = stQuickVerify;
-      if (c2) c2.checked = stQuickVerify;
     }
 
     function getStState(q) {
@@ -14108,9 +14099,7 @@
       const s = getStState(q);
 
       const c1 = document.getElementById('st-check-quick-verify');
-      const c2 = document.getElementById('st-check-quick-verify-bottom');
       if (c1) c1.checked = stQuickVerify;
-      if (c2) c2.checked = stQuickVerify;
 
       document.getElementById('st-q-num').textContent = 'Domanda ' + (stCurrentIndex + 1) + ' di ' + stQuestions.length;
       document.getElementById('st-q-badge').textContent = q.categoria;
@@ -14139,9 +14128,6 @@
           s.selected = opt;
           document.querySelectorAll('#st-options .option-item').forEach(el => el.classList.remove('selected'));
           label.classList.add('selected');
-          if (stQuickVerify && !s.checked) {
-            stVerifyAnswer();
-          }
         };
 
         const span = document.createElement('span');
@@ -14183,13 +14169,13 @@
       stUpdateStats();
     }
 
-    function stVerifyAnswer() {
+    function stVerifyAnswer(silent = false) {
       if (stQuestions.length === 0) return;
       const q = stQuestions[stCurrentIndex];
       const s = getStState(q);
 
       if (!s.selected) {
-        alert("Seleziona una risposta prima di verificare.");
+        if (!silent) alert("Seleziona una risposta prima di verificare.");
         return;
       }
       if (s.checked) return;
@@ -14235,7 +14221,7 @@
         const q = stQuestions[stCurrentIndex];
         const s = getStState(q);
         if (s.selected && !s.checked) {
-          stVerifyAnswer();
+          stVerifyAnswer(true);
         }
       }
       const newIdx = stCurrentIndex + dir;
