@@ -603,35 +603,52 @@
     .attempt-score-badge.passed { background: #dcfce7; color: #15803d; }
     .attempt-score-badge.failed { background: #fee2e2; color: #b91c1c; }
 
-    .error-drill-card {
-      background: #fffbeb;
-      border: 1.5px solid #fde68a;
-      border-radius: var(--radius);
-      padding: 18px 16px;
-      margin-bottom: 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      text-align: left;
+    .session-type-pill {
+      font-size: 0.70rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 999px;
+      display: inline-block;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
     }
-    .btn-error-drill {
-      padding: 10px 18px;
-      border-radius: 8px;
-      background: #d97706;
+    .session-type-pill.exam { background: #e0e7ff; color: #3730a3; border: 1px solid #c7d2fe; }
+    .session-type-pill.specific { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+    .session-type-pill.marathon { background: #f3e8ff; color: #6b21a8; border: 1px solid #e9d5ff; }
+    .session-type-pill.study { background: #dbeafe; color: #1e40af; border: 1px solid #bfdbfe; }
+
+    .btn-open-session {
+      background: #2563eb;
       color: white;
-      font-weight: 800;
-      font-size: 0.88rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 6px;
       border: none;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      box-shadow: 0 2px 6px rgba(217, 119, 6, 0.3);
+      gap: 4px;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .btn-open-session:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+    }
+
+    .btn-del-session {
+      background: #fee2e2;
+      color: #b91c1c;
+      font-size: 0.78rem;
+      padding: 6px 9px;
+      border-radius: 6px;
+      border: 1px solid #fecaca;
+      cursor: pointer;
       transition: background 0.15s;
     }
-    .btn-error-drill:hover { background: #b45309; }
+    .btn-del-session:hover {
+      background: #fca5a5;
+    }
 
     /* Fixed App Header */
     .app-header {
@@ -1603,7 +1620,7 @@
             <div class="portal-card-badge">Stats</div>
           </div>
           <h2 class="portal-card-title">Storico & Statistiche</h2>
-          <p class="portal-card-desc">Consulta i punteggi dei tuoi esami passati, i grafici di padronanza per i 5 domini e avvia il ripasso mirato delle domande sbagliate (richiede almeno 4 risposte esatte per superarle).</p>
+          <p class="portal-card-desc">Consulta i punteggi dei tuoi esami passati, i grafici di padronanza per i 5 domini e riapri per la revisione completa tutte le sessioni svolte.</p>
           <div class="portal-card-btn">Apri Storico e Grafici →</div>
         </div>
       </div>
@@ -1748,7 +1765,10 @@
             <button class="btn btn-secondary" id="st-btn-prev" onclick="stNavigate(-1)">←</button>
             <button class="btn btn-secondary" id="st-btn-next" onclick="stNavigate(1)">→</button>
           </div>
-          <button class="btn btn-primary" id="st-btn-verify" onclick="stVerifyAnswer()">Verifica</button>
+          <div style="display:flex; gap:6px;">
+            <button class="btn btn-outline" style="border-color:#3b82f6; color:#1d4ed8; font-weight:700; font-size:0.82rem;" onclick="stSaveSessionToHistory()" title="Registra la sessione corrente nello storico">💾 Salva Studio</button>
+            <button class="btn btn-primary" id="st-btn-verify" onclick="stVerifyAnswer()">Verifica</button>
+          </div>
         </div>
       </div>
     </div>
@@ -1946,7 +1966,10 @@
             </div>
           </div>
 
-          <button class="btn btn-primary" style="width:100%; margin-top:8px;" onclick="exResetToStart()">🔄 Ripeti Nuovo Esame</button>
+          <div style="display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;">
+            <button class="btn btn-primary" style="flex:1; min-width:180px;" onclick="exResetToStart()">🔄 Ripeti Nuovo Esame</button>
+            <button class="btn btn-secondary" style="flex:1; min-width:180px; font-weight:700;" onclick="setAppMode('HISTORY')">📊 Vai allo Storico</button>
+          </div>
         </div>
 
         <!-- Review list filters -->
@@ -1970,83 +1993,143 @@
     <!-- ========================================== -->
     <div id="view-history" class="mode-view">
 
-      <!-- Error Drill Card (Ripasso Errori - Regola delle 4 risposte esatte) -->
-      <div class="error-drill-card" id="hist-error-drill-box">
-        <div>
-          <div style="font-weight:800; font-size:1.05rem; color:#92400e; display:flex; align-items:center; gap:6px;">
-            <span>🎯 Ripasso Errori Frequenti</span>
-            <span id="hist-errors-badge" style="font-size:0.75rem; background:#fef3c7; border:1px solid #f59e0b; padding:2px 8px; border-radius:999px;">0 Domande</span>
+      <!-- History Main Overview (Metrics, Mastery Graphs, Chronology) -->
+      <div id="hist-overview-view">
+        <!-- History Summary Metrics -->
+        <div class="history-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+            <h2 style="font-size:1.2rem; font-weight:800; color:#0f172a;">📊 I Tuoi Progressi su Questo Dispositivo</h2>
+            <span style="font-size:0.75rem; font-weight:700; color:#15803d; background:#dcfce7; padding:3px 8px; border-radius:999px;">100% Locale • Zero Server</span>
           </div>
-          <div style="font-size:0.84rem; color:#b45309; margin-top:3px;">
-            Esercitati sulle domande che hai sbagliato. Una domanda viene considerata superata solo dopo aver risposto correttamente <strong>almeno 4 volte</strong>.
+
+          <div class="history-summary-grid">
+            <div class="hist-stat-box">
+              <div class="hist-stat-val" id="hist-total-tests">0</div>
+              <div class="hist-stat-lbl">Esami 40Q</div>
+            </div>
+            <div class="hist-stat-box">
+              <div class="hist-stat-val" style="color:var(--success);" id="hist-passed-tests">0</div>
+              <div class="hist-stat-lbl">Esami Superati</div>
+            </div>
+            <div class="hist-stat-box">
+              <div class="hist-stat-val" style="color:var(--primary);" id="hist-avg-score">0%</div>
+              <div class="hist-stat-lbl">Media Esami 40Q</div>
+            </div>
+            <div class="hist-stat-box">
+              <div class="hist-stat-val" style="color:var(--warning);" id="hist-total-answered">0</div>
+              <div class="hist-stat-lbl">Risposte Date</div>
+            </div>
+          </div>
+
+          <!-- Management Tools -->
+          <div class="hist-action-bar">
+            <button class="btn-hist-tool" onclick="exportHistoryData()">📤 Esporta Dati (.json)</button>
+            <label class="btn-hist-tool" style="cursor:pointer; margin:0;">
+              📥 Importa Dati
+              <input type="file" id="hist-import-file" accept=".json" onchange="importHistoryData(event)" style="display:none;">
+            </label>
+            <button class="btn-hist-tool" style="color:var(--danger);" onclick="clearAllHistory()">🗑️ Azzera Storico</button>
           </div>
         </div>
-        <button class="btn-error-drill" onclick="startErrorDrill()">
-          🚀 Avvia Ripasso Errori
-        </button>
+
+        <!-- Domain Mastery Graphs Card -->
+        <div class="history-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; margin-bottom:4px;">
+            <h3 style="font-size:1.05rem; font-weight:800; color:#0f172a;">📈 Grafici di Padronanza per Dominio</h3>
+            <span style="font-size:0.75rem; color:var(--text-muted); font-weight:600;">Syllabus Ufficiale ITIL® 4</span>
+          </div>
+          <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:12px;">Percentuale di domande padroneggiate per ciascuna area d'esame:</p>
+
+          <div class="domain-mastery-list" id="domain-mastery-container"></div>
+        </div>
+
+        <!-- Attempts History List Card -->
+        <div class="history-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:8px;">
+            <h3 style="font-size:1.05rem; font-weight:800; color:#0f172a; margin:0;">⏱️ Cronologia Prove e Sessioni</h3>
+            <div class="registry-filter-pills" style="margin:0;">
+              <button class="reg-pill active" id="hist-pill-all" onclick="setHistFilter('ALL')">Tutte</button>
+              <button class="reg-pill" id="hist-pill-exams" onclick="setHistFilter('EXAMS')">⏱️ Esami (40Q & Eserc.)</button>
+              <button class="reg-pill" id="hist-pill-marathon" onclick="setHistFilter('MARATHON')">🏃 Maratone</button>
+              <button class="reg-pill" id="hist-pill-study" onclick="setHistFilter('STUDY')">📚 Studio</button>
+            </div>
+          </div>
+          <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:12px;">Tutte le simulazioni, le maratone e le sessioni di studio salvate. Clicca su qualsiasi sessione per riaprirla e rivedere tutte le domande e correzioni:</p>
+
+          <div class="attempts-list" id="hist-attempts-container"></div>
+        </div>
       </div>
 
-      <!-- History Summary Metrics -->
-      <div class="history-card">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-          <h2 style="font-size:1.2rem; font-weight:800; color:#0f172a;">📊 I Tuoi Progressi su Questo Dispositivo</h2>
-          <span style="font-size:0.75rem; font-weight:700; color:#15803d; background:#dcfce7; padding:3px 8px; border-radius:999px;">100% Locale • Zero Server</span>
+      <!-- Sub-View: Detailed Reopened Session Review -->
+      <div id="hist-session-detail-view" style="display:none;">
+        <div class="control-card" style="margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+          <button class="btn btn-secondary" onclick="closeSessionDetail()" style="font-weight:700;">
+            ← Torna alla Cronologia
+          </button>
+          <div id="hist-detail-date" style="font-size:0.82rem; color:var(--text-muted); font-weight:600;"></div>
         </div>
 
-        <div class="history-summary-grid">
-          <div class="hist-stat-box">
-            <div class="hist-stat-val" id="hist-total-tests">0</div>
-            <div class="hist-stat-lbl">Esami 40Q</div>
+        <!-- Session Result Card -->
+        <div class="result-card" style="margin-bottom:14px;">
+          <div class="res-title" id="hist-detail-title">DETTAGLIO SESSIONE</div>
+          <p id="hist-detail-subtitle" style="color:var(--text-muted); font-size:0.92rem; margin-top:4px;"></p>
+
+          <div class="res-stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));">
+            <div class="stat-box">
+              <div class="stat-val" id="hist-detail-score">0/0</div>
+              <div class="stat-lbl">Punteggio</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val" id="hist-detail-pct">0%</div>
+              <div class="stat-lbl">Percentuale</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val" style="color:var(--success);" id="hist-detail-corr">0</div>
+              <div class="stat-lbl">Corrette</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val" style="color:var(--danger);" id="hist-detail-err">0</div>
+              <div class="stat-lbl">Errate</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val" style="color:#64748b;" id="hist-detail-unans">0</div>
+              <div class="stat-lbl">Non Date</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val" style="color:#2563eb;" id="hist-detail-time">0m</div>
+              <div class="stat-lbl">Durata</div>
+            </div>
           </div>
-          <div class="hist-stat-box">
-            <div class="hist-stat-val" style="color:var(--success);" id="hist-passed-tests">0</div>
-            <div class="hist-stat-lbl">Esami Superati</div>
+
+          <div style="display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;">
+            <button class="btn btn-primary" id="btn-hist-detail-repeat" style="flex:1; min-width:180px;" onclick="repeatCurrentDetailAttempt()">🔄 Ripeti Questa Prova</button>
+            <button class="btn btn-secondary" style="flex:1; min-width:180px; font-weight:700;" onclick="closeSessionDetail()">← Torna alla Cronologia</button>
           </div>
-          <div class="hist-stat-box">
-            <div class="hist-stat-val" style="color:var(--primary);" id="hist-avg-score">0%</div>
-            <div class="hist-stat-lbl">Media Esami 40Q</div>
+        </div>
+
+        <!-- Filter and Search in this session -->
+        <div class="control-card" style="margin-bottom:12px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:8px;">
+            <div style="font-weight:700; font-size:0.9rem;">Filtra Correzioni della Sessione:</div>
+            <input type="text" id="hist-detail-search" class="study-search-input" placeholder="🔍 Cerca domanda o parola..." oninput="renderSessionDetailQuestions()" style="max-width:240px; margin:0; padding:6px 10px; font-size:0.82rem;">
           </div>
-          <div class="hist-stat-box">
-            <div class="hist-stat-val" style="color:var(--warning);" id="hist-total-answered">0</div>
-            <div class="hist-stat-lbl">Risposte Date</div>
+          <div style="display:flex; flex-wrap:wrap; gap:6px;">
+            <button class="btn-action active" id="btn-hdet-all" onclick="setSessionDetailFilter('ALL')">Tutte</button>
+            <button class="btn-action" id="btn-hdet-wrong" style="color:var(--danger);" onclick="setSessionDetailFilter('WRONG')">❌ Solo Errate</button>
+            <button class="btn-action" id="btn-hdet-correct" style="color:var(--success);" onclick="setSessionDetailFilter('CORRECT')">✔️ Solo Corrette</button>
+            <button class="btn-action" id="btn-hdet-unanswered" style="color:#64748b;" onclick="setSessionDetailFilter('UNANSWERED')">⚪ Non Risposte</button>
+            <button class="btn-action" id="btn-hdet-flagged" onclick="setSessionDetailFilter('FLAGGED')">🚩 Segnate</button>
           </div>
         </div>
 
-        <!-- Management Tools -->
-        <div class="hist-action-bar">
-          <button class="btn-hist-tool" onclick="exportHistoryData()">📤 Esporta Dati (.json)</button>
-          <label class="btn-hist-tool" style="cursor:pointer; margin:0;">
-            📥 Importa Dati
-            <input type="file" id="hist-import-file" accept=".json" onchange="importHistoryData(event)" style="display:none;">
-          </label>
-          <button class="btn-hist-tool" style="color:var(--danger);" onclick="clearAllHistory()">🗑️ Azzera Storico</button>
+        <!-- Question List Container -->
+        <div id="hist-session-questions-list"></div>
+
+        <div style="margin-top:20px; text-align:center; padding-bottom:30px;">
+          <button class="btn btn-secondary" onclick="closeSessionDetail()" style="font-weight:700; padding:10px 24px;">
+            ← Torna alla Cronologia
+          </button>
         </div>
-      </div>
-
-      <!-- Domain Mastery Graphs Card -->
-      <div class="history-card">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; margin-bottom:4px;">
-          <h3 style="font-size:1.05rem; font-weight:800; color:#0f172a;">📈 Grafici di Padronanza per Dominio</h3>
-          <span style="font-size:0.75rem; color:var(--text-muted); font-weight:600;">Syllabus Ufficiale ITIL® 4</span>
-        </div>
-        <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:12px;">Percentuale di domande padroneggiate per ciascuna area d'esame:</p>
-
-        <div class="domain-mastery-list" id="domain-mastery-container"></div>
-      </div>
-
-      <!-- Attempts History List Card -->
-      <div class="history-card">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:8px;">
-          <h3 style="font-size:1.05rem; font-weight:800; color:#0f172a; margin:0;">⏱️ Cronologia Prove e Sessioni</h3>
-          <div class="registry-filter-pills" style="margin:0;">
-            <button class="reg-pill active" id="hist-pill-all" onclick="setHistFilter('ALL')">Tutte</button>
-            <button class="reg-pill" id="hist-pill-exams" onclick="setHistFilter('EXAM_40')">⏱️ Esami 40Q</button>
-            <button class="reg-pill" id="hist-pill-practice" onclick="setHistFilter('PRACTICE')">🏃 Maratona & Studio</button>
-          </div>
-        </div>
-        <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:12px;">Tutte le simulazioni, le maratone e le sessioni di studio registrate (le maratone e lo studio aggiornano le risposte date e la padronanza dei domini senza abbassare la media esami):</p>
-
-        <div class="attempts-list" id="hist-attempts-container"></div>
       </div>
 
     </div>
@@ -12856,7 +12939,7 @@
     
     
     /* ======================================================== */
-    /* LOCAL HISTORY, ERROR DRILL (4 ESATTE) & DOMAIN MASTERY   */
+    /* LOCAL HISTORY, DETAILED SESSIONS & DOMAIN MASTERY        */
     /* ======================================================== */
     const STORAGE_KEY_ATTEMPTS = 'itil4_quiz_attempts_v1';
     const STORAGE_KEY_QUESTION_STATS = 'itil4_question_stats_v1';
@@ -12871,9 +12954,39 @@
 
     function saveAttempt(attempt) {
       try {
-        const attempts = getSavedAttempts();
+        let attempts = getSavedAttempts();
         attempts.unshift(attempt); // latest first
-        localStorage.setItem(STORAGE_KEY_ATTEMPTS, JSON.stringify(attempts.slice(0, 60))); // store up to 60 attempts
+        if (attempts.length > 50) attempts = attempts.slice(0, 50); // store up to 50 attempts
+
+        while (attempts.length > 0) {
+          try {
+            localStorage.setItem(STORAGE_KEY_ATTEMPTS, JSON.stringify(attempts));
+            break;
+          } catch (e) {
+            if (attempts.length > 1) {
+              attempts.pop(); // remove oldest to free space if quota is exceeded
+            } else {
+              console.error("Storage quota exceeded", e);
+              break;
+            }
+          }
+        }
+      } catch (e) {
+        console.error("Error saving attempt", e);
+      }
+    }
+
+    function deleteAttempt(idOrDate, event) {
+      if (event) event.stopPropagation();
+      if (!confirm("Sei sicuro di voler eliminare questa sessione dallo storico?")) return;
+      try {
+        let attempts = getSavedAttempts();
+        attempts = attempts.filter(a => (a.id && a.id !== idOrDate) && a.date !== idOrDate);
+        localStorage.setItem(STORAGE_KEY_ATTEMPTS, JSON.stringify(attempts));
+        renderHistory();
+        if (currentDetailAttempt && ((currentDetailAttempt.id && currentDetailAttempt.id === idOrDate) || currentDetailAttempt.date === idOrDate)) {
+          closeSessionDetail();
+        }
       } catch (e) {}
     }
 
@@ -12903,38 +13016,29 @@
       } catch (e) {}
     }
 
-    // A question stays in the Error Drill list until answered correctly AT LEAST 4 TIMES!
-    function getWrongQuestionsList() {
-      const stats = getQuestionStats();
-      return DEDUPLICATED_DATA.filter(q => {
-        const k = _normQ(q.domanda) + ' ||| ' + _normQ(q.risposta_corretta);
-        const s = stats[k];
-        if (!s) return false;
-        // User committed at least 1 error AND hasn't mastered it with at least 4 correct answers yet
-        return s.wrong > 0 && s.correct < 4;
-      });
-    }
-
     let activeHistFilter = 'ALL';
 
     function setHistFilter(f) {
       activeHistFilter = f;
-      document.querySelectorAll('.registry-filter-pills .reg-pill').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('#hist-overview-view .reg-pill').forEach(p => p.classList.remove('active'));
       if (f === 'ALL') document.getElementById('hist-pill-all')?.classList.add('active');
-      else if (f === 'EXAM_40') document.getElementById('hist-pill-exams')?.classList.add('active');
-      else if (f === 'PRACTICE') document.getElementById('hist-pill-practice')?.classList.add('active');
+      else if (f === 'EXAMS') document.getElementById('hist-pill-exams')?.classList.add('active');
+      else if (f === 'MARATHON') document.getElementById('hist-pill-marathon')?.classList.add('active');
+      else if (f === 'STUDY') document.getElementById('hist-pill-study')?.classList.add('active');
       renderHistory();
     }
 
     function stSaveSessionToHistory() {
       let totalAnswered = 0;
       let totalCorrect = 0;
+      let totalWrong = 0;
 
       stQuestions.forEach(q => {
         const s = getStState(q);
         if (s.checked) {
           totalAnswered++;
           if (s.selected === q.risposta_corretta) totalCorrect++;
+          else totalWrong++;
         }
       });
 
@@ -12943,23 +13047,59 @@
         return;
       }
 
+      const timeSpentMs = Math.max(1000, Date.now() - (window.stStartTime || Date.now()));
+      const mins = Math.floor(timeSpentMs / 60000);
+      const secs = Math.floor((timeSpentMs % 60000) / 1000);
+      const timeSpentStr = mins > 0 ? (mins + 'm ' + secs + 's') : (secs + 's');
+
+      let typeKey = 'STUDY_SPECIFIC';
+      let titleStr = '';
       const poolLabel = stSelectedPool === 'ALL' ? 'Archivio Completo' :
                         stSelectedPool === 'RANDOM_40' ? '40 a Caso' :
                         document.getElementById('st-select-specific')?.value || 'Questionario';
 
+      if (stSelectedPool === 'ALL') {
+        typeKey = 'STUDY_MARATHON';
+        titleStr = '🏃 Maratona Studio (' + totalAnswered + '/' + stQuestions.length + ' Domande)';
+      } else if (stSelectedPool === 'RANDOM_40') {
+        typeKey = 'STUDY_RANDOM';
+        titleStr = '📚 Studio: 40 a Caso (' + totalAnswered + '/' + stQuestions.length + ' Domande)';
+      } else {
+        typeKey = 'STUDY_SPECIFIC';
+        titleStr = '📚 Studio: ' + poolLabel + ' (' + totalAnswered + '/' + stQuestions.length + ' Domande)';
+      }
+
       const pct = Math.round((totalCorrect / totalAnswered) * 100);
+      const passed = pct >= 65;
 
       saveAttempt({
-        type: 'STUDY',
-        title: '📚 Studio: ' + poolLabel,
+        id: 'att_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
+        type: typeKey,
+        title: titleStr,
         date: new Date().toLocaleDateString('it-IT') + ' ' + new Date().toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' }),
-        score: totalCorrect + ' / ' + totalAnswered + ' risposte date (' + stQuestions.length + ' tot)',
+        score: totalCorrect + ' / ' + totalAnswered,
         pct: pct,
-        passed: pct >= 65,
-        timeSpent: 'Studio Libero'
+        passed: passed,
+        timeSpent: timeSpentStr,
+        total: totalAnswered,
+        correct: totalCorrect,
+        wrong: totalWrong,
+        unanswered: stQuestions.length - totalAnswered,
+        questions: stQuestions.map(q => {
+          const s = getStState(q);
+          return {
+            domanda: q.domanda,
+            categoria: q.categoria,
+            opzioni: q.opzioni,
+            risposta_corretta: q.risposta_corretta,
+            selected: s.checked ? s.selected : null,
+            checked: !!s.checked,
+            flagged: false
+          };
+        })
       });
 
-      alert("Sessione di studio registrata nello storico con successo! (" + totalCorrect + "/" + totalAnswered + " esatte - " + pct + "%)");
+      alert("Sessione di studio registrata con successo nello storico!\n(" + totalCorrect + "/" + totalAnswered + " esatte - " + pct + "%)\nPuoi riaprirla in qualsiasi momento dalla Cronologia.");
     }
 
     function renderHistory() {
@@ -12968,7 +13108,7 @@
 
       // Only official 40Q exams affect the official exam metrics!
       // Marathon and Study sessions do NOT drag down the official exam pass rate!
-      const officialExams = allAttempts.filter(a => a.type === 'EXAM_40' || (!a.type && a.title.includes('40Q')));
+      const officialExams = allAttempts.filter(a => a.type === 'EXAM_40' || (!a.type && a.title && a.title.includes('40Q')));
       const totalTests = officialExams.length;
       const passedTests = officialExams.filter(a => a.pct >= 65).length;
       const avgScore = totalTests > 0 ? Math.round(officialExams.reduce((acc, a) => acc + a.pct, 0) / totalTests) : 0;
@@ -12981,13 +13121,6 @@
       document.getElementById('hist-avg-score').textContent = avgScore + '%';
       document.getElementById('hist-total-answered').textContent = totalAnswered;
 
-      // Error Drill Box
-      const wrongList = getWrongQuestionsList();
-      const drillBox = document.getElementById('hist-error-drill-box');
-      const drillBadge = document.getElementById('hist-errors-badge');
-      drillBadge.textContent = wrongList.length + ' Domande';
-      drillBox.style.display = wrongList.length > 0 ? 'flex' : 'none';
-
       // Render Domain Mastery Bars
       renderDomainMasteryBars(stats);
 
@@ -12995,20 +13128,27 @@
       const container = document.getElementById('hist-attempts-container');
       container.innerHTML = '';
 
-      if (attempts.length === 0) {
-        container.innerHTML = '<div style="text-align:center; padding:20px; color:var(--text-muted); font-size:0.88rem;">Nessuna simulazione ancora registrata su questo browser. Svolgi una prova in Modalità Esame per iniziare a salvare i tuoi risultati!</div>';
+      if (allAttempts.length === 0) {
+        container.innerHTML = '<div style="text-align:center; padding:24px; color:var(--text-muted); font-size:0.88rem;">Nessuna sessione o simulazione ancora salvata su questo dispositivo. Svolgi un esame o registra una sessione di studio per visualizzarla qui!</div>';
         return;
       }
 
       const filteredAttempts = allAttempts.filter(att => {
         if (activeHistFilter === 'ALL') return true;
-        if (activeHistFilter === 'EXAM_40') return att.type === 'EXAM_40' || (!att.type && att.title.includes('40Q'));
-        if (activeHistFilter === 'PRACTICE') return att.type !== 'EXAM_40' && !(att.title && att.title.includes('40Q'));
+        if (activeHistFilter === 'EXAMS') {
+          return att.type === 'EXAM_40' || att.type === 'EXAM_SPECIFIC' || (!att.type && !att.title?.includes('Studio') && !att.title?.includes('Maratona'));
+        }
+        if (activeHistFilter === 'MARATHON') {
+          return att.type === 'EXAM_MARATHON' || att.type === 'STUDY_MARATHON' || (att.title && att.title.toLowerCase().includes('maratona'));
+        }
+        if (activeHistFilter === 'STUDY') {
+          return att.type === 'STUDY' || att.type === 'STUDY_RANDOM' || att.type === 'STUDY_SPECIFIC' || (att.title && att.title.toLowerCase().includes('studio'));
+        }
         return true;
       });
 
       if (filteredAttempts.length === 0) {
-        container.innerHTML = '<div style="text-align:center; padding:20px; color:var(--text-muted); font-size:0.88rem;">Nessuna prova trovata per questa categoria di filtro.</div>';
+        container.innerHTML = '<div style="text-align:center; padding:20px; color:var(--text-muted); font-size:0.88rem;">Nessuna sessione trovata per questo filtro.</div>';
         return;
       }
 
@@ -13016,19 +13156,241 @@
         const isPassed = att.pct >= 65;
         const item = document.createElement('div');
         item.className = 'attempt-card ' + (isPassed ? 'passed' : 'failed');
+        item.style.cursor = 'pointer';
+        item.onclick = () => openSessionDetail(att.id || att.date);
+
+        // Session type badge
+        let typeBadge = '';
+        if (att.type === 'EXAM_40') typeBadge = '<span class="session-type-pill exam">⏱️ Esame 40Q</span>';
+        else if (att.type === 'EXAM_SPECIFIC') typeBadge = '<span class="session-type-pill specific">📝 Esercitazione Esame</span>';
+        else if (att.type === 'EXAM_MARATHON') typeBadge = '<span class="session-type-pill marathon">🏃 Maratona Esame</span>';
+        else if (att.type === 'STUDY_MARATHON') typeBadge = '<span class="session-type-pill marathon">🏃 Maratona Studio</span>';
+        else if (att.type === 'STUDY' || att.type === 'STUDY_SPECIFIC' || att.type === 'STUDY_RANDOM') typeBadge = '<span class="session-type-pill study">📚 Studio</span>';
+
+        const correctCount = att.correct !== undefined ? att.correct : '-';
+        const wrongCount = att.wrong !== undefined ? att.wrong : '-';
+        const unansCount = att.unanswered !== undefined ? att.unanswered : (att.total ? Math.max(0, att.total - (att.correct || 0) - (att.wrong || 0)) : '-');
+
         item.innerHTML = `
-          <div>
-            <div class="attempt-title">${escapeHtml(att.title)}</div>
-            <div class="attempt-date">${att.date} • Tempo: ${att.timeSpent || 'N/D'}</div>
+          <div style="flex:1; min-width:220px;">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px; flex-wrap:wrap;">
+              ${typeBadge}
+              <div class="attempt-title" style="margin:0; font-size:0.96rem;">${escapeHtml(att.title)}</div>
+            </div>
+            <div class="attempt-date">
+              📅 ${att.date} • ⏱️ Tempo: <strong>${att.timeSpent || 'N/D'}</strong>
+            </div>
+            <div style="font-size:0.78rem; color:#475569; margin-top:5px; display:flex; gap:10px; flex-wrap:wrap;">
+              <span>✔️ Corrette: <strong style="color:var(--success);">${correctCount}</strong></span>
+              <span>❌ Errate: <strong style="color:var(--danger);">${wrongCount}</strong></span>
+              ${unansCount !== '-' ? `<span>⚪ Non date: <strong style="color:#64748b;">${unansCount}</strong></span>` : ''}
+            </div>
           </div>
-          <div>
+          <div style="display:flex; flex-direction:column; align-items:flex-end; gap:8px;">
             <span class="attempt-score-badge ${isPassed ? 'passed' : 'failed'}">
-              ${att.score} (${att.pct}%)
+              ${att.score || (att.pct + '%')} (${att.pct}%)
             </span>
+            <div style="display:flex; gap:6px;">
+              <button class="btn-open-session" onclick="openSessionDetail('${att.id || att.date}'); event.stopPropagation();" title="Riapri per la revisione completa">
+                🔍 Riapri Sessione
+              </button>
+              <button class="btn-del-session" onclick="deleteAttempt('${att.id || att.date}', event)" title="Elimina dallo storico">
+                🗑️
+              </button>
+            </div>
           </div>
         `;
         container.appendChild(item);
       });
+    }
+
+    // Detail Session View Logic
+    let currentDetailAttempt = null;
+    let detailReviewFilter = 'ALL';
+
+    function openSessionDetail(idOrDate) {
+      const allAttempts = getSavedAttempts();
+      const att = allAttempts.find(a => (a.id && a.id === idOrDate) || a.date === idOrDate);
+      if (!att) {
+        alert("Sessione non trovata.");
+        return;
+      }
+      currentDetailAttempt = att;
+
+      // Populate header & status
+      const titleEl = document.getElementById('hist-detail-title');
+      titleEl.textContent = att.title || 'Dettaglio Sessione';
+      const isPassed = att.pct >= 65;
+      const isStudy = att.type && att.type.startsWith('STUDY');
+
+      if (isStudy) {
+        titleEl.className = 'res-title';
+        document.getElementById('hist-detail-subtitle').textContent = 'Sessione di Studio Libero • ' + (att.score || (att.pct + '%'));
+      } else if (isPassed) {
+        titleEl.className = 'res-title passed';
+        document.getElementById('hist-detail-subtitle').textContent = '🎉 Prova Superata con successo! Punteggio: ' + att.pct + '% (minimo 65%).';
+      } else {
+        titleEl.className = 'res-title failed';
+        document.getElementById('hist-detail-subtitle').textContent = '❌ Prova non superata. Punteggio: ' + att.pct + '% (minimo 65%).';
+      }
+
+      document.getElementById('hist-detail-date').textContent = '📅 ' + att.date + ' • ⏱️ Durata: ' + (att.timeSpent || 'N/D');
+
+      // Populate metrics
+      document.getElementById('hist-detail-score').textContent = att.score || (att.pct + '%');
+      document.getElementById('hist-detail-pct').textContent = att.pct + '%';
+      document.getElementById('hist-detail-corr').textContent = att.correct !== undefined ? att.correct : '-';
+      document.getElementById('hist-detail-err').textContent = att.wrong !== undefined ? att.wrong : '-';
+      document.getElementById('hist-detail-unans').textContent = att.unanswered !== undefined ? att.unanswered : (att.total ? Math.max(0, att.total - (att.correct || 0) - (att.wrong || 0)) : '-');
+      document.getElementById('hist-detail-time').textContent = att.timeSpent || 'N/D';
+
+      // Switch view
+      document.getElementById('hist-overview-view').style.display = 'none';
+      document.getElementById('hist-session-detail-view').style.display = 'block';
+
+      // Reset filters & render
+      detailReviewFilter = 'ALL';
+      document.getElementById('hist-detail-search').value = '';
+      setSessionDetailFilter('ALL', false);
+
+      renderSessionDetailQuestions();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function closeSessionDetail() {
+      document.getElementById('hist-session-detail-view').style.display = 'none';
+      document.getElementById('hist-overview-view').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function setSessionDetailFilter(f, rerender = true) {
+      detailReviewFilter = f;
+      document.querySelectorAll('#hist-session-detail-view .btn-action').forEach(b => b.classList.remove('active'));
+      const activeBtn = document.getElementById('btn-hdet-' + f.toLowerCase());
+      if (activeBtn) activeBtn.classList.add('active');
+      if (rerender) renderSessionDetailQuestions();
+    }
+
+    function renderSessionDetailQuestions() {
+      if (!currentDetailAttempt) return;
+      const container = document.getElementById('hist-session-questions-list');
+      container.innerHTML = '';
+
+      const questions = currentDetailAttempt.questions;
+      if (!questions || !Array.isArray(questions) || questions.length === 0) {
+        container.innerHTML = `
+          <div class="control-card" style="text-align:center; padding:30px; color:var(--text-muted); font-size:0.92rem;">
+            ℹ️ I dettagli delle singole risposte non sono disponibili per questa sessione specifica.<br>
+            (Tutte le nuove sessioni ed esami salvati memorizzano l'intero questionario con ogni risposta data).
+          </div>
+        `;
+        return;
+      }
+
+      const searchQuery = (document.getElementById('hist-detail-search')?.value || '').trim().toLowerCase();
+      let renderedCount = 0;
+
+      questions.forEach((q, idx) => {
+        const isUnanswered = q.selected === null || q.selected === undefined;
+        const isCorrect = q.selected === q.risposta_corretta;
+        const isWrong = !isUnanswered && !isCorrect;
+
+        if (detailReviewFilter === 'WRONG' && !isWrong) return;
+        if (detailReviewFilter === 'CORRECT' && !isCorrect) return;
+        if (detailReviewFilter === 'UNANSWERED' && !isUnanswered) return;
+        if (detailReviewFilter === 'FLAGGED' && !q.flagged) return;
+
+        if (searchQuery) {
+          const fullText = (q.domanda + ' ' + (q.opzioni || []).join(' ')).toLowerCase();
+          if (!fullText.includes(searchQuery)) return;
+        }
+
+        renderedCount++;
+        const item = document.createElement('div');
+        item.className = 'review-item ' + (isCorrect ? 'is-correct' : isWrong ? 'is-wrong' : 'is-unanswered');
+
+        let statusText = isCorrect ? '<span style="color:var(--success); font-weight:700;">✔️ Corretta</span>' :
+                         isWrong ? '<span style="color:var(--danger); font-weight:700;">❌ Errata</span>' :
+                         '<span style="color:#64748b; font-weight:700;">⚪ Non risposta</span>';
+
+        if (q.flagged) statusText += ' 🚩';
+
+        let optsHtml = '';
+        (q.opzioni || []).forEach(opt => {
+          let styleClass = 'option-item';
+          let tags = '';
+
+          if (opt === q.risposta_corretta) {
+            styleClass += ' correct';
+            tags += '<span class="tag exact">Risposta Esatta ✔️</span>';
+          }
+          if (q.selected === opt) {
+            if (!isCorrect) styleClass += ' wrong';
+            tags += '<span class="tag chosen">La tua scelta</span>';
+          }
+
+          optsHtml += '<div class="' + styleClass + '" style="margin-bottom:6px;"><span class="option-text">' + escapeHtml(opt) + tags + '</span></div>';
+        });
+
+        item.innerHTML = `
+          <div class="q-meta">
+            <span class="q-num">Domanda ${idx + 1} (${escapeHtml(q.categoria || 'Generale')})</span>
+            <div>${statusText}</div>
+          </div>
+          <div class="q-text" style="font-size:0.98rem; margin-bottom:12px;">${escapeHtml(q.domanda)}</div>
+          <div>${optsHtml}</div>
+        `;
+        container.appendChild(item);
+      });
+
+      if (renderedCount === 0) {
+        container.innerHTML = `
+          <div class="control-card" style="text-align:center; padding:24px; color:var(--text-muted); font-size:0.9rem;">
+            Nessuna domanda trovata con i filtri attuali.
+          </div>
+        `;
+      }
+    }
+
+    function repeatCurrentDetailAttempt() {
+      if (!currentDetailAttempt) return;
+      const att = currentDetailAttempt;
+
+      if (att.type === 'EXAM_40') {
+        selectExamType('RANDOM_40');
+        setAppMode('EXAM');
+        exStart();
+      } else if (att.type === 'EXAM_MARATHON') {
+        selectExamType('ALL');
+        setAppMode('EXAM');
+        exStart();
+      } else if (att.type === 'EXAM_SPECIFIC') {
+        const cat = att.questions?.[0]?.categoria;
+        if (cat) {
+          const select = document.getElementById('ex-select-specific');
+          if (select) select.value = cat;
+          onSpecificQuestionnaireChange();
+        }
+        selectExamType('SPECIFIC');
+        setAppMode('EXAM');
+        exStart();
+      } else if (att.type === 'STUDY_MARATHON') {
+        setAppMode('STUDY');
+        stSelectPool('ALL');
+      } else if (att.type === 'STUDY_RANDOM') {
+        setAppMode('STUDY');
+        stSelectPool('RANDOM_40');
+      } else {
+        const cat = att.questions?.[0]?.categoria;
+        setAppMode('STUDY');
+        if (cat) {
+          const select = document.getElementById('st-select-specific');
+          if (select) select.value = cat;
+          stSelectPool('SPECIFIC');
+        } else {
+          stSelectPool('ALL');
+        }
+      }
     }
 
     function renderDomainMasteryBars(stats) {
@@ -13082,23 +13444,6 @@
         `;
         container.appendChild(item);
       });
-    }
-
-    function startErrorDrill() {
-      const wrongList = getWrongQuestionsList();
-      if (wrongList.length === 0) {
-        alert("Complimenti! Non hai domande con errori da superare (tutte hanno almeno 4 risposte esatte o non sono mai state sbagliate).");
-        return;
-      }
-      stQuestions = [...wrongList].sort(() => 0.5 - Math.random());
-      stCurrentIndex = 0;
-      setAppMode('STUDY');
-      document.getElementById('st-pool-all').classList.remove('active');
-      document.getElementById('st-pool-rand').classList.remove('active');
-      document.getElementById('st-pool-spec').classList.remove('active');
-      stInitGrid();
-      stRenderQuestion();
-      alert("Avviata sessione 'Ripasso Errori' con " + wrongList.length + " domande! Rispondi correttamente almeno 4 volte per completarle.");
     }
 
     function exportHistoryData() {
@@ -13271,6 +13616,7 @@
       } else if (mode === 'STUDY') {
         document.getElementById('tab-study-mode').classList.add('active');
         document.getElementById('view-study').classList.add('active');
+        if (!window.stStartTime) window.stStartTime = Date.now();
       } else if (mode === 'EXAM') {
         document.getElementById('tab-exam-mode').classList.add('active');
         document.getElementById('view-exam').classList.add('active');
@@ -13281,6 +13627,7 @@
       } else if (mode === 'HISTORY') {
         document.getElementById('tab-history-mode').classList.add('active');
         document.getElementById('view-history').classList.add('active');
+        closeSessionDetail();
         renderHistory();
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -13303,6 +13650,7 @@
 
     function stSelectPool(mode) {
       stSelectedPool = mode;
+      window.stStartTime = Date.now();
       document.querySelectorAll('.study-pool-btn').forEach(b => b.classList.remove('active'));
       const specBox = document.getElementById('st-specific-picker-box');
 
@@ -13614,6 +13962,9 @@
 
       exUserAnswers = exQuestions.map(() => ({ selected: null, flagged: false }));
       exCurrentIndex = 0;
+      window.exStartTime = Date.now();
+      window.exActiveType = selectedExamType;
+      window.exActiveSpecificName = (selectedExamType === 'SPECIFIC') ? document.getElementById('ex-select-specific')?.value : '';
 
       // Timer
       clearInterval(exTimerInterval);
@@ -13767,14 +14118,62 @@
 
       exQuestions.forEach((q, idx) => {
         const a = exUserAnswers[idx];
-        if (a.selected === null) unanswered++;
-        else if (a.selected === q.risposta_corretta) correct++;
-        else wrong++;
+        if (a.selected === null) {
+          unanswered++;
+        } else if (a.selected === q.risposta_corretta) {
+          correct++;
+          const k = _normQ(q.domanda) + ' ||| ' + _normQ(q.risposta_corretta);
+          recordQuestionResult(k, true);
+        } else {
+          wrong++;
+          const k = _normQ(q.domanda) + ' ||| ' + _normQ(q.risposta_corretta);
+          recordQuestionResult(k, false);
+        }
       });
 
       const total = exQuestions.length;
       const pct = Math.round((correct / total) * 100);
       const passed = pct >= 65;
+
+      const timeSpentMs = Math.max(1000, Date.now() - (window.exStartTime || Date.now()));
+      const mins = Math.floor(timeSpentMs / 60000);
+      const secs = Math.floor((timeSpentMs % 60000) / 1000);
+      const timeSpentStr = mins > 0 ? (mins + 'm ' + secs + 's') : (secs + 's');
+
+      let typeKey = 'EXAM_40';
+      let titleStr = '⏱️ Esame Ufficiale (40 Domande)';
+
+      if (window.exActiveType === 'ALL') {
+        typeKey = 'EXAM_MARATHON';
+        titleStr = '🏃 Maratona Esame (523 Domande)';
+      } else if (window.exActiveType === 'SPECIFIC') {
+        typeKey = 'EXAM_SPECIFIC';
+        titleStr = '📝 Esame: ' + (window.exActiveSpecificName || 'Questionario') + ' (' + total + ' Domande)';
+      }
+
+      // Save complete attempt to localStorage
+      saveAttempt({
+        id: 'att_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
+        type: typeKey,
+        title: titleStr,
+        date: new Date().toLocaleDateString('it-IT') + ' ' + new Date().toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' }),
+        score: correct + ' / ' + total,
+        pct: pct,
+        passed: passed,
+        timeSpent: timeSpentStr,
+        total: total,
+        correct: correct,
+        wrong: wrong,
+        unanswered: unanswered,
+        questions: exQuestions.map((q, idx) => ({
+          domanda: q.domanda,
+          categoria: q.categoria,
+          opzioni: q.opzioni,
+          risposta_corretta: q.risposta_corretta,
+          selected: exUserAnswers[idx].selected,
+          flagged: !!exUserAnswers[idx].flagged
+        }))
+      });
 
       document.getElementById('ex-res-score').textContent = correct + ' / ' + total;
       document.getElementById('ex-res-pct').textContent = pct + '%';
@@ -13787,11 +14186,11 @@
       if (passed) {
         titleEl.textContent = '🎉 ESAME SUPERATO!';
         titleEl.className = 'res-title passed';
-        descEl.textContent = 'Complimenti! Hai raggiunto il ' + pct + '% (soglia minima richiesta 65%).';
+        descEl.textContent = 'Complimenti! Hai raggiunto il ' + pct + '% (soglia minima richiesta 65%). Salvato nello Storico.';
       } else {
         titleEl.textContent = '❌ ESAME NON SUPERATO';
         titleEl.className = 'res-title failed';
-        descEl.textContent = 'Punteggio: ' + pct + '%. Per superare la certificazione ufficiale è necessario almeno il 65% (26/40).';
+        descEl.textContent = 'Punteggio: ' + pct + '%. Per superare la certificazione ufficiale è necessario almeno il 65% (26/40). Salvato nello Storico.';
       }
 
       document.getElementById('ex-subview-running').style.display = 'none';
