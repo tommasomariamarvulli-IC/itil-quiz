@@ -34,6 +34,26 @@
       --shadow: 0 4px 6px -1px rgba(0,0,0,0.06), 0 2px 4px -2px rgba(0,0,0,0.04);
     }
 
+    body.dark-theme {
+      --bg: #0b0f19;
+      --card-bg: #141c2e;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #3b82f6;
+      --primary-hover: #60a5fa;
+      --primary-light: #172554;
+      --success: #22c55e;
+      --success-bg: #052e16;
+      --success-border: #166534;
+      --danger: #ef4444;
+      --danger-bg: #450a0a;
+      --danger-border: #991b1b;
+      --warning: #f59e0b;
+      --warning-bg: #451a03;
+      --border: #243049;
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.4), 0 2px 4px -2px rgba(0,0,0,0.3);
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -47,6 +67,213 @@
       color: var(--text);
       line-height: 1.5;
       padding-bottom: 40px;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    /* DARK THEME STYLES */
+    body.dark-theme .app-header {
+      background: #0f172a;
+      border-bottom-color: #1e293b;
+    }
+    body.dark-theme .brand-title {
+      color: #f8fafc;
+    }
+    body.dark-theme .mode-tabs {
+      background: #1e293b;
+      border-color: #334155;
+    }
+    body.dark-theme .mode-tab-btn {
+      color: #94a3b8;
+    }
+    body.dark-theme .mode-tab-btn.active {
+      background: #0f172a;
+      color: #60a5fa;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
+    body.dark-theme .refresh-cache-btn,
+    body.dark-theme .theme-toggle-btn {
+      background: #1e293b;
+      color: #f8fafc;
+      border-color: #334155;
+    }
+    body.dark-theme .refresh-cache-btn:hover,
+    body.dark-theme .theme-toggle-btn:hover {
+      background: #334155;
+      color: #60a5fa;
+    }
+    body.dark-theme .control-card,
+    body.dark-theme .portal-card,
+    body.dark-theme .home-info-box,
+    body.dark-theme .question-card,
+    body.dark-theme .result-card,
+    body.dark-theme .history-card,
+    body.dark-theme .attempt-card,
+    body.dark-theme .registry-item-card,
+    body.dark-theme .registry-header-card,
+    body.dark-theme .review-item {
+      background: var(--card-bg);
+      border-color: var(--border);
+      color: var(--text);
+    }
+    body.dark-theme .home-hero-title,
+    body.dark-theme .portal-card-title,
+    body.dark-theme .home-info-title,
+    body.dark-theme .attempt-title,
+    body.dark-theme .q-text,
+    body.dark-theme .reg-item-q,
+    body.dark-theme h2,
+    body.dark-theme h3 {
+      color: #f8fafc;
+    }
+    body.dark-theme .stat-box,
+    body.dark-theme .hist-stat-box,
+    body.dark-theme .domain-mastery-item {
+      background: #0d1527;
+      border-color: var(--border);
+    }
+    body.dark-theme .dm-header {
+      color: #f8fafc;
+    }
+    body.dark-theme .dm-bar-bg,
+    body.dark-theme .dm-ratio-bar-bg,
+    body.dark-theme .progress-bar-container {
+      background: #1e293b;
+    }
+    body.dark-theme .study-search-input,
+    body.dark-theme .mobile-picker-select {
+      background: #0b0f19;
+      color: #f8fafc;
+      border-color: #334155;
+    }
+    body.dark-theme .option-item {
+      background: #0f172a;
+      border-color: #1e293b;
+      color: #cbd5e1;
+    }
+    body.dark-theme .option-item:hover {
+      background: #172554;
+      border-color: #2563eb;
+    }
+    body.dark-theme .option-item.selected {
+      background: #1e3a8a;
+      border-color: #3b82f6;
+      color: #eff6ff;
+    }
+    body.dark-theme .option-item.correct {
+      background: #052e16 !important;
+      border-color: #16a34a !important;
+      color: #86efac !important;
+    }
+    body.dark-theme .option-item.wrong {
+      background: #450a0a !important;
+      border-color: #dc2626 !important;
+      color: #fca5a5 !important;
+    }
+    body.dark-theme .btn-secondary,
+    body.dark-theme .btn-action,
+    body.dark-theme .btn-hist-tool {
+      background: #1e293b;
+      color: #e2e8f0;
+      border-color: #334155;
+    }
+    body.dark-theme .btn-secondary:hover,
+    body.dark-theme .btn-action:hover,
+    body.dark-theme .btn-hist-tool:hover {
+      background: #334155;
+      color: #60a5fa;
+    }
+    body.dark-theme .btn-action.active {
+      background: #2563eb;
+      color: #ffffff;
+      border-color: #2563eb;
+    }
+    body.dark-theme .reg-pill,
+    body.dark-theme .study-pool-btn {
+      background: #1e293b;
+      color: #94a3b8;
+      border-color: #334155;
+    }
+    body.dark-theme .reg-pill.active,
+    body.dark-theme .study-pool-btn.active {
+      background: #2563eb;
+      color: #ffffff;
+      border-color: #2563eb;
+    }
+    body.dark-theme .grid-btn {
+      background: #1e293b;
+      color: #94a3b8;
+      border-color: #334155;
+    }
+    body.dark-theme .grid-btn.active {
+      background: #3b82f6;
+      color: #ffffff;
+      border-color: #3b82f6;
+    }
+    body.dark-theme .grid-btn.answered {
+      background: #1e3a8a;
+      color: #bfdbfe;
+      border-color: #3b82f6;
+    }
+    body.dark-theme .exam-opt-card {
+      background: #0f172a;
+      border-color: #1e293b;
+    }
+    body.dark-theme .exam-opt-card.selected {
+      border-color: #3b82f6;
+      background: #111e38;
+    }
+    body.dark-theme .exam-proportions-box {
+      background: #0b0f19;
+      border-color: #1e293b;
+    }
+    body.dark-theme .reg-item-ans-box {
+      background: #052e16;
+      border-color: #166534;
+      color: #a7f3d0;
+    }
+    body.dark-theme .offline-download-card {
+      background: #0f172a;
+      border-color: #1e293b;
+    }
+    body.dark-theme .offline-download-title {
+      color: #f8fafc;
+    }
+    body.dark-theme .stat-pill {
+      background: #1e293b;
+      color: #e2e8f0;
+      border-color: #334155;
+    }
+    body.dark-theme .session-type-pill.exam { background: #1e1b4b; color: #a5b4fc; border-color: #312e81; }
+    body.dark-theme .session-type-pill.specific { background: #451a03; color: #fde68a; border-color: #78350f; }
+    body.dark-theme .session-type-pill.marathon { background: #3b0764; color: #e9d5ff; border-color: #581c87; }
+    body.dark-theme .session-type-pill.study { background: #172554; color: #93c5fd; border-color: #1e3a8a; }
+    body.dark-theme .attempt-score-badge.passed { background: #052e16; color: #86efac; }
+    body.dark-theme .attempt-score-badge.failed { background: #450a0a; color: #fca5a5; }
+    body.dark-theme .tag.chosen { background: #1e3a8a; color: #bfdbfe; }
+    body.dark-theme .tag.exact { background: #052e16; color: #86efac; }
+    body.dark-theme .btn-del-session { background: #450a0a; color: #fca5a5; border-color: #7f1d1d; }
+    body.dark-theme .feedback-box { background: #1e293b; color: #f8fafc; border-color: #334155; }
+    body.dark-theme .feedback-box.correct { background: #052e16; color: #86efac; border-color: #16a34a; }
+    body.dark-theme .feedback-box.wrong { background: #450a0a; color: #fca5a5; border-color: #dc2626; }
+    body.dark-theme [style*="color:#0f172a"], body.dark-theme [style*="color: #0f172a"] { color: #f8fafc !important; }
+    body.dark-theme [style*="color:#1e293b"], body.dark-theme [style*="color: #1e293b"] { color: #f8fafc !important; }
+    body.dark-theme [style*="background:white"], body.dark-theme [style*="background: white"],
+    body.dark-theme [style*="background:#ffffff"], body.dark-theme [style*="background: #ffffff"] {
+      background: var(--card-bg) !important;
+      color: var(--text) !important;
+    }
+    body.dark-theme [style*="background:#f8fafc"], body.dark-theme [style*="background: #f8fafc"] {
+      background: #0d1527 !important;
+    }
+    body.dark-theme [style*="background: #eff6ff"], body.dark-theme [style*="background:#eff6ff"] {
+      background: #172554 !important;
+      border-color: #2563eb !important;
+    }
+    body.dark-theme [style*="color:#1e40af"], body.dark-theme [style*="color: #1e40af"] {
+      color: #93c5fd !important;
+    }
+    body.dark-theme [style*="color:#475569"], body.dark-theme [style*="color: #475569"] {
+      color: #94a3b8 !important;
     }
 
     
@@ -532,6 +759,40 @@
       color: var(--text-muted);
       font-weight: 600;
     }
+    .dm-breakdown-row {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed #e2e8f0;
+    }
+    .dm-ratio-bar-bg {
+      width: 100%;
+      height: 9px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+      display: flex;
+      margin: 4px 0;
+    }
+    .dm-ratio-fill-correct {
+      height: 100%;
+      background: var(--success);
+      transition: width 0.4s ease;
+    }
+    .dm-ratio-fill-wrong {
+      height: 100%;
+      background: var(--danger);
+      transition: width 0.4s ease;
+    }
+    .dm-pill-stat {
+      font-size: 0.73rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .dm-pill-stat.correct { color: #15803d; }
+    .dm-pill-stat.wrong { color: #b91c1c; }
+    .dm-pill-stat.coverage { color: #2563eb; }
 
     .hist-action-bar {
       display: flex;
@@ -733,6 +994,29 @@
       border-color: #94a3b8;
     }
 
+    .theme-toggle-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      font-size: 1.15rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+      margin-left: 4px;
+      padding: 0;
+      flex-shrink: 0;
+    }
+
+    .theme-toggle-btn:hover, .theme-toggle-btn:active {
+      background: #e2e8f0;
+      border-color: #94a3b8;
+      transform: scale(1.05);
+    }
+
     .refresh-icon.spin {
       display: inline-block;
       animation: rotate 0.8s linear infinite;
@@ -744,6 +1028,24 @@
     }
 
     @media (max-width: 480px) {
+      .header-content {
+        padding: 8px 6px;
+        gap: 4px;
+      }
+      .brand-title {
+        font-size: 0.92rem;
+      }
+      .mode-tab-btn {
+        width: 33px;
+        height: 34px;
+        font-size: 1.05rem;
+      }
+      .refresh-cache-btn, .theme-toggle-btn {
+        width: 33px;
+        height: 34px;
+        font-size: 1.05rem;
+        margin-left: 2px;
+      }
       .refresh-lbl {
         display: none;
       }
@@ -1541,6 +1843,14 @@
   <meta name="theme-color" content="#2563eb">
 </head>
 <body>
+  <script>
+    (function() {
+      try {
+        const t = localStorage.getItem('itil4_theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        if (t === 'dark') document.body.classList.add('dark-theme');
+      } catch(e) {}
+    })();
+  </script>
 
   <!-- Top App Navigation -->
   <header class="app-header">
@@ -1556,6 +1866,7 @@
         <button class="mode-tab-btn" id="tab-registry-mode" onclick="setAppMode('REGISTRY')" title="Registro Domande">📖</button>
         <button class="mode-tab-btn" id="tab-history-mode" onclick="setAppMode('HISTORY')" title="Storico e Statistiche">📊</button>
         <button class="refresh-cache-btn" onclick="forceAppRefresh(this)" title="Svuota cache e ricarica">🔄</button>
+        <button class="theme-toggle-btn" id="btn-theme-toggle" onclick="toggleTheme()" title="Cambia tema (Chiaro / Scuro)">🌙</button>
       </div>
     </div>
   </header>
@@ -1668,7 +1979,12 @@
           <span class="stat-pill success" id="st-correct">0 Corrette</span>
           <span class="stat-pill danger" id="st-wrong">0 Errate</span>
         </div>
-        <div style="margin-top: 10px; display: flex; justify-content: flex-end;">
+        <div style="margin-top: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+          <label style="display: flex; align-items: center; gap: 6px; font-size: 0.84rem; font-weight: 700; color: #1e40af; cursor: pointer; user-select: none; background: #eff6ff; padding: 5px 12px; border-radius: 8px; border: 1px solid #bfdbfe;" title="Abilita la verifica immediata della risposta avanzando">
+            <input type="checkbox" id="st-check-quick-verify" onchange="toggleQuickVerify(this.checked)" style="accent-color: var(--primary); width: 16px; height: 16px; cursor: pointer;">
+            <span>⚡ Verifica Rapida</span>
+            <span style="font-size: 0.72rem; font-weight: 500; color: #64748b;">(verifica automatica avanzando)</span>
+          </label>
           <button class="btn-action" onclick="stSaveSessionToHistory()" id="st-btn-save-session" style="font-size: 0.78rem; font-weight: 700; color: #4338ca; background: #e0e7ff; border-color: #c7d2fe;">
             💾 Registra Sessione Studio nello Storico
           </button>
@@ -1765,7 +2081,11 @@
             <button class="btn btn-secondary" id="st-btn-prev" onclick="stNavigate(-1)">←</button>
             <button class="btn btn-secondary" id="st-btn-next" onclick="stNavigate(1)">→</button>
           </div>
-          <div style="display:flex; gap:6px;">
+          <div style="display:flex; gap:6px; align-items:center;">
+            <label style="display:flex; align-items:center; gap:4px; font-size:0.75rem; font-weight:700; color:#1e40af; cursor:pointer; background:#eff6ff; padding:5px 8px; border-radius:6px; border:1px solid #bfdbfe;" title="Verifica subito e passa avanti automaticamente">
+              <input type="checkbox" id="st-check-quick-verify-bottom" onchange="toggleQuickVerify(this.checked)" style="accent-color: var(--primary); cursor: pointer;">
+              <span>⚡ Rapida</span>
+            </label>
             <button class="btn btn-outline" style="border-color:#3b82f6; color:#1d4ed8; font-weight:700; font-size:0.82rem;" onclick="stSaveSessionToHistory()" title="Registra la sessione corrente nello storico">💾 Salva Studio</button>
             <button class="btn btn-primary" id="st-btn-verify" onclick="stVerifyAnswer()">Verifica</button>
           </div>
@@ -13410,36 +13730,66 @@
         const pool = SYLLABUS_POOLS[d.key] || [];
         const totalInDomain = pool.length;
 
-        // A question is mastered if user answered it correctly >= 1 time and correct >= wrong
         let masteredCount = 0;
         let answeredInDomain = 0;
+        let totalCorrectAttempts = 0;
+        let totalWrongAttempts = 0;
 
         pool.forEach(q => {
           const k = _normQ(q.domanda) + ' ||| ' + _normQ(q.risposta_corretta);
           const s = stats[k];
           if (s && (s.correct > 0 || s.wrong > 0)) {
             answeredInDomain++;
+            totalCorrectAttempts += s.correct;
+            totalWrongAttempts += s.wrong;
             if (s.correct >= 1 && s.correct >= s.wrong) {
               masteredCount++;
             }
           }
         });
 
-        const pct = totalInDomain > 0 ? Math.round((masteredCount / totalInDomain) * 100) : 0;
+        const pctCoverage = totalInDomain > 0 ? Math.round((answeredInDomain / totalInDomain) * 100) : 0;
+        const totalAnswers = totalCorrectAttempts + totalWrongAttempts;
+        const pctCorrect = totalAnswers > 0 ? Math.round((totalCorrectAttempts / totalAnswers) * 100) : 0;
+        const pctWrong = totalAnswers > 0 ? (100 - pctCorrect) : 0;
 
         const item = document.createElement('div');
         item.className = 'domain-mastery-item';
         item.innerHTML = `
           <div class="dm-header">
             <span>${d.name}</span>
-            <span style="color:var(--primary); font-weight:800;">${pct}%</span>
+            <span style="font-size:0.75rem; font-weight:700; color:#15803d; background:#dcfce7; padding:2px 8px; border-radius:4px;">${d.weight}</span>
           </div>
-          <div class="dm-bar-bg">
-            <div class="dm-bar-fill" style="width: ${pct}%;"></div>
+
+          <!-- 1. Copertura Domande Tentate -->
+          <div style="margin-bottom: 7px;">
+            <div style="display:flex; justify-content:space-between; font-size:0.75rem; font-weight:700; color:#475569; margin-bottom:3px;">
+              <span>🎯 Domande Tentate</span>
+              <span class="dm-pill-stat coverage">${answeredInDomain} / ${totalInDomain} (${pctCoverage}%)</span>
+            </div>
+            <div class="dm-bar-bg">
+              <div class="dm-bar-fill" style="width: ${pctCoverage}%;"></div>
+            </div>
           </div>
-          <div class="dm-sub">
-            <span>${masteredCount} su ${totalInDomain} padroneggiate (${answeredInDomain} provate)</span>
-            <span>Peso esame: ${d.weight}</span>
+
+          <!-- 2. Percentuali Risposte Esatte vs Sbagliate -->
+          <div class="dm-breakdown-row">
+            <div style="display:flex; justify-content:space-between; font-size:0.75rem; font-weight:700; margin-bottom:3px;">
+              <span class="dm-pill-stat correct">✔️ Esatte: ${pctCorrect}% (${totalCorrectAttempts})</span>
+              <span class="dm-pill-stat wrong">❌ Sbagliate: ${pctWrong}% (${totalWrongAttempts})</span>
+            </div>
+            <div class="dm-ratio-bar-bg">
+              ${totalAnswers > 0 ? `
+                <div class="dm-ratio-fill-correct" style="width: ${pctCorrect}%;" title="Esatte: ${pctCorrect}%"></div>
+                <div class="dm-ratio-fill-wrong" style="width: ${pctWrong}%;" title="Sbagliate: ${pctWrong}%"></div>
+              ` : `
+                <div style="width:100%; height:100%; background:#e2e8f0;" title="Nessuna risposta registrata"></div>
+              `}
+            </div>
+            <div class="dm-sub" style="margin-top:3px;">
+              <span>${masteredCount} su ${totalInDomain} padroneggiate (esatte ≥ errate)</span>
+              <span>${totalAnswers} risposte totali</span>
+            </div>
           </div>
         `;
         container.appendChild(item);
@@ -13640,6 +13990,16 @@
     let stCurrentIndex = 0;
     const stState = new Map(); // question -> { selected: null, checked: false }
     let stSelectedPool = 'ALL';
+    let stQuickVerify = localStorage.getItem('itil4_study_quick_verify') !== 'false'; // default active
+
+    function toggleQuickVerify(val) {
+      stQuickVerify = !!val;
+      try { localStorage.setItem('itil4_study_quick_verify', stQuickVerify ? 'true' : 'false'); } catch (e) {}
+      const c1 = document.getElementById('st-check-quick-verify');
+      const c2 = document.getElementById('st-check-quick-verify-bottom');
+      if (c1) c1.checked = stQuickVerify;
+      if (c2) c2.checked = stQuickVerify;
+    }
 
     function getStState(q) {
       if (!stState.has(q)) {
@@ -13747,6 +14107,11 @@
       const q = stQuestions[stCurrentIndex];
       const s = getStState(q);
 
+      const c1 = document.getElementById('st-check-quick-verify');
+      const c2 = document.getElementById('st-check-quick-verify-bottom');
+      if (c1) c1.checked = stQuickVerify;
+      if (c2) c2.checked = stQuickVerify;
+
       document.getElementById('st-q-num').textContent = 'Domanda ' + (stCurrentIndex + 1) + ' di ' + stQuestions.length;
       document.getElementById('st-q-badge').textContent = q.categoria;
       document.getElementById('st-q-text').textContent = q.domanda;
@@ -13774,6 +14139,9 @@
           s.selected = opt;
           document.querySelectorAll('#st-options .option-item').forEach(el => el.classList.remove('selected'));
           label.classList.add('selected');
+          if (stQuickVerify && !s.checked) {
+            stVerifyAnswer();
+          }
         };
 
         const span = document.createElement('span');
@@ -13824,6 +14192,7 @@
         alert("Seleziona una risposta prima di verificare.");
         return;
       }
+      if (s.checked) return;
 
       s.checked = true;
       const isCorrect = s.selected === q.risposta_corretta;
@@ -13862,6 +14231,13 @@
     }
 
     function stNavigate(dir) {
+      if (dir > 0 && stQuickVerify && stQuestions.length > 0) {
+        const q = stQuestions[stCurrentIndex];
+        const s = getStState(q);
+        if (s.selected && !s.checked) {
+          stVerifyAnswer();
+        }
+      }
       const newIdx = stCurrentIndex + dir;
       if (newIdx >= 0 && newIdx < stQuestions.length) {
         stCurrentIndex = newIdx;
@@ -14343,6 +14719,40 @@
         navigator.serviceWorker.register('./sw.js').catch(() => {});
       });
     }
+
+    // Theme Switcher (White / Dark mode)
+    function initTheme() {
+      try {
+        const saved = localStorage.getItem('itil4_theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        applyTheme(saved);
+      } catch (e) {
+        applyTheme('light');
+      }
+    }
+
+    function applyTheme(theme) {
+      const isDark = theme === 'dark';
+      document.body.classList.toggle('dark-theme', isDark);
+      const btn = document.getElementById('btn-theme-toggle');
+      if (btn) {
+        btn.innerHTML = isDark ? '☀️' : '🌙';
+        btn.title = isDark ? 'Passa a tema Chiaro ☀️' : 'Passa a tema Scuro 🌙';
+      }
+      const metaTheme = document.querySelector('meta[name="theme-color"]');
+      if (metaTheme) {
+        metaTheme.setAttribute('content', isDark ? '#0b0f19' : '#2563eb');
+      }
+      try {
+        localStorage.setItem('itil4_theme', isDark ? 'dark' : 'light');
+      } catch (e) {}
+    }
+
+    function toggleTheme() {
+      const isDark = document.body.classList.contains('dark-theme');
+      applyTheme(isDark ? 'light' : 'dark');
+    }
+
+    initTheme();
 
     // Init App
     stApplyFilters();
