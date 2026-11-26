@@ -333,6 +333,93 @@
     body.dark-theme [style*="color:#475569"], body.dark-theme [style*="color: #475569"] {
       color: #94a3b8 !important;
     }
+    body.dark-theme .courtesy-icon-box {
+      background: #451a03 !important;
+      border-color: #78350f !important;
+    }
+    body.dark-theme .courtesy-badge {
+      background: #451a03 !important;
+      border-color: #78350f !important;
+      color: #fde68a !important;
+    }
+    body.dark-theme .courtesy-info-box {
+      background: #0b0f19 !important;
+      border-color: #1e293b !important;
+    }
+
+    /* COURTESY PAGE (INIBIZIONE USO) */
+    .courtesy-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: var(--bg);
+      z-index: 9999999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .courtesy-card {
+      max-width: 540px;
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 44px 32px;
+      text-align: center;
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+    }
+    .courtesy-icon-box {
+      width: 76px;
+      height: 76px;
+      background: #fef3c7;
+      border: 2px solid #fde68a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px auto;
+      font-size: 2.4rem;
+    }
+    .courtesy-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #b45309;
+      background: #fef3c7;
+      border: 1px solid #fde68a;
+      padding: 4px 14px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+      letter-spacing: 0.5px;
+    }
+    .courtesy-title {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 14px;
+      line-height: 1.3;
+    }
+    .courtesy-desc {
+      font-size: 0.96rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 24px;
+    }
+    .courtesy-info-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 22px;
+      text-align: left;
+    }
 
     
     /* HOME VIEW PRESENTATION STYLES */
@@ -1913,8 +2000,42 @@
     })();
   </script>
 
+  <!-- ========================================== -->
+  <!-- PAGINA DI CORTESIA (INIBIZIONE ACCESSO)    -->
+  <!-- ========================================== -->
+  <div class="courtesy-overlay" id="courtesy-overlay">
+    <div class="courtesy-card">
+      <div class="courtesy-icon-box">
+        🚧
+      </div>
+
+      <div class="courtesy-badge">
+        PAGINA DI CORTESIA
+      </div>
+
+      <h1 class="courtesy-title">
+        Servizio Temporaneamente Non Disponibile
+      </h1>
+
+      <p class="courtesy-desc">
+        L'accesso all'applicazione e alle simulazioni d'esame ITIL® 4 Foundation è momentaneamente sospeso per interventi di manutenzione tecnica e aggiornamento straordinario.
+      </p>
+
+      <div class="courtesy-info-box">
+        <div style="font-weight:700; color:var(--text); margin-bottom:6px; display:flex; align-items:center; gap:6px;">
+          <span>ℹ️</span> Stato della Piattaforma:
+        </div>
+        <div>Tutti i dati, le statistiche e i progressi salvati in locale sul tuo dispositivo rimangono protetti e intatti. Il servizio sarà ripristinato non appena le attività saranno concluse.</div>
+      </div>
+
+      <div style="font-size:0.84rem; color:var(--text-muted); font-weight:600;">
+        Ci scusiamo per il momentaneo disagio.
+      </div>
+    </div>
+  </div>
+
   <!-- Top App Navigation -->
-  <header class="app-header">
+  <header class="app-header" style="display:none !important;">
     <div class="header-content">
       <div class="brand-title">
         <span>🛡️ ITIL 4</span>
@@ -1932,7 +2053,7 @@
     </div>
   </header>
 
-  <div class="container">
+  <div class="container" style="display:none !important;">
 
     <!-- ========================================== -->
     

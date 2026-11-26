@@ -1,4 +1,4 @@
-const CACHE_NAME = 'itil4-quiz-v2';
+const CACHE_NAME = 'itil4-quiz-v3';
 const ASSETS = [
   './',
   './index.html',
